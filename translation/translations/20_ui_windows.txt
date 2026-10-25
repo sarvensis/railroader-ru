@@ -1,0 +1,320 @@
+// Окна интерфейса: инспектор вагона, окно компании, настройки компании.
+
+// === UI.AutoEngineerDestinationPicker
+Cancelled waypoint selection=Выбор путевой точки отменён
+
+// === UI.Builder.UIPanelBuilder
+<sprite name\="MouseLeft"> Jump To=<sprite name="MouseLeft"> Перейти
+t:Up to {0:n} letters=До {0} букв
+
+// === UI.CarCustomizeWindow.CarCustomizeWindow
+Base Color=Основной цвет
+Color=Цвет
+Identity=Обозначение
+Lettering=Надписи
+Lettering Color=Цвет надписей
+Must be Trainmaster or higher=Нужна роль «Начальник движения» или выше
+Must be owned by your railroad=Должен принадлежать вашей дороге
+Road Number=Номер
+Text=Текст
+Tools=Инструменты
+
+// === UI.CarInspector.CarInspector
+t:${0} on delivery=${0} при доставке
+t:${0} to be paid on delivery=${0} будет выплачено при доставке
+t:+ ${0} if delivered in next {1}; ${2} thereafter=+ ${0} при доставке в течение {1}; затем ${2}
+t:- ${0} for damage=- ${0} за повреждения
+Applied=Затянут
+Apply the hand brake to manually apply brakes. Hand brakes should be applied on spotted cars.=Затяните ручной тормоз, чтобы затормозить вагон вручную. На поставленных под грузовые операции вагонах ручной тормоз следует затягивать.
+Auto Dest=Автоназначение
+Automatic Waybills=Автоматические накладные
+Automatic Waybills: Load Location=Автоматические накладные: место погрузки
+Automatic Waybills: Unload Location=Автоматические накладные: место выгрузки
+Automatically sets destinations from this train's timetable schedule, including for passenger transfers, while car is stopped at a station.=Автоматически задаёт назначения по расписанию этого поезда (в том числе для пересадок пассажиров), пока вагон стоит на станции.
+Bleed=Стравить
+Bleed Valve=Выпускной клапан
+Bleed the brakes to release pressure from the car's brake system.=Стравите воздух, чтобы сбросить давление в тормозной системе вагона.
+Brake Line=Тормозная магистраль
+Car=Вагон
+Click to delete this car. Shift-Click deletes all coupled cars.=Щёлкните, чтобы удалить вагон. Shift+щелчок удаляет все сцепленные вагоны.
+t:Copied to {0}=Скопировано: {0}
+Copy Auto Waybills to Coupled=Копировать автонакладные на сцепленные
+Copy automatic waybill assignments to coupled cars.=Скопировать настройки автоматических накладных на сцепленные вагоны.
+Copy from Timetable=Скопировать из расписания
+Copy passenger stops to coupled coaches.=Скопировать пассажирские остановки на сцепленные вагоны.
+Copy to Coupled=Копировать на сцепленные
+Customize=Оформление
+Customize Not Available=Оформление недоступно
+Cut Out=Выключен
+Cycle Waybill=Сменить накладную
+Cycle Waybill (Coupled)=Сменить накладную (сцепленные)
+Cylinder=Цилиндр
+Destination=Назначение
+Flip this car's waybill - and those it is coupled to which match - to the other automatic waybill destination.=Переключить накладную этого вагона (и подходящих сцепленных с ним) на другое автоматическое назначение.
+Flip this car's waybill to the other automatic waybill destination.=Переключить накладную этого вагона на другое автоматическое назначение.
+Follow Car=Следить за вагоном
+Hand Brake=Ручной тормоз
+Hand Brake Control=Управление ручным тормозом
+Issued=Выдана
+Jump the overhead camera to this car and track it.=Перенести камеру сверху к этому вагону и следить за ним.
+Location to load this car. A waybill will be assigned to here once it is empty.=Место погрузки вагона. Когда вагон опустеет, ему выпишут накладную сюда.
+Location to unload this car. A waybill will be assigned to here once it is loaded.=Место выгрузки вагона. Когда вагон загрузят, ему выпишут накладную сюда.
+Origin=Отправитель
+Pending Delivery=Ожидает доставки
+Pressure in the brake line is lowered to apply brakes. Brakes recharge when the pressure is raised.=Для торможения давление в тормозной магистрали снижают. При повышении давления тормоза заряжаются.
+Reflects how much braking force is being applied.=Показывает, какая тормозная сила приложена.
+Release=Отпустить
+Released=Отпущен
+Repair Estimate=Оценка ремонта
+Selected locomotives display HUD controls. Shortcuts allow jumping to the selected car.=Для выбранного локомотива показываются органы управления на экране. Горячие клавиши позволяют перейти к выбранному вагону.
+Set from Timetable=Задать по расписанию
+This car has been spotted at its destination.=Вагон поставлен в пункте назначения.
+This car has not been spotted at its destination.=Вагон ещё не поставлен в пункте назначения.
+Timetable Auto Destinations=Автоназначения по расписанию
+Unload=Выгрузка
+Load=Погрузка
+t:{0:n}T {1}={0} т {1}
+
+// === UI.Common.ModalAlertController
+Okay=ОК
+
+// === UI.CompanyWindow.BuilderExtensions
+t: ({0}% max repair {1})= (макс. ремонт {0}% — {1})
+ <sprite name\="Flame"> Hotbox!= <sprite name="Flame"> Перегрев буксы!
+ Derailed!= Сход с рельсов!
+Condition=Состояние
+Damaged equipment may perform poorly and pay less.\nRepairs may be made at engine service facilities.=Повреждённый подвижной состав работает хуже и приносит меньше денег.\nРемонт выполняют в пунктах обслуживания локомотивов.
+t:Due in {0}=Через {0}
+t:{0} Past Due <sprite name\=Warning>=Просрочено на {0} <sprite name=Warning>
+Miles on Railroad=Пробег по дороге
+Never=Никогда
+Not Set=Не задано
+Overhaul=Капитальный ремонт
+Overhaul needed; schedule overhaul service to fully repair\nby setting an Overhaul service destination.=Нужен капитальный ремонт: чтобы полностью восстановить состояние,\nназначьте место капитального ремонта.
+Repair Destination=Место ремонта
+Sell Destination=Место продажи
+Sell Value=Стоимость продажи
+t:Service Odometer: {0}\nLast Overhaul: {1}\nService miles are miles adjusted for wear and tear and (for engines) heavy use.=Сервисный пробег: {0}\nПоследний капремонт: {1}\nСервисный пробег учитывает износ и (для локомотивов) тяжёлые режимы работы.
+Set a train crew to associate a car with a specific job.=Назначьте бригаду, чтобы закрепить вагон за определённой работой.
+Show=Показать
+t:{0:N0} mi={0} миль
+None=Нет
+t:{0} (Train {1})={0} (поезд {1})
+
+// === UI.CompanyWindow.CompanyWindow
+Crews=Бригады
+Employees=Сотрудники
+Finance=Финансы
+Locations=Места
+Milestones=Этапы
+Railroad=Дорога
+Settings=Настройки
+
+// === UI.CompanyWindow.CrewsPanelBuilder
+t:- Dep. {0} {1}=- Отпр. {0} {1}
+- No Departures=- Нет отправлений
+t:<alpha\=#60>- Arr. {0} {1}=<alpha=#60>- Приб. {0} {1}
+<alpha\=#66><i>Assign equipment to a crew using the Operations tab in the car's Inspector.</i>=<alpha=#66><i>Закрепить подвижной состав за бригадой можно на вкладке «Перевозки» в инспекторе вагона.</i>
+<i>Trainmaster and above manage crew assignments.</i>=<i>Бригады назначает начальник движения и выше.</i>
+Active=Активна
+Assign a timetable train symbol in order to associate the crew with a timetable schedule. Passenger Auto Engineers will hold at stations until departure time.=Укажите номер поезда из расписания, чтобы связать бригаду с расписанием. Пассажирские автомашинисты будут ждать на станциях времени отправления.
+Create=Создать
+Crew=Бригада
+Description=Описание
+Edit=Изменить
+Edit Crew=Изменить бригаду
+Leave=Покинуть
+No crew selected=Бригада не выбрана
+No crews configured=Бригады не созданы
+Not Active=Не активна
+Train Symbol=Номер поезда
+
+// === UI.CompanyWindow.EmployeesPanelBuilder
+About=Сведения
+Access=Доступ
+Actions=Действия
+Assign the Train Crew for this player.=Назначить игроку бригаду.
+Banned=Заблокирован
+Last Connected=Последнее подключение
+Offline=Не в сети
+Online=В сети
+Please select a player.=Выберите игрока.
+Remove Record=Удалить запись
+Role=Роль
+Show on Map=Показать на карте
+Since=С
+Steam Data=Данные Steam
+Steam ID=Steam ID
+Steam Name=Имя в Steam
+
+// === UI.CompanyWindow.EquipmentPanelBuilder
+Caboose=Служебный вагон
+Condition & Repair=Состояние и ремонт
+Follow=Следить
+Inspect=Осмотреть
+Locomotives=Локомотивы
+No equipment!=Нет подвижного состава!
+Off Railroad=Вне дороги
+Passenger=Пассажирский
+Please select a car.=Выберите вагон.
+Returns To=Вернётся в
+Sell=Продать
+This equipment will return once its waybill is fulfilled.=Этот подвижной состав вернётся после выполнения накладной.
+
+// === UI.CompanyWindow.FinancePanelBuilder
+Balance=Баланс
+Current Loan=Текущий кредит
+Interest Payment=Выплата процентов
+t:Loan {0:C0}=Кредит {0}
+t:Pay {0:C0}=Погасить {0}
+t:{0:C0} (max {1:C0})={0} (макс. {1})
+t:{0:C0} in {1} (10%)={0} через {1} (10%)
+
+// === UI.CompanyWindow.GoalsPanelBuilder
+t: {0}% off= скидка {0}%
+t:(Internal error. Please send player.log.{0}=(Внутренняя ошибка. Пожалуйста, отправьте player.log.{0}
+Available=Доступно
+Cars Ordered, Waiting for Delivery=Вагоны заказаны, ожидается доставка
+Complete=Выполнено
+Completed=Завершено
+Completed!=Завершено!
+Cost=Стоимость
+t:Deliver {0} to {1}. These cars will be delivered to the interchange the next time the interchange is served.=Доставьте {0} в {1}. Эти вагоны прибудут на пункт обмена при следующей подаче.
+Final=Финал
+In Progress=В процессе
+Milestones not available. Please quit and reload this save.=Этапы недоступны. Выйдите и загрузите это сохранение заново.
+Next=Далее
+No milestone selected.=Этап не выбран.
+Not Complete=Не выполнено
+Not Yet Available=Пока недоступно
+Not yet available.=Пока недоступно.
+Phase=Этап
+Prerequisites=Условия
+Task=Задача
+t:{0:n} of {1:n}={0} из {1}
+t:{0:n}/{1:n} Phases Complete=Выполнено этапов: {0}/{1}
+
+// === UI.CompanyWindow.LocationsPanelBuilder
+t: + {0:C0} contract age= + {0} за срок контракта
+(Available at higher tiers.)=(Доступно на более высоких уровнях.)
+A penalty is paid to your customer when lowering service tiers.\nThe penalty is made up of a cost per tier and a fee for recent contracts which diminishes each day.=При понижении уровня обслуживания клиенту выплачивается штраф.\nОн складывается из стоимости за каждый уровень и сбора за недавние контракты, который уменьшается с каждым днём.
+A percentage bonus is awarded for fulfilling waybills on the same, first, or second day.=За выполнение накладных в тот же, на первый или на второй день начисляется процентный бонус.
+Advisories=Предупреждения
+Available Tiers=Доступные уровни
+Bonus=Бонус
+Calculated prior to interchange service after first delivery to customer.=Рассчитывается перед подачей на пункт обмена после первой доставки клиенту.
+Change Contract=Изменить контракт
+Contract=Контракт
+Contract Change=Изменение контракта
+Contract change will take effect at midnight.=Изменение контракта вступит в силу в полночь.
+Establish Contract=Заключить контракт
+Inactive=Неактивно
+Last Served=Последняя подача
+No Contract=Нет контракта
+No Performance Data=Нет данных о выполнении
+Not yet reported at this tier=На этом уровне ещё нет данных
+Passenger Stop=Остановочный пункт
+Performance=Выполнение
+Please select a location.=Выберите место.
+Terminate Contract=Расторгнуть контракт
+Tier=Уровень
+Tier Change Penalty=Штраф за смену уровня
+t:Tier {0:n}=Уровень {0}
+Timely Delivery Bonus=Бонус за своевременную доставку
+Today=Сегодня
+Tracks=Пути
+Warning=Внимание
+Yesterday=Вчера
+t:{0:C0} ({1:C0} tier change{2}={0} ({1} за смену уровня{2}
+t:{0}-{1}-{2}% for timely delivery={0}-{1}-{2}% за своевременную доставку
+
+// === UI.CompanyWindow.RailroadPanelBuilder
+# Daily Report\nDaily reports are compiled at 6pm.=# Ежедневный отчёт\nЕжедневные отчёты составляются в 18:00.
+Equipment Discount=Скидка на подвижной состав
+New Contract Tier=Уровень новых контрактов
+Overall=Общая
+Phase Cost Discount=Скидка на этапы
+Repair Speed Bonus=Бонус к скорости ремонта
+Reputation=Репутация
+Reputation Effects=Влияние репутации
+Tier 1 (no effect)=Уровень 1 (без эффекта)
+t:Up to Tier {0:n}=До уровня {0}
+
+// === UI.CompanyWindow.SettingsPanelBuilder
+t: New employees will be granted <b>{0}</b>.= Новым сотрудникам будет выдана роль <b>{0}</b>.
+ and must supply a password.= и должны ввести пароль.
+ without a password.= без пароля.
+<b>Server is not open</b>; settings will be applied for future sessions.=<b>Сервер не запущен</b>; настройки будут применены в следующих сессиях.
+<i>Warning: Auto Engineers are tuned for Medium braking force. Expect derailments and hard couplings!</i>=<i>Внимание: автомашинисты настроены на среднюю тормозную силу. Возможны сходы с рельсов и жёсткие сцепки!</i>
+Access Control=Управление доступом
+Advanced=Дополнительно
+Affects the rate at which equipment condition decreases with movement.=Влияет на скорость ухудшения состояния подвижного состава при движении.
+Affects the rate oil is used when equipment moves.=Влияет на расход смазки при движении подвижного состава.
+Allow=Разрешить
+Allow New Employees=Разрешить новых сотрудников
+Auto Engineer (AI)=Автомашинист (ИИ)
+Auto Engineer will call non-clear signals.=Автомашинист будет объявлять незелёные сигналы.
+Automatic Passenger Stops=Автоматические пассажирские остановки
+Bearings on equipment must be regularly oiled or it will incur additional running wear. Hotboxes may occur when running with equipment that is not adequately oiled.=Буксы подвижного состава нужно регулярно смазывать, иначе износ при движении увеличивается. При недостаточной смазке возможен перегрев букс.
+Blocking=Группировка
+Braking Force=Тормозная сила
+Call Signals=Объявлять сигналы
+Controls AI behavior when approaching a public crossing.=Определяет поведение ИИ при приближении к переезду.
+Crew players can not join Train Crews themselves; Trainmaster and up must assign.=Игроки-члены бригад не могут сами вступать в бригады; назначает начальник движения и выше.
+Crossing Signal=Сигнал на переезде
+Determines the degree to which cars are delivered to the interchange blocked (grouped) by their destination.=Определяет, насколько вагоны на пункте обмена сгруппированы по назначению.
+Enabled=Включено
+Equipment takes gradual wear when moved and requires periodic overhaul repair service.=Подвижной состав постепенно изнашивается при движении и требует периодического капитального ремонта.
+Equipment which is assigned to a Train Crew may only be controlled by members of that Train Crew.=Подвижным составом, закреплённым за бригадой, могут управлять только члены этой бригады.
+General=Общие
+Higher braking force makes trains easier to stop.=Чем больше тормозная сила, тем легче остановить поезд.
+Hotboxes & Oiling=Перегрев букс и смазка
+If checked, new employees (players) may join the server. Existing players can always join unless banned.=Если отмечено, новые сотрудники (игроки) могут подключаться к серверу. Уже известные игроки могут подключаться всегда, если не заблокированы.
+If checked, reasons for rejected connections are logged to the host's console.=Если отмечено, причины отклонённых подключений выводятся в консоль хоста.
+If not empty, new players must supply the password to join. Existing, unbanned players do not need the password.=Если задано, новым игрокам нужно ввести пароль. Уже известным незаблокированным игрокам пароль не нужен.
+Interchange=Пункт обмена
+Interchange Blocking=Группировка на пункте обмена
+Interchange Served=Подача на пункт обмена
+Interchange Service Time=Время подачи на пункт обмена
+Limit Number=Ограничить число
+Log Rejected=Записывать отклонённые
+Map Features=Возможности карты
+Map Shows Switches=Стрелки на карте
+Maximum number of passengers allowed to connect.=Максимальное число пассажиров, которые могут подключиться.
+Miles Between Overhauls=Пробег между капремонтами
+Minimum Stop Duration=Минимальная стоянка
+Minimum game time that the AI engineer will stop at a station before continuing.=Минимальное игровое время стоянки автомашиниста на станции.
+Multiplayer: New Employees=Сетевая игра: новые сотрудники
+Multiplayer: Passengers=Сетевая игра: пассажиры
+Multiplayer: Train Crew Access=Сетевая игра: доступ бригад
+New Employee Role=Роль новых сотрудников
+New Player Password=Пароль для новых игроков
+New employees can connect=Новые сотрудники могут подключаться
+New employees will be given this role upon connecting.=Новые сотрудники получат эту роль при подключении.
+Number of miles before an Overhaul is required. If an overhaul is not performed in time, the repair shop will be unable to repair equipment to 100%.=Пробег в милях до обязательного капремонта. Если не провести его вовремя, мастерская не сможет отремонтировать подвижной состав до 100%.
+Oil Use Rate=Расход смазки
+Open Time Window=Открыть окно времени
+Operations=Перевозки
+Other players can find your railroad by this string.=По этой строке другие игроки смогут найти вашу дорогу.
+Overhaul Miles=Пробег до капремонта
+Passenger Limit=Лимит пассажиров
+Passenger Stops=Пассажирские остановки
+Password=Пароль
+Please save and reopen your game to apply changes.=Сохраните игру и загрузите её снова, чтобы применить изменения.
+Reload Required=Требуется перезагрузка
+Restrict Equipment Control to Train Crew=Управление только для бригады
+Show Switches=Показывать стрелки
+Show switches on the map. Switches are remotely throw-able.=Показывать стрелки на карте. Стрелки можно переводить дистанционно.
+t:Shuffle {0}=Перемешать {0}
+Simulation=Симуляция
+Summary=Сводка
+Time of Day=Время суток
+Time of day that the interchange will first be served.=Время суток первой подачи на пункт обмена.
+Toggle whether this feature is enabled.=Включить или выключить эту возможность.
+Trainmaster Manages Crew Assignments=Бригады назначает начальник движения
+Unknown page.=Неизвестная страница.
+Unknown players can not connect.=Неизвестные игроки не могут подключаться.
+Wear & Tear=Износ
+Wear Rate=Скорость износа
+Wear, Tear & Overhaul=Износ и капитальный ремонт
+When enabled, AI engineer makes stops for checked passenger stops in cars within its train.=Если включено, автомашинист останавливается на пассажирских остановках, отмеченных в вагонах его поезда.

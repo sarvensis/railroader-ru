@@ -1,0 +1,519 @@
+// Игровая логика: уведомления, автомашинист, грузы, ремонт, сигналы.
+// Формат: Оригинал=Перевод. Шаблоны t: — {0}, {1} подставляются; {0:n}, {0:C0} — только числа.
+
+// === ConsistPlacer
+t:Click track to place {0:n} cars ~{1:N0}ft\n<size\=70%>Escape cancels</size>=Щёлкните по пути, чтобы поставить вагоны: {0} (~{1} фут.)\n<size=70%>Esc — отмена</size>
+Not available in this game mode.=Недоступно в этом режиме игры.
+Click to place consist\nEsc cancels=Щёлкните, чтобы поставить состав\nEsc — отмена
+
+// === Game.DailyReport.DailyReportGenerator
+# Daily Report=# Ежедневный отчёт
+## Finance=## Финансы
+## Fuel Inventory=## Запасы топлива
+## Operations=## Перевозки
+## Shops=## Мастерские
+### Outstanding Waybills=### Невыполненные накладные
+t:Balance: {0:C0} ({1})=Баланс: {0} ({1})
+A new daily report is available.=Доступен новый ежедневный отчёт.
+Bank=Банк
+Fuel=Топливо
+Loan=Кредит
+Repair Supplies=Ремонтные материалы
+Wages: Engineer=Зарплата: машинисты
+Wages: Shop=Зарплата: мастерские
+freight delivery=доставка грузов
+no change=без изменений
+passenger fare=оплата проезда
+
+// === Game.FlareManager
+Too close to switch.=Слишком близко к стрелке.
+
+// === Game.FlarePickable
+t:{0}'s Fusee=Фальшфейер: {0}
+Click to Extinguish=Щёлкните, чтобы потушить
+Your Fusee=Ваш фальшфейер
+
+// === Game.GameDateTime
+t:Day {0:n}=День {0}
+
+// === Game.HostManager
+Access level is Banned.=Уровень доступа: заблокирован.
+t:Access level is Passenger and too many passengers are connected: {0:n} >\= {1:n}=Уровень доступа «Пассажир», а пассажиров уже слишком много: {0} >= {1}
+Can't remove online player record.=Нельзя удалить запись игрока, который сейчас в сети.
+Can't set host's access level.=Нельзя изменить уровень доступа хоста.
+t:Error on Send: {0}=Ошибка отправки: {0}
+t:Outdated client. Server is running {0}.{1}=Устаревшая версия игры. На сервере версия {0}.{1}
+Password is required, does not match.=Требуется пароль: пароль не подходит.
+Password is required, no password supplied.=Требуется пароль: пароль не указан.
+Player unknown; not accepting new players.=Неизвестный игрок; новые игроки не принимаются.
+t:Steam ID {0}=Steam ID {0}
+t:{0} has banned {1}.={0} заблокировал(а) игрока {1}.
+t:{0} has demoted {1} to {2}.={0} понизил(а) игрока {1} до роли «{2}».
+t:{0} has promoted {1} to {2}.={0} повысил(а) игрока {1} до роли «{2}».
+
+// === Game.Progression.Progression
+Internal error, check log=Внутренняя ошибка, см. лог
+t:Phase {0:n} of {1:n} has been completed!=Этап {0} из {1} завершён!
+Unable to start phase=Не удалось начать этап
+t:{0} has ordered cars for phase {1:n} of {2:n}!={0}: заказаны вагоны для этапа {1} из {2}!
+t:{0} has paid for phase {1:n} of {2:n}!={0}: оплачен этап {1} из {2}!
+
+// === Game.Reputation.ReputationTracker
+Freight: Performance=Грузы: выполнение
+Operations: Safety=Работа: безопасность
+Passenger: Equipment Condition=Пассажиры: состояние подвижного состава
+Passenger: Network Service=Пассажиры: обслуживание сети
+
+// === Game.Scripting.Interactive.InteractiveBookRunner
+t:<sprite name\=Warning> An error occurred. Please try again and if the problem persists report this bug and include your log file. Thank you!\n\nError Details: `{0}`=<sprite name=Warning> Произошла ошибка. Попробуйте ещё раз; если проблема повторится, сообщите о ней разработчикам и приложите лог-файл. Спасибо!\n\nПодробности: `{0}`
+
+// === Game.Scripting.Interactive.InteractiveBookWindow
+Book=Книга
+Interactive Book=Интерактивная книга
+Please submit a bug report and include your log file. Thank you!=Пожалуйста, отправьте отчёт об ошибке и приложите лог-файл. Спасибо!
+t:Error opening {0}=Ошибка при открытии {0}
+Reload=Перезагрузить
+
+// === Game.State.CompanyModeSetup
+Error adding starter equipment.=Ошибка при добавлении стартового подвижного состава.
+Opening Balance=Начальный баланс
+
+// === Game.State.EquipmentPurchase
+Error placing purchased equipment.=Ошибка при размещении купленного подвижного состава.
+No tracks available for purchase.=Нет свободных путей для выдачи покупки.
+t:Not enough funds for purchase. Balance {0:C0} is less than {1:C0}.=Недостаточно средств. Баланс {0} меньше, чем {1}.
+t:{0} ordered a shiny new {1} delivered to {2}.={0} заказал(а) новенький {1} с доставкой в {2}.
+
+// === Game.State.Ledger
+Balance Correction=Корректировка баланса
+
+// === Game.State.LoanManager
+t:Loan increased by {0:C0} to {1:C0}. Interest payment of {2:C0} due in {3}.=Кредит увеличен на {0}, до {1}. Выплата процентов {2} через {3}.
+t:Loan paid down by {0:C0} to {1:C0}. Congratulations!=Кредит погашен на {0}, до {1}. Поздравляем!
+t:Loan paid down by {0:C0} to {1:C0}. Interest payment of {2:C0} due in {3}.=Кредит погашен на {0}, до {1}. Выплата процентов {2} через {3}.
+Unable to adjust loan.=Не удалось изменить кредит.
+
+// === Game.State.PlayersManager
+Connected=Подключён
+t:{0:t} {1} has connected.={0} {1} подключился(-ась).
+t:{0:t} {1} has disconnected.={0} {1} отключился(-ась).
+t:{0} created train crew "{1}"={0} создал(а) бригаду «{1}»
+t:{0} disbanded train crew "{1}"={0} распустил(а) бригаду «{1}»
+t:{0} joined train crew "{1}"={0} вступил(а) в бригаду «{1}»
+t:{0} left train crew "{1}"={0} покинул(а) бригаду «{1}»
+t:{0} renamed train crew "{1}" to "{2}".={0} переименовал(а) бригаду «{1}» в «{2}».
+t:{0} updated "{1}".={0} изменил(а) «{1}».
+
+// === Game.State.SaveManager
+Error loading save=Ошибка загрузки сохранения
+Error saving game=Ошибка сохранения игры
+
+// === Game.State.StateManager
+t:Paid {0:C0} for {1:F1} hours of engineer services.=Оплачено {0} за услуги машиниста ({1} ч).
+t:Received payment of {0:C0}. Balance is now {1:C0}.=Получен платёж {0}. Баланс: {1}.
+t:Sent payment of {0:C0}. Balance is now {1:C0}.=Отправлен платёж {0}. Баланс: {1}.
+
+// === Model.AI.AutoEngineer
+Another train is on our switch.=На нашей стрелке другой поезд.
+CTC switch is locked.=Стрелка ДЦ заблокирована.
+Cutting in - we're the only engine.=Включаюсь — мы единственный локомотив.
+Emergency Stop!=Экстренная остановка!
+Fusee in the gauge.=На пути фальшфейер.
+Holding at a red board.=Стою у красного сигнала.
+Holding at a stop signal.=Стою у запрещающего сигнала.
+Lookin' at another train.=Впереди другой поезд.
+Looking at a red board.=Впереди красный сигнал.
+Stop Signal=Запрещающий сигнал
+Stopped at a red board.=Остановился у красного сигнала.
+Stopped for Fouled Switch=Остановка: стрелка занята
+Stopped for Fusee=Остановка: фальшфейер
+Stopped for Locked CTC Switch=Остановка: стрелка ДЦ заблокирована
+Stopped for Other Train=Остановка: другой поезд
+Stopped for Switch Against=Остановка: стрелка не по маршруту
+Stopped for a fusee.=Остановился из-за фальшфейера.
+Stopped for a switch lined against us.=Остановился: стрелка не по маршруту.
+Stopped for Switch=Остановка у стрелки
+Switch is fouled.=Стрелка занята.
+Switch lined against us.=Стрелка переведена не по маршруту.
+Turning off MU.=Отключаю СМЕ.
+
+// === Model.AI.AutoEngineerFuelAlerter
+t:Running low on {0}, {1:N0}% remaining.=Заканчивается {0}: осталось {1}%.
+t:{0} below {1:n}%={0}: ниже {1}%
+
+// === Model.AI.AutoEngineerPassengerStopper
+t:Arrived at {0}.=Прибыли: {0}.
+t:Departing {0} {1}.=Отправление: {0} {1}.
+t:Departing {0}.=Отправление: {0}.
+t:Holding at {0} until {1}.=Стою на {0} до {1}.
+t:Holding at {0}; train schedule is complete.=Стою на {0}; расписание поезда выполнено.
+No stops planned=Остановок не запланировано
+Stop when passing=Остановка при проследовании
+Timetable schedule complete.=Расписание выполнено.
+t:Timetable: Depart {0} {1}=По расписанию: отправление {0} {1}
+on time=вовремя
+
+// === Model.AI.AutoEngineerPlanner
+t:{0} waypoint set: {1}={0}: путевая точка задана, {1}
+All out of fuel.=Топливо закончилось.
+Approach Signal=Сигнал «Внимание»
+Arrived at waypoint!=Прибыли к путевой точке!
+At waypoint=У путевой точки
+t:Auto Engineer {0}: "{1}"=Автомашинист {0}: «{1}»
+Brake applied beyond brake line=Тормоза заторможены за пределами тормозной магистрали
+CTC Switch Locked=Стрелка ДЦ заблокирована
+Charging brake line=Зарядка тормозной магистрали
+Check the brake line=Проверьте тормозную магистраль
+Check the tender, we're empty.=Проверьте тендер, у нас пусто.
+t:Clear {0} first=Сначала освободите {0}
+Clear 20+ cars=Свободно на 20+ вагонов
+Clear less than a car=Свободно меньше вагона
+t:Clear {0}=Свободно на {0}
+Couple=Сцепка
+Diverging approach=«Внимание» на отклонение
+Diverging clear=«Свободно» на отклонение
+End of Track=Конец пути
+Fusee=Фальшфейер
+Hotbox=Перегрев буксы
+Orders=Приказы
+Orders: Stop=Приказ: стоять
+Running to waypoint=Следую к путевой точке
+Stop and Proceed Signal=Сигнал «Стоп с проездом»
+Switch Against=Стрелка не по маршруту
+Switch Fouled=Стрелка занята
+That'll do!=Хватит!
+Track Speed=Установленная скорость
+We're on the ground!=Сошли с рельсов!
+t:{0}: {1:F0}mph={0}: {1} миль/ч
+
+// === Model.AI.Orders
+Road=Поездной
+Waypoint=Путевая точка
+Yard=Маневровый
+
+// === Model.BaseLocomotive
+Bail-Off=Отпуск
+Cut In=Включён
+Locomotive Cut Out=Локомотив выключен
+On=Вкл.
+
+// === Model.Car
+Closed=Закрыто
+Open=Открыто
+t:{0:F0}% Open=Открыто на {0}%
+Truck A=Тележка A
+Truck B=Тележка B
+
+// === Model.Definition.CarArchetypeExtensions
+Baggage=Багажный
+Box Car=Крытый вагон
+Diesel Locomotive=Тепловоз
+Flat Car=Платформа
+Gondola=Полувагон
+Hopper=Хоппер
+Passenger Car=Пассажирский вагон
+Steam Locomotive=Паровоз
+Tank Car=Цистерна
+Uncategorized=Без категории
+
+// === Model.DieselLocomotive
+Forward=Вперёд
+Idle=Холостой ход
+Neutral=Нейтраль
+t:Notch {0:n}=Позиция {0}
+Reverse=Назад
+
+// === Model.Ops.CarExtensions
+t:{0:N0} gal={0} гал.
+
+// === Model.Ops.FormulaicIndustryComponent
+t:Production Stopped: {0}=Производство остановлено: {0}
+
+// === Model.Ops.Industry
+ (Low performance.)= (Низкая эффективность.)
+t: ({0:C0} Penalty)= (штраф {0})
+has been terminated=расторгнут
+t:is now at Tier {0:n}=теперь на уровне {0}
+t:Contract with {0} has been terminated.=Контракт с {0} расторгнут.
+t:Contract with {0} is now at Tier {1:n}.=Контракт с {0} теперь на уровне {1}.
+t:Contract with {0} has been terminated. (Low performance.)=Контракт с {0} расторгнут. (Низкая эффективность.)
+t:Contract with {0} is now at Tier {1:n}. (Low performance.)=Контракт с {0} теперь на уровне {1}. (Низкая эффективность.)
+t:Contract with {0} has been terminated.{1}=Контракт с {0} расторгнут.{1}
+t:Contract with {0} is now at Tier {1:n}.{2}=Контракт с {0} теперь на уровне {1}.{2}
+
+// === Model.Ops.IndustryComponent
+Does not include loads in cars on the line.=Без учёта грузов в вагонах на линии.
+t:Paid Completed ({0:F1} days)=Оплачено по выполнении ({0} дн.)
+
+// === Model.Ops.IndustryContext
+t:Payment from {0} for delivery of {1}: {2:C0}=Оплата от {0} за доставку {1}: {2}
+
+// === Model.Ops.IndustryLoader
+Car loads produced=Произведено вагонных отправок
+Production=Производство
+t:{0} @ {1} cars/day={0}: {1} ваг./день
+
+// === Model.Ops.IndustryUnloader
+Car consumption rate=Потребление вагонов
+Consumes=Потребляет
+Empty completed=Разгрузка завершена
+
+// === Model.Ops.Interchange
+Cancel Scheduled=Отменить запланированное
+Enable=Включить
+Enable Interchange=Включить пункт обмена
+Extra Service=Дополнительная подача
+Next Daily Service=Следующая ежедневная подача
+Next daily interchange service.=Следующая ежедневная подача на пункт обмена.
+t:Schedule for {0}=Запланировать на {0}
+t:Scheduled for {0} ({1})=Запланировано на {0} ({1})
+t:Scheduled for {0}=Запланировано на {0}
+Uncheck to turn off service to this interchange. At least one interchange must be enabled on your railroad.=Снимите отметку, чтобы прекратить обслуживание этого пункта обмена. На дороге должен быть включён хотя бы один пункт обмена.
+t:{0} has been sold for {1:C0}.={0}: продано за {1}.
+t:{0} received no cars as it is at capacity.={0}: вагоны не приняты — пункт переполнен.
+t:{0} received {1}.={0}: принято {1}.
+t:{0} received {1}; interchange is at capacity.={0}: принято {1}; пункт обмена заполнен.
+
+// === Model.Ops.InterchangedIndustryLoader
+Loads Car Types=Типы вагонов под погрузку
+t:Ordered {0} of {1} at {2} for {3:C0}. Expected return: {4}.=Заказано {0} груза «{1}» в {2} за {3}. Ожидаемый возврат: {4}.
+t:{0:C0} per {1} car={0} за вагон ({1})
+t:{0}: Insufficient funds to fill {1} of {2}.={0}: недостаточно средств, чтобы заполнить {1} из {2}.
+
+// === Model.Ops.OpsCommand
+Contract cleared.=Контракт сброшен.
+Industry not found.=Предприятие не найдено.
+Only available in sandbox.=Доступно только в песочнице.
+Requested ops sweep.=Запрошена очистка операций.
+t:Tier {0:n} set.=Установлен уровень {0}.
+t:{0} ({1}): {2:n} waiting={0} ({1}): ожидают {2}
+t:{0:n} Days: ={0} дн.:
+
+// === Model.Ops.OpsController
+t:Couldn't sweep {0} to {1}.=Не удалось перенести {0} в {1}.
+No Interchanges Enabled=Нет включённых пунктов обмена
+t:Payment for delivery of {0}=Оплата за доставку: {0}
+t:Swept {0:n} cars.=Перенесено вагонов: {0}.
+Use the Company window Locations tab to enable at least one interchange for proper game operation!=Включите хотя бы один пункт обмена на вкладке «Места» в окне компании, иначе игра не будет работать правильно!
+t:Waybill to {0}, pay {1:C}=Накладная до {0}, оплата {1}
+t:{0} scheduled to be served again at {1}.={0}: следующая подача запланирована на {1}.
+t:{0} will be served again at its daily time of {1}.={0}: следующая подача — в обычное время, {1}.
+
+// === Model.Ops.PassengerStop
+Depot=Вокзал
+t:{0}: Received passenger ticket fare: {1:C0} for {2}={0}: получена оплата проезда {1} за {2}
+
+// === Model.Ops.RepairTrack
+<sprite name\=Warning> Work Stopped Today: Unpaid Wages=<sprite name=Warning> Сегодня работы остановлены: не выплачена зарплата
+D:HH:MM or H:MM=Д:ЧЧ:ММ или Ч:ММ
+Higher pay yields faster repairs.=Чем выше оплата, тем быстрее ремонт.
+No Work=Нет работы
+No cars awaiting repair=Нет вагонов, ожидающих ремонта
+Overhaul Progress=Ход капитального ремонта
+Overhauling=Капитальный ремонт
+Repair Parts Needed=Нужны запчасти
+Repair Speed=Скорость ремонта
+Repair crews work faster when your railroad has a higher reputation.=Ремонтные бригады работают быстрее, если у вашей дороги выше репутация.
+Repairing=Ремонт
+Repairs=Ремонт
+Reputation Bonus=Бонус репутации
+Stop Work=Остановить работы
+Time Remaining=Осталось времени
+Wages Due=Зарплата к выплате
+t:{0} awaiting repair, average {1}%=Ожидают ремонта: {0}, в среднем {1}%
+t:{0}: Paid {1:C0} wages for shop crew.={0}: выплачено {1} зарплаты бригаде мастерской.
+t:{0}: Unable to pay wages of {1:C0}; shop is closed for the day.={0}: не удалось выплатить зарплату {1}; мастерская сегодня закрыта.
+t:{0}: {1} completed on {2}.={0}: {1} — работа завершена ({2}).
+
+// === Model.Ops.SwitchListController
+t:Added {0:n} {1} cars to switch list.=В маневровый лист добавлено вагонов: {0} ({1}).
+
+// === Model.Ops.Timetable.TimetableController
+t:Timetable contains error(s): {0}=В расписании есть ошибки: {0}
+t:{0} has updated the {1}.={0} обновил(а): {1}.
+
+// === Model.Ops.Timetable.TimetableReader
+t:{0}: Expected departure time={0}: ожидалось время отправления
+t:{0}: Expected station code={0}: ожидался код станции
+t:Line {0:n}: {1}=Строка {0}: {1}
+t:Train {0} @ {1}=Поезд {0} @ {1}
+
+// === Model.StationAgent
+(Freight summary not available)=(Сводка по грузам недоступна)
+<sprite name\="MouseLeft"> Open Window=<sprite name="MouseLeft"> Открыть окно
+Agent=Агент
+active freight waybill=активная накладная
+
+// === Model.SteamLocomotive
+Centered=По центру
+
+// === Model.Units
+t:{0:N1} mi={0} миль
+t:{0:n} ft={0} фут.
+t:{0:n} mi={0} миль
+
+// === Network.Client.ClientManager
+A password is required to join this game.=Для входа в эту игру нужен пароль.
+An error occurred while loading data received from the server.=Ошибка при загрузке данных, полученных от сервера.
+An error occurred while loading this save. Please open a bug report and upload your save file!=Ошибка при загрузке сохранения. Пожалуйста, сообщите об ошибке и приложите файл сохранения!
+Connection timed out.=Время ожидания подключения истекло.
+Disconnected=Отключено
+Error loading game=Ошибка загрузки игры
+Error loading server game=Ошибка загрузки игры сервера
+t:Error {0}=Ошибка {0}
+Password Required=Требуется пароль
+Server closed connection.=Сервер закрыл соединение.
+Submit=Отправить
+The passenger compartment is full.=Пассажирские места заняты.
+This railroad requires a password for new employees.=Для новых сотрудников этой дороги нужен пароль.
+We couldn't verify your employee status with this railroad.=Не удалось подтвердить, что вы сотрудник этой дороги.
+Your game version is not compatible with the server.=Ваша версия игры несовместима с сервером.
+
+// === Network.Multiplayer
+Server=Сервер
+
+// === Network.Steam.SteamServer
+Local Disconnect=Локальное отключение
+
+// === ObjectPicker
+Track=Путь
+
+// === PauseMenu
+t:Autosaved {0}.=Автосохранение: {0}.
+t:Last saved {0}.=Последнее сохранение: {0}.
+Cancel=Отмена
+Discard=Не сохранять
+Disconnect=Отключиться
+Do you want to save your game?=Сохранить игру?
+Game saved.=Игра сохранена.
+Quit=Выйти
+Save Game=Сохранить
+Shutdown Server=Остановить сервер
+Unsaved changed will be lost.=Несохранённые изменения будут потеряны.
+// AgoString(): «3 minutes ago». Pluralize уже склонил слово, осталось «ago»; минуту/секунду — в винительном.
+r:^(\d+) минута ago$={1} минуту назад
+r:^(\d+) секунда ago$={1} секунду назад
+r:^(\d+) minutes? ago$={1} {1|минуту|минуты|минут} назад
+r:^(\d+) seconds? ago$={1} {1|секунду|секунды|секунд} назад
+t:{0} ago={0} назад
+
+// === RollingStock.CarPickable
+Apply Handbrake=Затянуть ручной тормоз
+Deselect=Снять выбор
+Release Handbrake=Отпустить ручной тормоз
+
+// === RollingStock.Controls.HeadlightToggleLogic
+Both Dim=Оба — ближний
+Both Full=Оба — дальний
+Front Dim=Передний — ближний
+Front Full=Передний — дальний
+Rear Dim=Задний — ближний
+Rear Full=Задний — дальний
+
+// === RollingStock.Controls.KeyValuePickableToggle
+Click to Close=Щёлкните, чтобы закрыть
+Toggle=Переключить
+
+// === RollingStock.CouplerPickable
+Click to Open=Щёлкните, чтобы открыть
+Coupler=Автосцепка
+
+// === RollingStock.GladhandClickable
+Click to Connect Gladhands=Щёлкните, чтобы соединить рукава
+Click to Disconnect Gladhands=Щёлкните, чтобы разъединить рукава
+Gladhand=Соединительный рукав
+
+// === RollingStock.HeadlightControl
+Dim=Ближний
+Full=Дальний
+
+// === RollingStock.IndustryContentHoverable
+<Not Configured>=<Не настроено>
+Empty=Пусто
+
+// === RollingStock.OilPointPickable
+<sprite name\="Flame"> Hotbox=<sprite name="Flame"> Перегрев буксы
+<sprite name\="MouseLeft"> Oil=<sprite name="MouseLeft"> Смазать
+Bearings=Буксы
+Oiling Points=Точки смазки
+t:{0} {1:n}% Oiled={0} Смазано: {1}%
+
+// === SwitchStandClick
+<sprite name\="MouseLeft"> Throw=<sprite name="MouseLeft"> Перевести
+<sprite name\="MouseLeft"> Throw (Unlocked)=<sprite name="MouseLeft"> Перевести (разблокирована)
+<sprite name\="MouseNo"> CTC Controlled (Locked)=<sprite name="MouseNo"> Управляется ДЦ (заблокирована)
+<sprite name\="MouseNo"> N/A=<sprite name="MouseNo"> Недоступно
+CTC Switch=Стрелка ДЦ
+Lock Switch=Заблокировать стрелку
+No context options available.=Нет доступных действий.
+Normal=Плюс
+Reversed=Минус
+t:CTC Switch {0}=Стрелка ДЦ: {0}
+t:Switch {0}=Стрелка: {0}
+Unlock Switch=Разблокировать стрелку
+
+// === Track.Signals.CTCBlock
+thrown switch=переведённая стрелка
+unlocked switch=разблокированная стрелка
+
+// === Track.Signals.CTCInterlocking
+t:Block {0} conflicts with {1} {2}.=Блок-участок {0} конфликтует с {1} {2}.
+t:Interlocking {0} direction {1} prevents setting route {2}=Централизация {0} (направление {1}) не даёт задать маршрут {2}
+
+// === Track.Signals.CTCPanelButton
+Code Button=Кнопка кода
+
+// === Track.Signals.CTCPanelKnob
+Inoperative in ABS=Не действует в режиме АБ
+Signal=Сигнал
+Switch=Стрелка
+
+// === Track.Signals.CTCPanelLamp
+Occupied Block=Занятый блок-участок
+Signal Direction=Направление сигнала
+Switch Position=Положение стрелки
+
+// === Track.Signals.CTCSignal
+Intermediate=Проходной
+
+// === Track.Signals.CTCSignalPickable
+Approach=Внимание
+Clear=Свободно
+Diverging Approach=Внимание (на отклонение)
+Diverging Clear=Свободно (на отклонение)
+Proceed at restricted speed.=Следовать с ограниченной скоростью.
+Proceed on diverging route prepared to stop at next signal.=Следовать на отклонение с готовностью остановиться у следующего сигнала.
+Proceed on diverging route.=Следовать на отклонение.
+Proceed prepared to stop at next signal.=Следовать с готовностью остановиться у следующего сигнала.
+Restricting=Ограничение
+Stop and Proceed=Стоп с проездом
+Stop and do not pass.=Остановиться, проезд запрещён.
+Stop and proceed at restricted speed.=Остановиться, затем следовать с ограниченной скоростью.
+Unknown Aspect=Неизвестное показание
+
+// === Track.Signals.Panel.CTCPanelMarker
+Edit Marker=Изменить метку
+Marker=Метка
+
+// === Track.TurntableController
+Stop=Стоп
+
+// === TrainController
+Already in use.=Уже используется.
+Lock=Заблокировать
+Must be non-empty.=Не может быть пустым.
+Road number format not supported.=Такой формат номера не поддерживается.
+Selected=Выбран
+Switch is CTC controlled=Стрелка управляется ДЦ
+Switch is not CTC controlled=Стрелка не управляется ДЦ
+Throw Normal=Перевести в плюс
+Throw Reversed=Перевести в минус
+Unlock=Разблокировать
+
+// === Model.Definition.Components — названия узлов (могут появляться в подсказках)
+Headlight=Прожектор
+Horn=Гудок
+Gauge=Манометр
+Seat=Сиденье
+Ladder=Лестница
+Compressor=Компрессор

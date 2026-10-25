@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>RuTools</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- В CI собирается образом с более новым .NET — разрешаем запуск на нём. -->
+    <RollForward>Major</RollForward>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Общий код с плагином: формат словарей, переводчик, лексер Lua. -->
+    <Compile Include="..\..\src\RailroaderRu\TranslationFile.cs" Link="Shared\TranslationFile.cs" />
+    <Compile Include="..\..\src\RailroaderRu\Translator.cs" Link="Shared\Translator.cs" />
+    <Compile Include="..\..\src\RailroaderRu\LuaStrings.cs" Link="Shared\LuaStrings.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AssetsTools.NET" Version="3.0.0" />
+    <PackageReference Include="AssetsTools.NET.MonoCecil" Version="1.0.0" />
+    <PackageReference Include="Mono.Cecil" Version="0.11.5" />
+  </ItemGroup>
+
+</Project>

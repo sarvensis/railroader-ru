@@ -1,0 +1,104 @@
+# Русификатор Railroader — сборка и релизы.
+#
+#   pull request / push в ветку → проверка словарей + сборка архива (артефакт на 30 дней)
+#   тег vX.Y.Z                   → то же + GitHub Release с архивом
+#
+# Сборке нужны референсные сборки игры (только сигнатуры, без кода). Их один раз загружает
+# scripts/pack-refs.ps1 с машины, где установлена игра, — ассетом релиза game-refs-<версия игры>.
+# Подробности — в README.md, раздел «CI (GitHub Actions)».
+
+name: build
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+  DOTNET_NOLOGO: "1"
+  # Версия игры, под которую собирается плагин (= тег релиза game-refs-<версия> с файлом game-refs.zip).
+  GAME_REFS_VERSION: "2025.1.0b"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - name: Проверка словарей
+        run: dotnet run --project tools/RuTools -c Release -- check translation/translations
+      - name: Статистика перевода
+        run: dotnet run --project tools/RuTools -c Release -- stats translation/translations
+
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.build.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      # Референсы лежат в релизе game-refs-<версия> этого репозитория или отдельного приватного
+      # (переменная репозитория REFS_REPO = owner/name и секрет REFS_TOKEN с правом чтения contents).
+      - name: Референсные сборки игры
+        env:
+          GH_TOKEN: ${{ secrets.REFS_TOKEN || github.token }}
+          REFS_REPO: ${{ vars.REFS_REPO || github.repository }}
+        run: |
+          gh release download "game-refs-$GAME_REFS_VERSION" --repo "$REFS_REPO" --pattern game-refs.zip --dir .
+          pwsh -NoProfile -Command "Expand-Archive -Path game-refs.zip -DestinationPath refs -Force"
+
+      - name: Сборка архива
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+            if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "::error::Тег должен быть вида v1.2.3, получено: $GITHUB_REF_NAME"; exit 1
+            fi
+            pwsh -NoProfile -File scripts/build.ps1 -GameDir refs -Version "$VERSION" -NoCheck
+            FULL="$VERSION"
+          else
+            pwsh -NoProfile -File scripts/build.ps1 -GameDir refs -Suffix "dev.$GITHUB_RUN_NUMBER" -NoCheck
+            FULL="$(ls dist/RailroaderRu-*.zip | sed -E 's#.*/RailroaderRu-(.*)\.zip#\1#')"
+          fi
+          echo "version=$FULL" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RailroaderRu-${{ steps.build.outputs.version }}
+          path: dist/RailroaderRu-*.zip
+          retention-days: 30
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [check, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: RailroaderRu-${{ needs.build.outputs.version }}
+          path: dist
+      - name: GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "dist/RailroaderRu-$VERSION.zip" \
+            --title "Русификатор Railroader $VERSION" \
+            --notes-file docs/RELEASE.md

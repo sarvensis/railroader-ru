@@ -1,0 +1,518 @@
+// Консоль, органы управления, меню, расписание, станции.
+
+// === UI.ConsistInspector.ConsistInspectorCell
+t:BP: {0:F1}\nMR: {1:F1}\nBC: {2:F1}=ТМ: {0}\nГР: {1}\nТЦ: {2}
+t:BP: {0:F1}\nRS: {1:F1}\nBC: {2:F1}=ТМ: {0}\nЗР: {1}\nТЦ: {2}
+Contents TBD=Груз не определён
+Destination TBD=Назначение не определено
+
+// === UI.ConsistInspector.ConsistInspectorPanel
+Not implemented=Не реализовано
+
+// === UI.Console.CommandProcessor
+t:Can't interpret '{0}' as {1} for parameter '{2}'.\nUsage: {3}=Не удалось понять «{0}» как {1} для параметра «{2}».\nИспользование: {3}
+t:Expected {0:n} parameters.\nUsage: {1}=Ожидалось параметров: {0}.\nИспользование: {1}
+t:Unknown command '/{0}'=Неизвестная команда «/{0}»
+t:Unknown subcommand '/{0}'=Неизвестная подкоманда «/{0}»
+t:Unknown subcommand.\nUsage: {0}=Неизвестная подкоманда.\nИспользование: {0}
+
+// === UI.Console.Commands.AirCommand
+t:Filled air on {0}.=Воздух закачан: {0}.
+Must be host.=Нужно быть хостом.
+No selected car.=Вагон не выбран.
+
+// === UI.Console.Commands.CTCCommand
+Cleared all routes.=Все маршруты сброшены.
+Couldn't find marker manager.=Не найден менеджер меток.
+
+// === UI.Console.Commands.CrewCommand
+Requested create crew.=Запрошено создание бригады.
+Requested join.=Запрошено вступление.
+Usage: /crew list|create|delete|join|leave ...=Использование: /crew list|create|delete|join|leave ...
+t:{0:n} Train Crews=Бригад: {0}
+
+// === UI.Console.Commands.FPSToggle
+Unrecognized stats mode.=Неизвестный режим статистики.
+Usage: /stats <off|ms|fps>=Использование: /stats <off|ms|fps>
+
+// === UI.Console.Commands.FillCommand
+Car not found.=Вагон не найден.
+t:Fill to {0:P}=Заполнить на {0}
+Usage: /fill <car>=Использование: /fill <вагон>
+
+// === UI.Console.Commands.GetKeyValueCommand
+Object not found.=Объект не найден.
+Usage: /get <id> [key]=Использование: /get <id> [ключ]
+
+// === UI.Console.Commands.InfoCommand
+t:Condition: {0}%=Состояние: {0}%
+t:Load {0}: {1}, {2:N3}=Груз {0}: {1}, {2}
+t:Oiled: {0}%=Смазка: {0}%
+Only available on the host.=Доступно только хосту.
+Usage: /info <car>=Использование: /info <вагон>
+
+// === UI.Console.Commands.LoadGameCommand
+Loaded!=Загружено!
+No saves.=Нет сохранений.
+Only available on host.=Доступно только хосту.
+t:{0:n} saves:\n=Сохранений: {0}\n
+
+// === UI.Console.Commands.MapFeatureCommand
+Usage: /mapfeature <feature> <true|false>=Использование: /mapfeature <возможность> <true|false>
+
+// === UI.Console.Commands.ModeCommand
+t:Game Mode: {0}=Режим игры: {0}
+t:Set game mode: {0}=Установлен режим игры: {0}
+
+// === UI.Console.Commands.MoneyCommand
+t:Balance: {0:C0}=Баланс: {0}
+Manual Adjustment=Ручная корректировка
+
+// === UI.Console.Commands.PlaceConsistCommand
+Couldn't find room on track.=Не найдено места на пути.
+t:Invalid car: '{0}'. Valid options: {1}=Неверный вагон: «{0}». Допустимые значения: {1}
+
+// === UI.Console.Commands.ProgressionCommand
+Available sections:=Доступные разделы:
+No current progression.=Нет текущего прогресса.
+
+// === UI.Console.Commands.RecharterCommand
+t:  Unable to change {0} due to conflicts: {1}=  Не удалось изменить {0} из-за конфликтов: {1}
+Only available to the host.=Доступно только хосту.
+Usage: /recharter <reporting mark> "Railroad Name"\nExample: /recharter SOU "Southern Railway"=Использование: /recharter <код дороги> "Название дороги"\nПример: /recharter SOU "Southern Railway"
+t:Your railroad is now {0}, {1}. Changed reporting marks on {2:n} cars.=Ваша дорога теперь называется {0}, {1}. Код дороги изменён на вагонах: {2}.
+
+// === UI.Console.Commands.RepairCommand
+Only available to the host in sandbox mode.=Доступно только хосту в режиме песочницы.
+t:Repaired {0}.=Отремонтировано: {0}.
+
+// === UI.Console.Commands.SetKeyValueCommand
+t:Error: '{0}' not found.=Ошибка: «{0}» не найдено.
+Usage: /set <id> <key> <value>=Использование: /set <id> <ключ> <значение>
+
+// === UI.Console.Commands.SpeedCommand
+/speed <mph>=/speed <миль/ч>
+t:Set speed on {0} to {1:F1}=Скорость {0} установлена: {1}
+
+// === UI.Console.Commands.TerrainCommand
+t:Tree: {0:F1}, Detail: {1:F1}=Деревья: {0}, детали: {1}
+Usage: /terrain <rebuild|density>=Использование: /terrain <rebuild|density>
+
+// === UI.Console.Commands.WaitCommand
+Usage: /wait <hours|hh:mm>=Использование: /wait <часы|чч:мм>
+
+// === UI.Console.ConsoleCommandHandler
+Command not recognized.=Команда не распознана.
+Console commands:=Команды консоли:
+No such subcommand.=Нет такой подкоманды.
+t:System: {0} {1}GB\nGraphics: {2} {3:N0}MB=Система: {0} {1} ГБ\nГрафика: {2} {3} МБ
+t:Tractive Effort Multiplier: {0:F3}=Множитель силы тяги: {0}
+Unhandled error.=Необработанная ошибка.
+Usage: /time <hh:mm>=Использование: /time <чч:мм>
+
+// === UI.Console.SetLoadCommand
+t:Applied to {0}.=Применено: {0}.
+Car cannot accept loads.=Вагон не может принимать грузы.
+Car has been emptied.=Вагон опорожнён.
+Only available in Sandbox.=Доступно только в песочнице.
+Query found no targets.=По запросу ничего не найдено.
+t:Set load {0} to {1:F1}.=Груз {0} установлен: {1}.
+t:Set load: {0}=Груз установлен: {0}
+Usage: /setload <car|*> <identifier|empty> [lbs|gals|qty|percent%]=Использование: /setload <вагон|*> <груз|empty> [lbs|gals|qty|percent%]
+freight car=грузовой вагон
+
+// === UI.DropdownLocationPickerRowData
+Clear Selection=Сбросить выбор
+None=Нет
+
+// === UI.EngineControls.AutoEngineerControlSetBase
+Bypass Timetable=Игнорировать расписание
+Depart before scheduled time=Отправиться раньше времени по расписанию
+Discard speed restriction=Снять ограничение скорости
+Pass Fusee=Проехать фальшфейер
+Pass Signal=Проехать сигнал
+Pass fusee and continue=Проехать фальшфейер и продолжить движение
+Pass the signal at restricted speed=Проехать сигнал с ограниченной скоростью
+Resume Speed=Восстановить скорость
+Status=Состояние
+
+// === UI.EngineControls.AutoEngineerWaypointControls
+Choose Waypoint=Выбрать путевую точку
+Click to Choose Destination Waypoint=Щёлкните, чтобы выбрать путевую точку назначения
+Click to Reroute Engine=Щёлкните, чтобы изменить маршрут локомотива
+Jump to Waypoint=Перейти к путевой точке
+No waypoint assigned=Путевая точка не задана
+Reroute=Изменить маршрут
+
+// === UI.EngineControls.LocomotiveControlsUIAdapter
+Simplified Controls=Упрощённое управление
+<mspace\=0.55em>{0}</mspace>\n<color\=#5D5B55><size\=20%>MPH</size></color>=<mspace=0.55em>{0}</mspace>\n<color=#5D5B55><size=20%>МИЛЬ/Ч</size></color>
+MPH=МИЛЬ/Ч
+
+// === UI.EngineControls.ManualControls
+Reverser=Реверс
+Reverser / Cutoff=Реверс / отсечка
+
+// === UI.EngineRoster.EngineRosterPanel
+Engine Roster=Список локомотивов
+
+// === UI.EngineRoster.EngineRosterRow
+Derailed=Сошёл с рельсов
+Stopped=Стоит
+t:{0:n} mph={0} миль/ч
+
+// === UI.Equipment.EquipmentWindow
+t:<style\=p>{0}</style>  {1:C0}=<style=p>{0}</style>  {1}
+Capacity=Вместимость
+Current Balance:=Текущий баланс:
+Curve Radius=Радиус кривой
+Engines with a higher factor of adhesion are less prone to slipping.=Локомотивы с более высоким коэффициентом сцепления меньше склонны к боксованию.
+Expected Balance:=Ожидаемый баланс:
+Factor of Adhesion=Коэффициент сцепления
+Force in pounds the engine can generate when starting.=Сила (в фунтах), которую локомотив развивает при трогании.
+Hint=Подсказка
+Observation cars generate a 20% bonus to passenger fares when operated as the last car in a train.=Вагоны-салоны дают +20% к оплате проезда, если идут последними в составе.
+Please select a catalog entry.=Выберите позицию каталога.
+Purchase=Купить
+Regular passenger service is critical to keeping your railroad's reputation high.=Регулярное пассажирское сообщение очень важно для высокой репутации вашей дороги.
+Tender=Тендер
+t:Total: {0:n} x {1:C0} \==Итого: {0} × {1} =
+Tractive Effort=Сила тяги
+Use in captive service to supply customers that require logs.=Для внутренних перевозок: снабжение клиентов, которым нужен лес-кругляк.
+Use in captive service to supply customers that require pulpwood.=Для внутренних перевозок: снабжение клиентов, которым нужны балансы.
+Use in railroad fuel service to deliver coal to your coaling towers and conveyors.=Для снабжения топливом: доставка угля на углепогрузочные башни и конвейеры.
+Use in railroad fuel service to deliver diesel fuel to your diesel fuel stands.=Для снабжения топливом: доставка дизтоплива на заправочные колонки.
+Weight Empty=Масса тары
+t:{0:N0} lb={0} фунт.
+
+// === UI.GameInput
+Camera=Камера
+Equipment=Подвижной состав
+Movement=Передвижение
+Must be on ground.=Нужно стоять на земле.
+No favorites. Mark favorites in Engine Roster.=Нет избранного. Отметьте избранные локомотивы в списке локомотивов.
+Nothing to recall=Нечего вернуть
+Only available in first person.=Доступно только от первого лица.
+Too far away.=Слишком далеко.
+
+// === UI.Guide.GuideWindow
+Please make a selection.=Выберите раздел.
+Railroader Guide=Справочник Railroader
+
+// === UI.InputRebind.RebindActionUI
+Waiting for button...=Ожидание кнопки...
+Waiting for input...=Ожидание ввода...
+Waiting for modifier (Shift, Control, Alt) ...=Ожидание модификатора (Shift, Control, Alt)...
+
+// === UI.LocomotiveControlsHoverArea
+t:{0}, {1:N0} tons, {2:N0} ft={0}, {1} т, {2} фут.
+
+// === UI.LostCarPlacer.LostCarPlacerWindow
+Close=Закрыть
+Close without placing all Lost & Found cuts?=Закрыть, не разместив все найденные группы вагонов?
+Lost & Found=Бюро находок
+Place\n=Поставить\n
+Place=Поставить
+t:Railroader was unable to restore the locations of {0} of cars while loading this game, likely due to a track change.\n\n<i>Use the Place button below to place each cut of cars.</i>=При загрузке игры не удалось восстановить положение вагонов (групп: {0}), вероятно из-за изменения путей.\n\n<i>Расставьте каждую группу кнопкой «Поставить» ниже.</i>
+
+// === UI.Menu.CreditsMenu
+Back=Назад
+
+// === UI.Menu.GlobalGameManager
+Half a car...=Ещё полвагона...
+Two cars to a couple...=Два вагона до сцепки...
+Tyin' down...=Затягиваем тормоза...
+
+// === UI.Menu.LoadGameMenu
+Delete=Удалить
+This cannot be undone.=Это действие нельзя отменить.
+
+// === UI.Menu.MainMenu
+Credits=Авторы
+Editor=Редактор
+Help=Помощь
+Multiplayer=Сетевая игра
+Singleplayer=Одиночная игра
+
+// === UI.Menu.MenuManager
+Continue=Продолжить
+Host=Создать
+Join=Подключиться
+Logs Folder=Папка логов
+Steam Community=Сообщество Steam
+Steam Error=Ошибка Steam
+
+// === UI.Menu.MultiplayerHostMenu
+Please enter a longer public name for the game.=Введите более длинное публичное название игры.
+Please enter a player name to connect using.=Введите имя игрока для подключения.
+Public Game Name=Публичное название игры
+Start Server=Запустить сервер
+Your Player Name=Ваше имя игрока
+
+// === UI.Menu.MultiplayerJoinMenu
+Error finding games.=Ошибка поиска игр.
+No railroads currently available.=Сейчас нет доступных железных дорог.
+t:No railroads with exact reporting mark "{0}"=Нет дорог с кодом «{0}»
+t:Showing {0}.=Показано: {0}.
+t:Showing {0:n} of {1:n} {2}.=Показано {0} из {1} ({2}).
+
+// === UI.Menu.NewGameMenu
+<style\=p>Bring your railroad back to life in the wake of a flood. Manage your trains, money, and customers.</style>=<style=p>Возродите свою железную дорогу после наводнения. Управляйте поездами, деньгами и клиентами.</style>
+<style\=p>Play in a semi-structured full map. Create and delete engines and cars freely while also serving customers.</style>=<style=p>Свободная игра на всей карте. Создавайте и удаляйте локомотивы и вагоны по желанию, попутно обслуживая клиентов.</style>
+A save by that name already exists.=Сохранение с таким именем уже существует.
+Game Options=Параметры игры
+Map=Карта
+Mode=Режим
+Name Your Save=Название сохранения
+Please complete all fields.=Заполните все поля.
+Railroad Name=Название дороги
+Random=Случайно
+Reporting Mark=Код дороги
+Sandbox=Песочница
+Company=Компания
+Start=Начать
+What's the name of your railroad?=Как называется ваша железная дорога?
+
+// === UI.Menu.PreferencesMenu
+Are you sure you want to reset all preferences, including video & audio settings and custom key bindings? This cannot be undone. Save games will not be affected.=Сбросить все настройки, включая видео, звук и назначения клавиш? Это действие нельзя отменить. Сохранения не пострадают.
+Preferences Reset=Настройки сброшены
+Preferences have been reset. Railroader will now quit. Restart the game to apply the changes.=Настройки сброшены. Сейчас игра закроется. Запустите её снова, чтобы применить изменения.
+Reset=Сбросить
+Reset Preferences=Сбросить настройки
+Reset Preferences?=Сбросить настройки?
+
+// === UI.Placer.PlacerWindow
+Consist Placer=Расстановка состава
+t:{0:n} cars, {1:N0} ft, {2:N0} tons={0} {0|вагон|вагона|вагонов}, {1} фут., {2} т
+
+// === UI.PlayerList.PlayerListController
+Off Duty=Не на смене
+Players=Игроки
+Train Crew=Бригада
+Train Crews=Бригады
+t:{0} train crew {1}={0}: бригада {1}
+t:{0:n} player is not on a train crew.={0} игрок не в бригаде.
+t:{0:n} players are not on a train crew.={0} {0|игрок|игрока|игроков} не в бригаде.
+
+// === UI.PreferencesWindow.CharacterSettingsBuilder
+Bandana=Бандана
+Character Name=Имя персонажа
+Glasses=Очки
+Gloves=Перчатки
+Hat=Головной убор
+Kromer=Кромер
+Model=Модель
+Name=Имя
+No Bandana=Без банданы
+No Glasses=Без очков
+No Gloves=Без перчаток
+No Hat=Без головного убора
+Red=Красный
+Skin Tone=Цвет кожи
+Thompson=Томпсон
+
+// === UI.PreferencesWindow.PreferencesBuilder
+Alternate=Альтернативный
+Always Show Clock=Всегда показывать часы
+Anonymously collect usage data to help us improve Railroader. No customization information is collected.=Анонимно собирать данные об использовании, чтобы помочь улучшить Railroader. Личные настройки не собираются.
+Behavior & Features=Поведение и возможности
+Bell=Колокол
+Bindings Customization only available in game.=Назначение клавиш доступно только в игре.
+CTC Bell=Звонок ДЦ
+Car Update Optimization=Оптимизация обновления вагонов
+Character=Персонаж
+Collect Usage Data=Собирать данные об использовании
+Compass=Компас
+Contrast=Контраст
+Controls=Управление
+Customize Bindings=Назначить клавиши
+Default=По умолчанию
+Detail Density=Плотность деталей
+Draw Distance=Дальность прорисовки
+Dynamo=Динамо-машина
+Engine=Локомотив
+Environment=Окружение
+Experimental=Экспериментальное
+Features=Возможности
+Field of View=Поле зрения
+Full Screen=Полный экран
+Graphics=Графика
+Input=Ввод
+Invert Mouse=Инвертировать мышь
+Levels=Уровни
+Main=Основное
+Mouse Look=Обзор мышью
+Mouse Look Speed=Скорость обзора мышью
+Off=Выкл.
+Optimize how cars are moved. Can save CPU time on particularly busy railroads, but may lead to jittery car movements.=Оптимизирует перемещение вагонов. Может сэкономить ресурсы процессора на очень загруженных дорогах, но движение вагонов может стать рывками.
+Other=Прочее
+Particles=Частицы
+Post Exposure=Экспозиция
+Quality=Качество
+Resolution=Разрешение
+Sound=Звук
+Standard=Стандартный
+Sway Intensity=Сила раскачивания
+Tree Density=Плотность деревьев
+UI Scale=Масштаб интерфейса
+Vsync=Вертикальная синхронизация
+Wheels=Колёса
+Whistle=Гудок
+t:{0:n} x {1:n}={0} × {1}
+
+// === UI.ProgrammaticWindowCreator
+Bindings=Клавиши
+Company=Компания
+Guide=Справочник
+Preferences=Настройки
+Station=Станция
+
+// === UI.QuickSearch.QuickSearchResultRow
+Location=Место
+Player=Игрок
+Point of Interest=Достопримечательность
+Unknown=Неизвестно
+t:[{0}]: Inspect=[{0}]: осмотреть
+t:[{0}]: Jump To=[{0}]: перейти
+
+// === UI.ReleaseNotesTextBox
+Unable to load release notes.=Не удалось загрузить список изменений.
+
+// === UI.StationWindow.StationWindow
+<b>Longest Wait</b>=<b>Дольше всех ждут</b>
+<b>Switch List</b>=<b>Маневровый лист</b>
+<i>Join a Train Crew to add cars to your switch list.</i>=<i>Вступите в бригаду, чтобы добавлять вагоны в маневровый лист.</i>
+Add/remove cars from your train crew's switch list using the toggle.=Добавляйте и убирайте вагоны из маневрового листа бригады переключателем.
+Freight=Грузы
+On Switch List=В маневровом листе
+Passengers=Пассажиры
+Toggle whether this car is on your train crew's switch list.=Добавить вагон в маневровый лист бригады или убрать из него.
+no passengers=нет пассажиров
+
+// === UI.SwitchList.SwitchListPanel
+t:Add {0} to switch list=Добавить в маневровый лист: {0}
+Add cars in selected train to the switch list=Добавить вагоны выбранного поезда в маневровый лист
+Add from Train=Добавить из поезда
+Cleanup=Очистить
+Join or create a train crew first.=Сначала вступите в бригаду или создайте её.
+Join or create a train crew to add cars.=Вступите в бригаду или создайте её, чтобы добавлять вагоны.
+No cars to add.=Нет вагонов для добавления.
+No selected cars.=Вагоны не выбраны.
+Remove completed rows=Убрать выполненные строки
+Sort by Destination=Сортировать по назначению
+Sort by Location=Сортировать по месту
+Switch List=Маневровый лист
+Switch list is empty!\nAdd cars at station agent window.=Маневровый лист пуст!\nДобавьте вагоны в окне агента станции.
+t:{0:N0} lbs={0} фунт.
+
+// === UI.TimeWindow
+1 hr=1 ч
+15 min=15 мин
+6 hr=6 ч
+t:<mspace\=0.7em>{0}</mspace>:<mspace\=0.7em>{1}</mspace>:<mspace\=0.7em>{2}</mspace> Day {3}=<mspace=0.7em>{0}</mspace>:<mspace=0.7em>{1}</mspace>:<mspace=0.7em>{2}</mspace> День {3}
+t:<style\=Footnote>Does not affect train movement.{0}=<style=Footnote>Не влияет на движение поездов.{0}
+Let time pass until the first scheduled interchange service of the day.=Пропустить время до первой запланированной подачи на пункт обмена.
+Pass Time=Пропустить время
+Sleep=Спать
+Time=Время
+Wait 5 min=Подождать 5 мин
+
+// === UI.Timetable.TextTimetableEditor
+<u>Station Codes</u>=<u>Коды станций</u>
+Apply=Применить
+Apply Timetable=Применить расписание
+Enter Timetable Text=Введите текст расписания
+Immediately make this the current timetable.=Сразу сделать это расписание текущим.
+Stations=Станции
+Timetable Issues=Проблемы в расписании
+t:{0:n} trains={0} {0|поезд|поезда|поездов}
+
+// === UI.Timetable.TimetableEditorWindow
+Another player has changed the timetable. Do you want to ignore these changes, or discard your changes and reload?=Другой игрок изменил расписание. Проигнорировать эти изменения или отменить свои и загрузить новое расписание?
+Discard & Reload=Отменить и загрузить
+Ignore=Игнорировать
+Timetable Changed=Расписание изменено
+Timetable Editor=Редактор расписания
+
+// === UI.Timetable.TimetableLoadSaveHelper
+<i>Select a file</i>=<i>Выберите файл</i>
+Error loading timetable=Ошибка загрузки расписания
+File not found.=Файл не найден.
+Filename=Имя файла
+Load from Disk=Загрузить с диска
+Save=Сохранить
+Save to Disk=Сохранить на диск
+Select=Выбрать
+
+// === UI.Timetable.TimetableWindow
+East=Восток
+Eastbound=На восток
+Edit Timetable=Изменить расписание
+Empty Timetable=Пустое расписание
+First=Первый
+Read Down=Сверху вниз
+Read Up=Снизу вверх
+Second=Второй
+Third=Третий
+Timetable=Расписание
+Timetable Has Errors=В расписании ошибки
+Timetable feature is not enabled in Company Settings.=Расписание не включено в настройках компании.
+West=Запад
+Westbound=На запад
+
+// === UI.Timetable.VisualTimetableEditor
+t:Train symbol "{0}" is already in use in this timetable.=Номер поезда «{0}» уже используется в этом расписании.
+Add=Добавить
+Add Train=Добавить поезд
+Apply editor changes to the current game timetable.=Применить изменения к текущему расписанию игры.
+Arrival=Прибытие
+Changes to this timetable have not been applied and will be lost.=Изменения в расписании не применены и будут потеряны.
+Class=Класс
+Clear Timetable=Очистить расписание
+Close without applying changes?=Закрыть без применения изменений?
+Comma-separated train symbols that this train meets at this station before departing.=Номера поездов через запятую, которые этот поезд пропускает или скрещивается с ними на этой станции перед отправлением.
+Departure=Отправление
+Direction=Направление
+Estimated Timing=Расчётное время
+Estimated time in minutes to travel between stations based on track speed. Time in parenthesis is the difference between the fastest estimate and the timetable time.=Расчётное время хода между станциями в минутах по установленной скорости. В скобках — разница между самым быстрым расчётом и временем по расписанию.
+Invalid train symbol=Неверный номер поезда
+Load a predefined timetable.=Загрузить готовое расписание.
+Load a timetable from a file on disk.=Загрузить расписание из файла.
+Meets=Скрещения
+Meets must be comma separated train symbols.=Скрещения — это номера поездов через запятую.
+Minutes=Минуты
+Relative time must be a number of minutes.=Относительное время задаётся числом минут.
+Remove=Удалить
+Remove Train?=Удалить поезд?
+Remove all trains from this timetable.=Удалить все поезда из расписания.
+Replace=Заменить
+Replace timetable?=Заменить расписание?
+Save this timetable to a file on disk.=Сохранить расписание в файл.
+Symbol=Номер
+t:This will replace {0:n} scheduled trains with the starter set.=Поезда в расписании ({0}) будут заменены стартовым набором.
+Time must be in HH:MM 24-hour format.=Время нужно указать в 24-часовом формате ЧЧ:ММ.
+Timetable train symbol must contain only letters and numbers.=Номер поезда может содержать только буквы и цифры.
+Train Name=Название поезда
+Train already exists=Поезд уже существует
+Train symbols must contain only letters and numbers.=Номера поездов могут содержать только буквы и цифры.
+Type=Тип
+Passenger=Пассажирский
+
+// === UI.TrainBrakeDisplay
+t:Car {0}=Вагон {0}
+t:Joint {0}=Соединение {0}
+
+// === UI.Tutorial.TutorialManager
+It looks like this game was started with the original tutorial. If you wish to continue with the tutorial we recommend starting a new Company mode game. We apologize for the inconvenience!\n\nIn Railroader 2025.1 the tutorial was revamped and is not compatible with the original one.=Похоже, эта игра была начата со старым обучением. Если хотите пройти обучение, начните новую игру в режиме «Компания». Приносим извинения за неудобства!\n\nВ Railroader 2025.1 обучение переработано и несовместимо со старым.
+The tutorial has changed!=Обучение изменилось!
+Tutorial=Обучение
+
+// === Меню расписания: «Load » + имя файла из StreamingAssets/Timetables
+t:Load Predefined {0}=Загрузить готовое: {0}
+
+// === Роли доступа (AccessLevel.ToString())
+Undetermined=Не определена
+Dispatcher=Диспетчер
+Trainmaster=Начальник движения
+Officer=Руководитель
+President=Президент

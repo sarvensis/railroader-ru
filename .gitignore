@@ -1,0 +1,23 @@
+# Сборка
+bin/
+obj/
+dist/
+.nuget/
+
+# Сборки игры и их урезанные копии — в репозиторий не кладём (см. scripts/pack-refs.ps1)
+refs/
+game-refs.zip
+
+# BepInEx скачивается scripts/get-bepinex.ps1 с проверкой SHA-256
+vendor/bepinex/
+vendor/*.zip
+
+# Рабочие файлы извлечения строк (пересоздаются командами RuTools extract-*)
+extracted/
+
+# Локальное
+*.user
+.vs/
+.idea/
+untranslated.txt
+build.env

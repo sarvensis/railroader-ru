@@ -1,0 +1,370 @@
+// Строки, найденные в игре, но оставленные без перевода: отладочные сообщения, обрывки фраз,
+// имена объектов, названия станций и т.п. Если какая-то из них всё же видна в игре — впишите перевод после «=».
+
+Ghost=
+t:- {0:C0} {1}=
+t:{0} to {1}=
+'s Fusee=
+Client Auth Failed for <noparse>=
+t:GameMessage: {0}=
+</style>  <style\=p>=
+ Unlocked=
+t:{0}: score \= {1:P1}, ratio \= {2:P1}, {3}=
+LastUpdatedDay {lastUpdated} > {nowDay}; resetting.=
+. Please submit a bug report including your log file!=
+<sprite name\=Warning> An error occurred. Please try again and if the problem persists report this bug and include your log file. Thank you!\n\nError Details: `=
+Unexpected value type: =
+Disposable=
+Properties=
+Waybill=
+World=
+t:PlaceTrain: {0}: {1}=
+Audit Switch Action: {nodeId} {requester} "{action}"=
+t:No StateManager instance to apply {0}=
+t:(max\={0:F1}, gu\={1:F1}%, ga\={2:F1})=
+t:CalculateSettingsForHolding: {0}, {1}, {2}, {3}, {4} (no throttle)=
+t:CalculateSettingsForHolding:{0}, {1}, {2}, {3}, {4} -> {5}=
+t:SetTargets {0}=
+t:State {0} -> {1}=
+t:TrainBrakeMakeSet {0} -> {1}=
+t:{0:F1}mph @ {1:F1}m ({2})=
+t:{0:F2} {1:F1}mph ({2}, ctx {3:F1}): =
+Timetable: Depart =
+ waypoint set: =
+Clear =
+t:{0:F3} - {1:F3}=
+t:mode\={0}, forward\={1}, maxSpeedMph\={2}, goto\={3}=
+t:ApplyDerailmentForce: {0} {1:g2} {2:g2} {3:g2} -> {4:F1}=
+Body=
+t:Curve mph\={0} max\={1}=
+Damage per Second=
+Derailed Effect=
+Open Model Load Tokens: (=
+t:{0:s} {1}=
+Railroader/Standard Car Shader (Shared)=
+Capsule=
+Chuff=
+Colorizer=
+Decal=
+t:    {0}: {1} cars ({2:F1} avg, {3} max, {4:F1} cap)=
+t:************ OVER CAPACITY {0}: {1} > {2:F1} *************=
+t:----> In: {0}=
+t:----> In: {0} (MT)=
+t:<---- Out: {0}=
+t:Day {0}/{1}: in\={2:F1}, out\={3:F1} \= total\={4:F1} | {5}=
+t:Unsupported industry type: {0}=
+t:{0}: {1:N1}=
+L&N=
+N&W=
+NC&STL=
+Production Stopped: =
+t:Contract with {0} {1}.{2}{3}=
+Schedule for =
+Scheduled for =
+OnComplete forwardToOnArrival=
+t:{0}{1} {2} {3:F1}=
+t:    {0} from {1}, waiting {2}=
+Missing OpsController.=
+t: + {0:C0} {1}=
+t: - {0:C0} {1}=
+t: \= {0:C0}=
+t: to {0}: {1:C0}=
+Payment for delivery of =
+: Expected departure time=
+: Expected station code=
+t:// Railroader Timetable v{0} - {1}=
+t:Created \= {0}, Origin \= {1}, Destination \= {2}, Payment \= {3}, Completed \= {4}, Tag \= {5}, GraceDays \= {6}=
+Snapshot: {sets} sets, {players} players, {properties} property objects=
+t:Received {0} lobbies: {1}=
+t: (picked) pri\={0} {1:F1}/{2:F1}=
+t:({0:F1}, {1:F1}, {2:F1})=
+t:{0:F1}%, {1:F0} deg=
+Autosaved =
+Last saved =
+AnimateLoad \= false=
+AnimateLoad \= true=
+CanLoad \= true=
+Loop complete=
+Loop start=
+PrepareLoad \= true=
+Wait for !IsLoading...=
+Wait for IsLoading...=
+<sprite name\="Destination">=
+<sprite name\="Spotted">=
+'s layer is not Clickable. Fixing.=
+t:    new Vector3({0:F3}f, {1:F3}f, {2:F3}f),=
+Clack=
+Switch =
+t:({0:F1}, {1:F1})=
+Invalid end: "=
+Malformed distance: "=
+Malformed location string: "=
+Node-=
+Segment not found: "=
+Segment-=
+t:<{0}, {1} -> {2:F3}>=
+PendingAdd queue for {prefab} has {queueAddCount} entries totalling {matrixCount} instances; prefab has {entryCount} entries=
+t:Signal {0} Stop: Block {1} direction {2} is against signal direction {3}.=
+<null blocks>=
+CTCCode=
+CTCKnob=
+Mystery=
+" tint\=1></rotate>=
+<sprite name\="=
+R <rotate\=-180><sprite name\="=
+Signal Label =
+Collider=
+Collider-a=
+Collider-b=
+Frog=
+Generated=
+Mask Container=
+Switch Stand=
+t:{0}: {1:N0}KB=
+t:{0} id\={1}, ({2})-({3})=
+t:Collision vs {0}, dmph\={1} -> {2} vs {3}=
+t:UIPanel-{0}=
+HRule=
+HStack=
+Spacer=
+VRule=
+VStack=
+<sprite name\=Copy><sprite name\=Coupled>=
+<sprite name\=CycleWaybills>=
+<sprite name\=CycleWaybills><sprite name\=Coupled>=
+Automatic Waybills: =
+Copied to =
+t:Alert result: {0}=
+Lorem ipsum dolor sit amet, consectetur adipiscing elit=
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.=
+One=
+Two=
+Due in =
+Service Odometer: =
+- Dep. =
+<alpha\=#60>- Arr. =
+t:Unexpected: {0}=
+(Internal error. Please send player.log.=
+. These cars will be delivered to the interchange the next time the interchange is served.=
+Deliver =
+t:{0} ({1:C0}{2})=
+t:{0:C0} ({1:C0} tier change=
+' as =
+Can't interpret '=
+Unknown command '/=
+Unknown subcommand '/=
+Unknown subcommand.\nUsage: =
+Couldn't find FPSDisplay=
+Game Mode: =
+Set game mode: =
+/progression advance|revert <id>=
+Repaired =
+' not found.=
+Error: '=
+Usage: /weather <=
+Line=
+Pool=
+Applied to =
+Set load: =
+Atlantic Locomotive Works=
+No raycastHits=
+Over VisualElement: "=
+Railroader was unable to restore the locations of =
+\r\n_root:\r\n<noun> <rr>\r\n<noun> & <noun> <rr>\r\n<noun> & <noun> <rr>\r\n<noun> & <noun> <rr>\r\n<noun>, <noun> & <noun> <rr>\r\n\r\nnoun:\r\n<place>\r\n<place>\r\n<place>\r\n<place>\r\n<place>\r\n<place>\r\n<dir> <place>\r\n<dir> <place>\r\n<dirern>\r\n\r\nplace:\r\nAlarka\r\nAlmond\r\nAndrews\r\nAlleghany\r\nAppalachian\r\nAsheville\r\nBalsam\r\nBlack Mountain\r\nBlue Ridge\r\nBryson\r\nCanton\r\nCarolina\r\nCherokee\r\nCounty Line\r\nCumberland\r\nDillard\r\nDillsboro\r\nDucktown\r\nFontana\r\nHickory\r\nJupiter\r\nLeConte\r\nMarble\r\nMarion\r\nMaryland\r\nMercer\r\nMineral Bluff\r\nMurphy\r\nNantahala\r\nPisgah\r\nRobbinsville\r\nSaluda\r\nSmokey Mountain\r\nSpruce Pine\r\nSulphur Springs\r\nSylva\r\nTallulah Falls\r\nTennessee\r\nTopton\r\nToxaway\r\nTuckasegee\r\nVirginia\r\n\r\nrr:\r\nRailroad\r\nRailroad\r\nRailroad\r\nRailway\r\nRailway\r\nLines\r\n\r\ndir:\r\nWest\r\nEast\r\nNorth\r\nSouth\r\n\r\ndirern:\r\nWestern\r\nNorthwestern\r\nSouthwestern\r\nEastern\r\nNortheastern\r\nSoutheastern\r\nNorthern\r\nSouthern\r\n=
+<sprite name\="Locked">=
+<sprite name\="Unlocked">=
+Atlantic Railway=
+Discord=
+No railroads with exact reporting mark "=
+Showing =
+player is=
+players are=
+t:{0} {1} not on a train crew.=
+]: Inspect=
+]: Jump To=
+Add =
+<style\=Footnote>Does not affect train movement.=
+" is already in use in this timetable.=
+<sprite name\=Warning>=
+Train symbol "=
+
+Toast Text=
+Copyright 2021-2025 Giraffe Lab LLC=
+v0.0.0=
+8 Cars – 1,570 T=
+<mspace\=0.55em>15</mspace>\n<color\=#5D5B55><size\=25%>MPH</size></color>=
+<mspace\=0.7em>00</mspace>:<mspace\=0.7em>00</mspace>:<mspace\=0.7em>00</mspace>=
+<style\=b>SOU 630</style> <style\=p>Stopped for Switch</style>=
+Add Component=
+Array=
+BP 90\nBC 0\nRS 90\n?? ??=
+Bryson Local=
+Contents Xyz=
+Destination Xyzxy=
+Destination Xyzxy..............=
+Dropdown=
+Empty State=
+F=
+FPS=
+Float=
+Header=
+I=
+Item Row=
+Location Xyz=
+NO.=
+Nested=
+Orders: 15 mph=
+Progress Indicator Text=
+SOU 19440=
+SOU 4501=
+SOU 630=
+SOUTHEASTERN SOUTHEASTERN SOUTHEASTERN SOUTHEASTERN SOUTHEASTERN=
+String=
+Subtitle=
+Vector3=
+X=
+XM=
+Y=
+Z=
+N=
+R=
+Option A=
+Option Subtitle=
+Option Title=
+Scrolling Text=
+Title=
+10R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+12R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+14R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+16R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+18R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+20R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+22R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+24R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+26R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+28R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+32R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+34R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+36R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+38R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+42R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+44R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+46R <rotate\=-180><sprite name\="SigTriple" tint\=1></rotate>=
+48R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+50R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+52R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+54R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+56R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+62R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+64R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+66R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+68R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+72R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+74R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+78R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+80R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+84R <rotate\=-180><sprite name\="SigDouble" tint\=1></rotate>=
+86R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+8R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+90R <rotate\=-180><sprite name\="SigSingle" tint\=1></rotate>=
+<sprite name\="SigDouble" tint\=1> 12L=
+<sprite name\="SigDouble" tint\=1> 16L=
+<sprite name\="SigDouble" tint\=1> 20L=
+<sprite name\="SigDouble" tint\=1> 24L=
+<sprite name\="SigDouble" tint\=1> 28L=
+<sprite name\="SigDouble" tint\=1> 34L=
+<sprite name\="SigDouble" tint\=1> 38L=
+<sprite name\="SigDouble" tint\=1> 44L=
+<sprite name\="SigDouble" tint\=1> 52L=
+<sprite name\="SigDouble" tint\=1> 56L=
+<sprite name\="SigDouble" tint\=1> 64L=
+<sprite name\="SigDouble" tint\=1> 68L=
+<sprite name\="SigDouble" tint\=1> 74L=
+<sprite name\="SigDouble" tint\=1> 80L=
+<sprite name\="SigDouble" tint\=1> 86L=
+<sprite name\="SigSingle" tint\=1> 10L=
+<sprite name\="SigSingle" tint\=1> 14L=
+<sprite name\="SigSingle" tint\=1> 18L=
+<sprite name\="SigSingle" tint\=1> 22L=
+<sprite name\="SigSingle" tint\=1> 26L=
+<sprite name\="SigSingle" tint\=1> 32L=
+<sprite name\="SigSingle" tint\=1> 36L=
+<sprite name\="SigSingle" tint\=1> 42L=
+<sprite name\="SigSingle" tint\=1> 46L=
+<sprite name\="SigSingle" tint\=1> 50L=
+<sprite name\="SigSingle" tint\=1> 54L=
+<sprite name\="SigSingle" tint\=1> 62L=
+<sprite name\="SigSingle" tint\=1> 66L=
+<sprite name\="SigSingle" tint\=1> 72L=
+<sprite name\="SigSingle" tint\=1> 78L=
+<sprite name\="SigSingle" tint\=1> 84L=
+<sprite name\="SigSingle" tint\=1> 8L=
+<sprite name\="SigSingle" tint\=1> 90L=
+<sprite name\="SigTriple" tint\=1> 48L=
+<sprite name\="Water">=
+ABS=
+Alarka=
+Alarka Jct=
+Almond=
+Andrews=
+Andrews Interchange=
+Barker's Creek=
+Barkers=
+Begin CTC=
+Begin Circuit=
+Brooks=
+CTC=
+Cochran=
+Connelly=
+Connelly\nBranch=
+Connelly Creek=
+Cowee=
+DS=
+Dillsboro=
+END YARD=
+East Sylva=
+East Whittier=
+East Whittier Interchange=
+Ela=
+End CTC=
+End Circuit=
+Gov Island=
+Governors Island=
+Graham County=
+Hemingway=
+Hewitt=
+McClain=
+Nantahala=
+Rhodo=
+Robinson Gap=
+Sylva=
+Sylva Interchange=
+Thomas Valley=
+Topton=
+Walker=
+Walker Branch=
+Wesser=
+Wilmot=
+YARD\nLIMIT=
+Bryson=
+Whittier=
+L=
+X123=
+Appalachain Hardwoods=
+Appalachain Hardwoods R1=
+Button=
+East Whittier Engine=
+New Text=
+Thing=
+Label=
+2022/6/5 12:30pm=
+<sprite name\="Unlocked">\n=
+Railroader=
+Status Text=
+29 mph=
+Bryson Local Is The Very Best Train=
+Label Label=
+SOU 4509=
+SOU10508=
+Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text =
+Text TextText Text TextText Text TextText Text TextText Text TextText =
