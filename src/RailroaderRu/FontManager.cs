@@ -31,10 +31,19 @@ namespace RailroaderRu
         private static bool SupportsCyrillic(TMP_FontAsset font) =>
             font.HasCharacter('Ж', false, true) && font.HasCharacter('я', false, true);
 
+        private static readonly List<TMP_FontAsset> Pending = new List<TMP_FontAsset>();
+        private static float _nextPendingRetry;
+        private static bool _styleSheetFontsLoaded;
+        private static readonly System.Text.RegularExpressions.Regex FontTag =
+            new System.Text.RegularExpressions.Regex("<font=\"([^\"]+)\"");
+
         /// <summary>Подключает кириллический fallback к шрифту (один раз на шрифт).</summary>
         public static void Ensure(TMP_FontAsset font)
         {
-            if (font == null || !Plugin.ReplaceFonts.Value) return;
+            if (!Plugin.ReplaceFonts.Value) return;
+            if (!_styleSheetFontsLoaded) PreloadStyleSheetFonts();
+            if (Pending.Count > 0 && Time.realtimeSinceStartup >= _nextPendingRetry) RetryPending();
+            if (font == null) return;
             int id = font.GetInstanceID();
             if (Processed.Contains(id)) return;
             if (font.name.StartsWith("RailroaderRu", StringComparison.Ordinal)) { Processed.Add(id); return; }
@@ -44,8 +53,14 @@ namespace RailroaderRu
                 if (SupportsCyrillic(font)) { Processed.Add(id); return; }
 
                 var fallback = Plugin.BundledFonts.Value ? GetOrCreate(PickFile(font.name)) : FindGameFallback(font.name);
-                if (fallback == null) return; // нужный шрифт игры ещё не загружен — попробуем позже
+                if (fallback == null)
+                {
+                    // Нужный шрифт игры ещё не загружен — попробуем позже (не все шрифты проходят через Ensure повторно).
+                    if (!Pending.Contains(font)) Pending.Add(font);
+                    return;
+                }
                 Processed.Add(id);
+                Pending.Remove(font);
                 if (fallback == font) return;
 
                 var table = font.fallbackFontAssetTable;
@@ -58,12 +73,65 @@ namespace RailroaderRu
                 {
                     table.Insert(0, fallback);
                     Plugin.Log.LogInfo($"Кириллица для шрифта {font.name}: {fallback.name}");
+                    LogAtlasPages(font);
                 }
             }
             catch (Exception ex)
             {
                 Processed.Add(id);
                 Plugin.Log.LogWarning($"Не удалось добавить кириллицу к шрифту {font.name}: {ex.Message}");
+            }
+        }
+
+        private static void RetryPending()
+        {
+            _nextPendingRetry = Time.realtimeSinceStartup + 2f;
+            foreach (var f in Pending.ToArray())
+                if (f == null) Pending.Remove(f);
+                else Ensure(f);
+        }
+
+        /// <summary>
+        /// Заголовки и моноширинный текст задаются стилями: &lt;style="serif"&gt; → &lt;font="LibreBaskerville/…"&gt;.
+        /// Такой шрифт TMP грузит по тегу прямо при разборе текста — ни через основной шрифт надписи,
+        /// ни через свойство font он к нам не попадает. Загружаем все шрифты из таблицы стилей заранее.
+        /// </summary>
+        private static void PreloadStyleSheetFonts()
+        {
+            _styleSheetFontsLoaded = true;
+            try
+            {
+                var sheet = TMP_Settings.defaultStyleSheet;
+                if (sheet == null) return;
+                var names = new HashSet<string>(StringComparer.Ordinal);
+                var styles = HarmonyLib.Traverse.Create(sheet).Field("m_StyleList").GetValue<List<TMP_Style>>() ?? new List<TMP_Style>();
+                foreach (var style in styles)
+                    foreach (System.Text.RegularExpressions.Match m in FontTag.Matches(style.styleOpeningDefinition ?? ""))
+                        names.Add(m.Groups[1].Value);
+                foreach (var name in names)
+                {
+                    TMP_FontAsset font;
+                    if (!MaterialReferenceManager.TryGetFontAsset(TMP_TextUtilities.GetSimpleHashCode(name), out font) || font == null)
+                        font = Resources.Load<TMP_FontAsset>(TMP_Settings.defaultFontAssetPath + name);
+                    if (font == null) { Plugin.Log.LogWarning($"Шрифт из стилей не найден: {name}"); continue; }
+                    Plugin.Log.LogInfo($"Шрифт из стилей: {name} → {font.name}");
+                    Ensure(font);
+                }
+            }
+            catch (Exception ex)
+            {
+                Plugin.Log.LogWarning("Не удалось обработать шрифты из стилей: " + ex.Message);
+            }
+        }
+
+        /// <summary>Шрифт, загруженный по тегу &lt;font="..."&gt;, регистрируется здесь — подключаем к нему кириллицу.</summary>
+        [HarmonyLib.HarmonyPatch(typeof(MaterialReferenceManager), nameof(MaterialReferenceManager.AddFontAsset))]
+        private static class AddFontAssetPatch
+        {
+            private static void Postfix(TMP_FontAsset fontAsset)
+            {
+                try { Ensure(fontAsset); }
+                catch (Exception ex) { Plugin.Log.LogWarning(ex.Message); }
             }
         }
 
@@ -81,13 +149,55 @@ namespace RailroaderRu
             {
                 foreach (var name in candidates)
                     if (GameFonts.TryGetValue(name, out var f) && f != null)
-                        return f;
+                        return CloneForFallback(f);
                 if (pass == 0 && !ScanGameFonts()) break;
             }
             foreach (var f in GameFonts.Values)
                 if (f != null && f.name.StartsWith("LiberationSans", StringComparison.Ordinal))
-                    return f;
+                    return CloneForFallback(f);
             return null;
+        }
+
+        /// <summary>
+        /// Шрифт игры нельзя ставить fallback'ом напрямую. TMP меняет материал (атлас) для символа из fallback
+        /// только если этот fallback ≠ основному шрифту надписи (TMP_Text: «m_currentFontAsset != m_fontAsset»).
+        /// Заголовки — это &lt;font="LibreBaskerville…"&gt; внутри надписи с основным Montserrat: кириллица
+        /// находилась в том же Montserrat, материал не переключался, и буквы брались из атласа Baskerville.
+        /// Поэтому создаём отдельную копию из того же TTF игры — у неё свой атлас и свой instanceID.
+        /// </summary>
+        private static TMP_FontAsset CloneForFallback(TMP_FontAsset gameFont)
+        {
+            string key = "clone:" + gameFont.name;
+            if (Created.TryGetValue(key, out var existing) && existing != null)
+                return existing;
+            if (gameFont.sourceFontFile == null)
+                return null;
+
+            // Один атлас 2048×2048 без второй страницы: глифы со страницы 1+ TMP для fallback-шрифта
+            // рисует из первой текстуры (часть букв пропадала). 64 pt с запасом вмещают весь алфавит.
+            var clone = TMP_FontAsset.CreateFontAsset(gameFont.sourceFontFile, 64, 6, GlyphRenderMode.SDFAA, 2048, 2048,
+                AtlasPopulationMode.Dynamic, enableMultiAtlasSupport: false);
+            if (clone == null)
+                return null;
+            clone.name = "RailroaderRu " + gameFont.name;
+            clone.hideFlags = HideFlags.DontUnloadUnusedAsset;
+            if (clone.material != null)
+                clone.material.hideFlags = HideFlags.DontUnloadUnusedAsset;
+            if (!clone.TryAddCharacters(PrebakedCharacters, out string missing) && !string.IsNullOrEmpty(missing))
+                Plugin.Log.LogWarning($"{clone.name}: в шрифте нет символов «{missing}»");
+
+            Created[key] = clone;
+            Plugin.Log.LogInfo($"Создан шрифт с кириллицей: {clone.name} (символов: {clone.characterTable.Count}, " +
+                               $"страниц атласа: {clone.atlasTextures?.Length ?? 0})");
+            LogAtlasPages(gameFont);
+            return clone;
+        }
+
+        /// <summary>Для диагностики: сколько страниц атласа у шрифта игры, к которому подключаем fallback.</summary>
+        private static void LogAtlasPages(TMP_FontAsset font)
+        {
+            Plugin.Log.LogInfo($"  шрифт игры {font.name}: символов {font.characterTable.Count}, " +
+                               $"страниц атласа {font.atlasTextures?.Length ?? 0}, multiAtlas={font.isMultiAtlasTexturesEnabled}");
         }
 
         /// <summary>Ищет загруженные шрифты игры с кириллицей (не чаще раза в 2 секунды).</summary>

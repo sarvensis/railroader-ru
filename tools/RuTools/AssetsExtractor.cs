@@ -113,6 +113,18 @@ namespace RuTools
                 {
                     try
                     {
+                        if (GetScriptName(am, inst, info) != "TMP_StyleSheet") continue;
+                        var f = am.GetBaseField(inst, info);
+                        Console.WriteLine($"{Path.GetFileName(path)} STYLESHEET {f["m_Name"].AsString}");
+                        foreach (var s in f["m_StyleList"]["Array"].Children)
+                            Console.WriteLine($"   {s["m_Name"].AsString,-14} open='{s["m_OpeningDefinition"].AsString}' close='{s["m_ClosingDefinition"].AsString}'");
+                    }
+                    catch (Exception ex) { Console.Error.WriteLine(ex.Message); }
+                }
+                foreach (var info in inst.file.GetAssetsOfType(AssetClassID.MonoBehaviour))
+                {
+                    try
+                    {
                         if (GetScriptName(am, inst, info) != "TMP_FontAsset") continue;
                         var f = am.GetBaseField(inst, info);
                         var src = f["m_SourceFontFile"];
