@@ -145,6 +145,10 @@ namespace RuTools
             ["TextMeshPro"] = new[] { "m_text" },
             ["Load"] = new[] { "description" },           // названия грузов
             ["Section"] = new[] { "displayName", "description" },   // этапы (Milestones)
+            ["Milestone"] = new[] { "title", "description" },       // этапы, Railroader 2026+
+            ["DeliveryMilestone"] = new[] { "title", "description" },
+            ["TrackActivationMilestone"] = new[] { "title", "description" },
+            ["TrackConstructionMilestone"] = new[] { "title", "description" },
             ["MapFeature"] = new[] { "displayName", "description" },
         };
 

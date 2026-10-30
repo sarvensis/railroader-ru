@@ -1,0 +1,758 @@
+// Новые строки Railroader 2026.1 (0.6): обслуживание пути, моды, поворотный круг, настройки графики, меню сохранений.
+
+// === Размещение поездов
+Cannot start train placement=Не удалось начать расстановку поезда
+t:Click track to {0} {1} ~{2:N0}ft=Щёлкните по пути: {0} {1} (~{2} фут.)
+Couldn't place the cars.=Не удалось поставить вагоны.
+Can't place the train at that waypoint.=Нельзя поставить поезд у этой путевой точки.
+No room for the train on that side of the waypoint.=С этой стороны путевой точки поезду не хватит места.
+The track has changed since that waypoint was set.=Путь изменился с тех пор, как задана путевая точка.
+The track splits where the train would stand, and nothing there says which way it goes.=Там, где встанет поезд, путь разветвляется, и неясно, в какую сторону.
+The turntable isn't lined for that track.=Поворотный круг не установлен на этот путь.
+No track there.=Там нет пути.
+Not enough track.=Недостаточно пути.
+Switch lined against.=Стрелка переведена не по маршруту.
+Track not available.=Путь недоступен.
+System=Система
+
+// === Ежедневный отчёт, время
+Nothing to report.=Сообщать не о чем.
+# Daily Report\n\nDaily reports are compiled at 6pm.=# Ежедневный отчёт\n\nЕжедневные отчёты составляются в 18:00.
+< 15 minutes=< 15 минут
+< 5 minutes=< 5 минут
+
+// === Хост и сетевая игра
+New players must be the host's Steam friends.=Новые игроки должны быть друзьями хоста в Steam.
+t:Steam {0}=Steam {0}
+t:You can't change the role of a {0}.=Нельзя изменить роль игрока «{0}».
+The host closed the railroad.=Хост закрыл дорогу.
+This railroad only accepts the host's Steam friends as new employees.=Эта дорога принимает новых сотрудников только из друзей хоста в Steam.
+Client=Клиент
+Not connected=Нет подключения
+Couldn't open the railroad to multiplayer. See the log for details.=Не удалось открыть дорогу для сетевой игры. Подробности — в логе.
+Couldn't reach Steam to create the lobby. Try again.=Не удалось связаться со Steam, чтобы создать лобби. Попробуйте ещё раз.
+Inviting friends needs the Steam overlay, which isn't available. Check that it's turned on in Steam's settings.=Для приглашения друзей нужен оверлей Steam, но он недоступен. Проверьте, что он включён в настройках Steam.
+Only a regular game can be opened to multiplayer.=Для сетевой игры можно открыть только обычную игру.
+Only the host can open the railroad to multiplayer.=Открыть дорогу для сетевой игры может только хост.
+Steam couldn't create the lobby. Try again.=Steam не смог создать лобби. Попробуйте ещё раз.
+Steam is limiting new lobbies. Try again in a few minutes.=Steam ограничивает создание лобби. Попробуйте через несколько минут.
+The railroad is already open to multiplayer.=Дорога уже открыта для сетевой игры.
+The railroad is already opening to multiplayer.=Дорога уже открывается для сетевой игры.
+The railroad is still loading.=Дорога ещё загружается.
+The railroad was closed before it finished opening.=Дорогу закрыли раньше, чем она успела открыться.
+Closed to multiplayer.=Закрыто для сетевой игры.
+Couldn't open to multiplayer. See the log for details.=Не удалось открыть для сетевой игры. Подробности — в логе.
+t:Hosting: {0}. Mode: {1}.=Хостинг: {0}. Режим: {1}.
+Not open to multiplayer.=Не открыто для сетевой игры.
+Open to multiplayer.=Открыто для сетевой игры.
+Opening to multiplayer...=Открываем для сетевой игры...
+Fast forward is unavailable while the railroad is open to multiplayer.=Ускорение времени недоступно, пока дорога открыта для сетевой игры.
+Different Version=Другая версия
+Locked=Заблокировано
+
+// === Обслуживание пути: этапы и строительство
+Click to Show Construction Details=Щёлкните, чтобы увидеть подробности стройки
+Construction=Строительство
+END\nOF\nTRACK=КОНЕЦ\nПУТИ
+Construction Material Priority Report=Приоритет материалов для стройки
+Everything the crew can build from this spot — the run of track in reach, up to the next structure. Load these to make progress now.=Всё, что бригада может построить отсюда: участок пути в пределах досягаемости до следующего сооружения. Загрузите это, чтобы продвинуться уже сейчас.
+Materials Needed Now=Нужны сейчас
+Materials Needed Soon=Скоро понадобятся
+What opens up once the structure ahead is built. You can load these now if you like — they just won't be used until the structure is done.=Что откроется, когда будет построено сооружение впереди. Можно загрузить уже сейчас, но использоваться они начнут только после его постройки.
+- All materials delivered.=- Все материалы доставлены.
+t:- Track construction remaining: {0:F1} mi=- Осталось построить пути: {0} миль
+<alpha\=#bb>Construction time=<alpha=#bb>Время строительства
+<style\=I>All materials delivered=<style=I>Все материалы доставлены
+<style\=I>Nothing needed=<style=I>Ничего не нужно
+t:{0:n}-{1:n} cars={0}-{1} ваг.
+t:{0:n}–{1:n} cars={0}–{1} ваг.
+Construction Stake=Строительная веха
+Progress=Ход работ
+paid for=оплатил(а)
+paid to start=оплатил(а) начало
+<style\=B>Materials still needed=<style=B>Ещё нужны материалы
+- Track must be reachable from an interchange=- Путь должен быть доступен от пункта обмена
+In progress=В процессе
+Not yet available=Пока недоступно
+_Delivery Milestone: The necessary cars will be delivered to the interchange; your railroad must deliver them to the appropriate location to unload and complete the milestone._=_Этап доставки: нужные вагоны прибудут на пункт обмена; ваша дорога должна доставить их на место выгрузки, чтобы завершить этап._
+_Track Activation Milestone: Your railroad will reactivate existing track for a fee and assume all ownership responsibilities._=_Этап восстановления: за плату ваша дорога вводит существующий путь в работу и принимает на себя все обязанности владельца._
+_Track Construction Milestone: Use captive service cars to purchase loads; run a work train to the site with the loads and a MoW work car to construct the line._=_Этап строительства: купите материалы в вагонах внутренних перевозок и приведите на место рабочий поезд с материалами и рабочим вагоном, чтобы построить линию._
+
+// === Знаки игрока
+t:Can't place more than {0:n} signs.=Нельзя поставить больше знаков, чем {0}.
+Sign needs text.=На знаке нужен текст.
+Sign no longer exists.=Знака больше нет.
+Sign text is too long.=Текст знака слишком длинный.
+Unknown sign.=Неизвестный знак.
+Edit Sign=Изменить знак
+Sign=Знак
+Can't place a sign right now.=Сейчас нельзя поставить знак.
+Click to move sign / Space flips direction=Щёлкните, чтобы переставить знак / Пробел меняет направление
+Click to place sign / Space flips direction=Щёлкните, чтобы поставить знак / Пробел меняет направление
+Can't save the sign right now.=Сейчас нельзя сохранить знак.
+New Sign=Новый знак
+Track removed. Use Move.=Путь удалён. Переставьте знак.
+Can't place a sign on unfinished track.=Нельзя поставить знак на недостроенный путь.
+Track removed=Путь удалён
+Place Sign=Поставить знак
+Place Fusee=Положить фальшфейер
+Extinguish Fusee=Потушить фальшфейер
+
+// === Состояние пути
+t:Track: {0:n} mph max (Class {1:n})=Путь: макс. {0} миль/ч (класс {1})
+t:\n{0:n} mph max (Class {1:n})=\nМакс. {0} миль/ч (класс {1})
+t:\n{0:n} mph max (equipment)=\nМакс. {0} миль/ч (подвижной состав)
+Degraded=Ухудшенное
+Excellent=Отличное
+Perfect=Идеальное
+Poor=Плохое
+Terrible=Ужасное
+Very Poor=Очень плохое
+t:{0} Class {1:n} track={0}: путь класса {1}
+Ground=Земля
+
+// === Рабочий вагон
+Building abutments=Строим устои
+Clearing right of way=Расчищаем полосу отвода
+Constructing steel bridge=Строим стальной мост
+Constructing track=Строим путь
+Constructing wooden trestle=Строим деревянную эстакаду
+In motion=В движении
+Laying ballast=Отсыпаем балласт
+Laying ties=Укладываем шпалы
+t:Maintaining Class {0:n} track=Обслуживаем путь класса {0}
+Missing MoW materials=Нет материалов для пути
+t:Missing materials: {0}=Не хватает материалов: {0}
+No active work cars in consist.=В составе нет включённых рабочих вагонов.
+No construction segments in range.=В пределах досягаемости нет участков строительства.
+No work in range=В пределах досягаемости нет работы
+No work in range.=В пределах досягаемости нет работы.
+t:Repairing Class {0:n} before upgrade=Ремонт класса {0} перед повышением
+Setting rails=Укладываем рельсы
+Unloading materials=Выгружаем материалы
+t:Upgrading to Class {0:n}=Повышаем до класса {0}
+Work car is disabled.=Рабочий вагон выключен.
+Work car is in motion.=Рабочий вагон движется.
+Work failed=Работа не удалась
+Disabled=Выключен
+Work Car:=Рабочий вагон:
+MOW=Путь
+Maintenance of Way=Обслуживание пути
+t:Class {0:n} - {1:n}mph Max=Класс {0} — макс. {1} миль/ч
+Maintain To Class=Поддерживать класс
+Same Route Only=Только по текущему маршруту
+Track directly reachable will be maintained to the selected class.=Напрямую доступный путь будет поддерживаться на выбранном классе.
+Work Cars=Рабочие вагоны
+t:{0:n} coupled=Сцеплено: {0}
+Work car=Рабочий вагон
+Work cars=Рабочие вагоны
+Track Condition=Состояние пути
+work car crew=бригада рабочего вагона
+train crew=поездная бригада
+t:Paid {0:C0} wages for {1}.=Выплачено {0} зарплаты: {1}.
+Selected car is not a MOW work car.=Выбранный вагон — не рабочий.
+Loads carried by this maintenance-of-way train.=Грузы этого рабочего поезда.
+
+// === Покупка подвижного состава
+ Some equipment had already been delivered and was kept.= Часть подвижного состава уже доставлена и осталась у вас.
+Equipment order cancelled=Заказ подвижного состава отменён
+No interchange available for delivery.=Нет пункта обмена для доставки.
+Nothing in that order could be purchased.=Ничего из этого заказа купить не удалось.
+Nothing was cancelled; the equipment may already have been delivered.=Ничего не отменено: подвижной состав, возможно, уже доставлен.
+equipment order=заказ подвижного состава
+t:{0} cancelled {1}; refunded {2:C0}.{3}={0} отменил(а): {1}; возвращено {2}.{3}
+t:{0} ordered a shiny new {1}. It will be delivered to {2} in about {3}.={0} заказал(а) новенький {1}. Доставка в {2} примерно через {3}.
+<alpha\=#88>No interchange is available to receive deliveries.=<alpha=#88>Нет пункта обмена для приёма доставки.
+Broad=Пологие
+Cancel Order=Отменить заказ
+Cancel Order?=Отменить заказ?
+t:Cancel the pending order for {0}? {1:C0} will be refunded.=Отменить заказ: {0}? Будет возвращено {1}.
+Deliver to=Доставить в
+Deliveries=Доставки
+t:Enter a quantity between 0 and {0:n}.=Введите количество от 0 до {0}.
+Equipment you've purchased, en route to its delivery interchange.=Купленный подвижной состав в пути к пункту обмена.
+Keep Order=Оставить заказ
+Modify=Изменить
+Modify Order=Изменить заказ
+No equipment on order.=Нет заказанного подвижного состава.
+On Order=В заказе
+t:On Order ({0:n})=В заказе ({0})
+The sharpest curve this locomotive can take, in degrees of curvature. Locomotives toward Broad need gentler curves.=Самая крутая кривая, которую проходит локомотив, в градусах кривизны. Локомотивам ближе к «Пологие» нужны более плавные кривые.
+The tender delivered with this locomotive. The price includes it.=Тендер, поставляемый с локомотивом. Он входит в цену.
+Tight=Крутые
+t:{0:n} x {1} on order. How many do you want to keep? Each cancelled unit is refunded {2:C0}.=В заказе {0} × {1}. Сколько оставить? За каждую отменённую единицу вернётся {2}.
+t:, {0:N0} mile range=, запас хода {0} миль
+t:At 100% throttle and {0:0}% cutoff. Lighter running goes further.=При регуляторе 100% и отсечке {0}%. При лёгкой работе — дальше.
+Pulls=Тянет
+Water Use=Расход воды
+Water Use (Estimated)=Расход воды (оценка)
+t:{0:n}-{1:n} mph={0}-{1} миль/ч
+t:{0:N0} T road, {1:N0} T yard @={0} т в поезде, {1} т на маневрах @
+t:{0:N0} gal/mile={0} гал./милю
+t:{0:N1} T={0} т
+same price=та же цена
+t:{0:N0}T empty=Тара {0} т
+Tonnage Rating=Норма массы
+All=Все
+Search=Поиск
+Shuffle the freight and passenger cars, leaving the rest in place.=Перемешать грузовые и пассажирские вагоны, остальные оставить на месте.
+The tender placed with this locomotive.=Тендер, который ставится с локомотивом.
+Trainmaster access required to place trains.=Для расстановки поездов нужна роль «Начальник движения».
+t:, {0:N0} HP ({1:N1} HP/ton)=, {0} л. с. ({1} л. с./т)
+t:, {0:N0} lb starting TE=, сила тяги при трогании {0} фунт.
+
+// === Погода
+Cloudy=Облачно
+Fog=Туман
+Light Rain=Небольшой дождь
+Overcast=Пасмурно
+Partly Cloudy=Переменная облачность
+Rain=Дождь
+Thunderstorm=Гроза
+~1 hour=~1 час
+~30 min=~30 мин
+t:~{0:n} hours=~{0} ч
+t:~{0:n} min=~{0} мин
+t:~{0:n}.5 hours=~{0},5 ч
+t:The weather is currently {0}; no changes expected.=Сейчас погода: {0}; изменений не ожидается.
+Automatic weather enabled=Автоматическая погода включена
+Forecast not available with fixed weather.=При фиксированной погоде прогноз недоступен.
+Not authorized to change the weather. Must be an Officer or higher.=Нет прав менять погоду. Нужна роль «Руководитель» или выше.
+
+// === Автомашинист
+Another train is on the crossing.=На пересечении другой поезд.
+Crossing is fouled.=Пересечение занято.
+Stopped for Fouled Crossing=Остановка: пересечение занято
+No fuel=Нет топлива
+Stalled=Заглох
+Stopped: the train came to rest on a different track than the waypoint asked for. Check the switches along it and set the waypoint again.=Остановка: поезд встал не на том пути, что указан в путевой точке. Проверьте стрелки на маршруте и задайте точку заново.
+Stopped: the train coupled to the car, but not by the ends the waypoint asked for. Set the waypoint again.=Остановка: поезд сцепился с вагоном не теми концами, что указаны в путевой точке. Задайте точку заново.
+Manual only while MU is enabled.=При включённой СМЕ — только ручное управление.
+Waypoint Mode Enabled=Режим путевой точки включён
+No route.=Нет маршрута.
+Still working out how the train would get there.=Ещё рассчитываем, как поезд туда доберётся.
+Cannot start waypoint selection=Не удалось начать выбор путевой точки
+<sprite name\="MouseLeft"> Track to Set Waypoint  ·  [Space] Change Orientation=<sprite name="MouseLeft"> Путь — задать точку  ·  [Пробел] Сменить ориентацию
+ of train on the mark, train = поезда на отметке, поезд
+Front=Перед
+past it=за ней
+short of it=перед ней
+
+// === Грузы и предприятия
+Creosote=Креозот
+Explosives=Взрывчатка
+Steel Bridge Beams=Стальные балки моста
+Wooden Bridge Timbers=Деревянные брусья моста
+Balance Due=Задолженность
+t:{0}: Loaded {1} car but insufficient funds ({2:C0} due).={0}: загружен вагон ({1}), но средств не хватает (долг {2}).
+t:{0}: Outstanding balance of {1:C0}; loading suspended until paid.={0}: задолженность {1}; погрузка приостановлена до оплаты.
+t:{0}: Settled outstanding balance of {1:C0}.={0}: задолженность {1} погашена.
+t:{0}: Sold a car of {1} for {2:C0}.={0}: продан вагон ({1}) за {2}.
+t:, including {0:C0} interchange handling=, включая {0} за обработку на пункте обмена
+t:<alpha\=#94><style\=I>Prices include {0:C0} handling per car=<alpha=#94><style=I>В цены входит обработка: {0} за вагон
+Handling=Обработка
+Interchange Handling=Обработка на пункте обмена
+The connecting railroad's charge for switching each car, at the partnership rate.=Плата соседней дороги за маневры с каждым вагоном по партнёрскому тарифу.
+t:Ordered {0} of {1} at {2} for {3:C0}{4}. Expected return: {5} (about {6}).=Заказано {0} груза «{1}» в {2} за {3}{4}. Ожидаемый возврат: {5} (примерно через {6}).
+t:{0:C0} per {1}={0} за {1}
+No cars with incomplete waybills to sweep.=Нет вагонов с невыполненными накладными.
+Waybill Check=Проверка накладных
+t:Waybill to {0}, completed=Накладная до {0}, выполнена
+location unknown=место неизвестно
+t:Empty {0} for {1}=Порожний {0} для {1}
+t:Loaded {0} with {1}=Гружёный {0}: {1}
+ [no payment]= [без оплаты]
+Paused=Приостановлено
+Storage=Склад
+Not reachable by rail=Нет доступа по рельсам
+Not reachable! Construct track to connect this location to your rail network.=Нет доступа! Постройте путь, чтобы связать это место с вашей сетью.
+Via Interchange=Через пункт обмена
+t:{0:F2} mi, {1}={0} миль, {1}
+t:{0:F1} gross tons, {1}={0} т брутто, {1}
+
+// === Поворотный круг
+<sprite name\="MouseLeft"> Open Control Window=<sprite name="MouseLeft"> Открыть окно управления
+Drag a turntable bridge end to set its position=Перетащите конец фермы поворотного круга, чтобы задать положение
+Turntable target set=Цель поворотного круга задана
+Control=Управление
+Lined=Установлен
+Not lined=Не установлен
+Set Target=Задать цель
+Turning=Поворачивается
+Turntable=Поворотный круг
+
+// === Камера
+Camera Controls=Управление камерой
+Empty this slot.=Очистить этот слот.
+Fly From Here=Лететь отсюда
+Fly anywhere.=Свободный полёт.
+Fly camera not available.=Свободная камера недоступна.
+Free=Свободная
+Glide to this preset. Shift-click to pass through the presets in between.=Плавно перейти к этому положению. Shift-щелчок — через промежуточные.
+Halt the camera where it is.=Остановить камеру на месте.
+How fast Move glides between presets.=Скорость плавного перехода между положениями.
+Jump straight to this preset.=Сразу перейти к этому положению.
+Move=Перейти
+Preset key: cut. Shift: move. Ctrl: move through the presets in between.=Клавиша положения: резкий переход. Shift: плавный. Ctrl: плавный через промежуточные.
+Presets=Положения
+Resume=Продолжить
+Return the fly camera to where it was, still tracking or following its car.=Вернуть свободную камеру на прежнее место, продолжая следить за вагоном.
+Ride along with the car. Moving adjusts the offset.=Ехать вместе с вагоном. Перемещение меняет смещение.
+Speed=Скорость
+Start the fly camera at the current view.=Запустить свободную камеру с текущего вида.
+Stay put and keep the car in frame. Looking recomposes the shot.=Оставаться на месте и держать вагон в кадре. Поворот меняет композицию.
+Store the current shot in this slot.=Сохранить текущий вид в этот слот.
+Target=Цель
+The fly camera is not active.=Свободная камера не активна.
+
+// === Оформление, гудок и свисток
+Change=Изменить
+Change Style=Сменить стиль
+Changing the style will remove your customizations. Continue?=Смена стиля удалит ваши настройки. Продолжить?
+Clear all custom colors and decals? The Paint Scheme will remain selected.=Сбросить все свои цвета и надписи? Схема окраски останется выбранной.
+Metal=Металл
+Paint Scheme=Схема окраски
+Reset Customizations=Сбросить настройки
+Style=Стиль
+Add Chime=Добавить тон
+Bell size=Размер раструба
+Brightness=Яркость
+Chimes=Тона
+Horn Editor (Experimental)=Редактор гудка (экспериментально)
+Whistle Editor (Experimental)=Редактор свистка (экспериментально)
+Low-pressure brightness=Яркость при низком давлении
+Pressure=Давление
+Tone=Тон
+Customization=Настройка
+Replace the custom preset? Edits not saved to a file are lost.=Заменить свой пресет? Изменения, не сохранённые в файл, будут потеряны.
+Revert to the default preset? Edits not saved to a file are lost.=Вернуть пресет по умолчанию? Изменения, не сохранённые в файл, будут потеряны.
+Couldn't write the preset file; close any program using it.=Не удалось записать файл пресета; закройте программу, которая его использует.
+Discard & Load=Отменить и загрузить
+Discard Edits?=Отменить изменения?
+Load a preset or user file.=Загрузить пресет или свой файл.
+Open the preset folder.=Открыть папку пресетов.
+Save & Close=Сохранить и закрыть
+Save Failed=Не удалось сохранить
+Save changes to this locomotive before closing?=Сохранить изменения этого локомотива перед закрытием?
+Save to Engine=Сохранить на локомотив
+Save to File=Сохранить в файл
+Save to File...=Сохранить в файл...
+Show Folder=Показать папку
+Unsaved Changes=Несохранённые изменения
+Unsaved edits will be lost.=Несохранённые изменения будут потеряны.
+Write the preset to this locomotive, synced to all players.=Записать пресет на этот локомотив (синхронизируется для всех игроков).
+Discard edits and reload the locomotive's preset.=Отменить изменения и заново загрузить пресет локомотива.
+No presets installed.=Пресеты не установлены.
+No user files; use Save to File to create one.=Своих файлов нет; создайте файл кнопкой «Сохранить в файл».
+Revert to Saved=Вернуть сохранённое
+User=Свои
+Steam noise=Шум пара
+Whistle / Horn=Свисток / гудок
+
+// === Инспектор вагона
+Buy, =Купить,
+Captive=Внутренние
+Captive service=Внутренние перевозки
+From stock=Со склада
+No active contract=Нет действующего контракта
+Not built yet=Ещё не построено
+Not connected by track=Нет соединения путём
+Other loads=Другие грузы
+Stock=Запас
+Unload to storage=Выгрузить на склад
+t:{0:C0} per car={0} за вагон
+t:{0}, incl. {1:C0} handling={0}, включая обработку {1}
+Max=Макс.
+t:Slot {0:n}=Слот {0}
+When Empty=Когда пуст
+When Loaded=Когда загружен
+Where this car goes for a load once it's empty.=Куда вагон едет за грузом, когда опустеет.
+Where this car goes to unload once it's loaded.=Куда вагон едет на выгрузку, когда загружен.
+
+// === Моды
+<size\=80%><color\=#888888>Not Installed</color></size>=<size=80%><color=#888888>Не установлен</color></size>
+1 mod=1 мод
+Can't Be Loaded=Не удаётся загрузить
+Different Version Installed=Установлена другая версия
+Enabled Now=Сейчас включено
+Joining this server changes your active mods to match it, and they stay changed after you leave.=При подключении к этому серверу ваши моды будут заменены на его набор и останутся такими после выхода.
+Keep My Current Mods=Оставить мои моды
+Load Without It=Загрузить без него
+Load Without Them=Загрузить без них
+Match Server's Mods?=Установить моды как на сервере?
+Match and Join=Установить и подключиться
+Mod Can't Be Loaded=Не удаётся загрузить мод
+Mod Not Available=Мод недоступен
+Mods Can't Be Loaded=Не удаётся загрузить моды
+Mods Not Available=Моды недоступны
+No Version=Без версии
+Not Installed=Не установлен
+Recorded=Записано
+Remove Mod=Убрать мод
+Remove Mods=Убрать моды
+This Save Uses Different Mods=В этом сохранении другие моды
+This save uses a mod that can't be loaded.=В этом сохранении есть мод, который не удаётся загрузить.
+t:This save uses {0:n} mods that can't be loaded.=В этом сохранении есть моды, которые не удаётся загрузить: {0}.
+Use Installed Versions=Использовать установленные версии
+Use This Save's Mods=Использовать моды сохранения
+Used by This Save=Использует это сохранение
+Will Be Turned Off=Будет выключено
+Will Be Turned On=Будет включено
+t:{0:n} mods=Модов: {0}
+Mods=Моды
+An error occurred while applying your mod changes. Some mods may not have loaded correctly; see the log for details.=Ошибка при применении изменений модов. Часть модов могла не загрузиться; подробности — в логе.
+Loading mods...=Загрузка модов...
+Manage Mods=Управление модами
+Mods Not Applied=Моды не применены
+Mods are enabled globally; your changes take effect when you click Apply. Each save records the mods it was last used with; you will be prompted when loading one if your selection has changed.=Моды включаются глобально; изменения вступают в силу по кнопке «Применить». Каждое сохранение помнит свои моды; если набор изменится, при загрузке будет вопрос.
+Revert=Вернуть
+<color\=#FF6B6B><b>Some selected mods can't load yet — see the highlighted rows below.</b></color>=<color=#FF6B6B><b>Часть выбранных модов пока не загружается — см. выделенные строки ниже.</b></color>
+<i>No external mods installed</i>=<i>Внешние моды не установлены</i>
+Click to Open External Website=Щёлкните, чтобы открыть внешний сайт
+External Mods Folder=Папка внешних модов
+Folder Not Found=Папка не найдена
+Hide=Скрыть
+missing dep=нет зависимости
+wrong version=не та версия
+Auto-enabled dependencies:=Автоматически включённые зависимости:
+Available External Mods=Доступные внешние моды
+Base Game Packs=Наборы базовой игры
+Client Mods=Клиентские моды
+External Mods=Внешние моды
+Personal to this machine. Not recorded in saves or shared in multiplayer.=Только на этом компьютере. Не записываются в сохранения и не передаются в сетевой игре.
+Selected Mods=Выбранные моды
+Mods Disabled=Моды отключены
+Mods Updated=Моды обновлены
+1 mod you had enabled couldn't load and has been turned off.=Один включённый мод не загрузился и был выключен.
+t:{0:n} mods you had enabled couldn't load and have been turned off.=Включённые моды не загрузились и были выключены: {0}.
+This server requires a mod you don't have.=Для этого сервера нужен мод, которого у вас нет.
+t:This server requires {0:n} mods you don't have.=Для этого сервера нужны моды, которых у вас нет: {0}.
+
+// === Окно компании
+Interchange where this equipment is sold. It's sold when the interchange is served.=Пункт обмена, где продаётся подвижной состав. Продажа — при подаче на пункт.
+Where this equipment goes for repair. Overhauls reset its repair cap.=Куда подвижной состав едет на ремонт. Капремонт сбрасывает предел ремонта.
+Loads=Грузы
+Repair=Ремонт
+Resets the repair cap=Сбрасывает предел ремонта
+Captive Service=Внутренние перевозки
+Captive Service Loads=Грузы внутренних перевозок
+Carries these loads in captive service on your railroad.=Возит эти грузы во внутренних перевозках на вашей дороге.
+Cars=Вагоны
+Engine Service=Обслуживание локомотивов
+t:Expected {0} ({1})=Ожидается {0} ({1})
+In Transit=В пути
+Interchange Cars=Вагоны на пункте обмена
+Loads currently held in storage at this facility.=Грузы на складе этого объекта.
+Loads on your cars in this area.=Грузы в ваших вагонах в этом районе.
+Loads ordered for pickup and returning via this interchange.=Грузы, заказанные и возвращающиеся через этот пункт обмена.
+Ordered / Empty Not Picked Up=Заказано / порожние не забраны
+Storage Yards=Складские станции
+Supplies stocked at this servicing facility.=Материалы на складе этого пункта обслуживания.
+Ban=Заблокировать
+Other players are listed here after they join.=Другие игроки появятся здесь после подключения.
+Remove Record...=Удалить запись...
+Role Since=Роль с
+They will join as a new employee next time.=В следующий раз игрок подключится как новый сотрудник.
+<style\=FieldLabel>Train Crew</style>=<style=FieldLabel>Бригада</style>
+t:Remove {0}'s record?=Удалить запись игрока {0}?
+<style\=p>Mods are managed globally. Mods can't be swapped under a running game, so changes here take effect after you return to the main menu and reload your save. They apply whether or not you save the game.</style>=<style=p>Моды настраиваются глобально. В запущенной игре их менять нельзя, поэтому изменения вступят в силу после выхода в главное меню и повторной загрузки сохранения — независимо от того, сохранили ли вы игру.</style>
+Affects the amount of materials required for track construction and maintenance.=Влияет на количество материалов для строительства и обслуживания пути.
+Affects the rate at which track condition decreases from train traffic. 0% disables track wear, 100% is the standard wear rate.=Влияет на скорость ухудшения пути от движения поездов. 0% отключает износ, 100% — стандартный износ.
+Construction Difficulty=Сложность строительства
+Diagnostics=Диагностика
+Equipment Wear & Tear=Износ подвижного состава
+Hosting=Хостинг
+Hosting - Open=Хостинг — открыто
+If checked, only your Steam friends may join as new employees. Existing players can always join unless banned.=Если отмечено, новыми сотрудниками могут стать только ваши друзья в Steam. Уже известные игроки могут подключаться всегда, если не заблокированы.
+Invite Friends=Пригласить друзей
+Log Rejected Connections=Записывать отклонённые подключения
+Maximum=Максимум
+New Employees=Новые сотрудники
+Open to Multiplayer=Открыть для сетевой игры
+Optional: language, play style, rules=Необязательно: язык, стиль игры, правила
+Public railroads are listed in the game list. Friends only railroads are not listed; your Steam friends can join from Steam or an invite.=Публичные дороги видны в списке игр. Дороги «только для друзей» в списке не показаны: друзья могут подключиться через Steam или по приглашению.
+Railroad Speed Limit=Ограничение скорости на дороге
+Railroad Speed Limit (mph)=Ограничение скорости на дороге (миль/ч)
+Return to Single Player=Вернуться в одиночную игру
+Return to Single Player?=Вернуться в одиночную игру?
+Shown under your railroad name in the game list when Visibility is Public. Players whose Steam text filter matches a word in it won't see it. Links are shown as plain text.=Показывается под названием дороги в списке игр, если она публичная. Игроки, у которых текстовый фильтр Steam сработает на какое-то слово, описание не увидят. Ссылки показываются обычным текстом.
+Speed limit on track with no posted limit. Auto Engineer can't be ordered faster.=Ограничение скорости на пути без указанного ограничения. Автомашинисту нельзя приказать ехать быстрее.
+Steam Friends Only=Только друзья в Steam
+Track Construction & Maintenance of Way=Строительство и обслуживание пути
+Track Wear=Износ пути
+Train Crew Access=Доступ бригад
+Visibility=Видимость
+Your Steam friends can connect as new employees=Ваши друзья в Steam могут подключаться как новые сотрудники
+Your description may be hidden from the game list for some players.=Некоторые игроки могут не видеть ваше описание в списке игр.
+Your mod changes will take effect when you return to the main menu and reload your save.=Изменения модов вступят в силу после выхода в главное меню и повторной загрузки сохранения.
+Your railroad name has no visible characters, so it will be hidden from the game list.=В названии дороги нет видимых символов, поэтому оно не появится в списке игр.
+Your railroad name may be hidden from the game list for some players.=Некоторые игроки могут не видеть название вашей дороги в списке игр.
+no players=нет игроков
+
+// === Консоль: самое используемое
+No selected locomotive.=Локомотив не выбран.
+No car selected.=Вагон не выбран.
+Not available in Company mode.=Недоступно в режиме «Компания».
+Already waiting.=Уже ждём.
+Not authorized.=Нет прав.
+Save failed.=Не удалось сохранить.
+Not available.=Недоступно.
+Command not found.=Команда не найдена.
+Usage: /setload <car|*> <identifier> <lbs|gals|qty|percent%>=Использование: /setload <вагон|*> <груз> <lbs|gals|qty|percent%>
+The sandbox mode toggle has changed!\nIf you want to place cars or adjust money, use "/debug on" and then "/debug off".\nIf you want to convert your game PERMANENTLY from Company to Sandbox mode, use: "/mode sandbox permanent"=Переключение в песочницу изменилось!\nЧтобы расставлять вагоны или менять деньги, введите "/debug on", а затем "/debug off".\nЧтобы НАВСЕГДА превратить игру из «Компании» в песочницу: "/mode sandbox permanent"
+Already in Sandbox mode.=Уже в режиме песочницы.
+Converted to Sandbox mode.=Игра переведена в режим песочницы.
+Context Menu=Контекстное меню
+
+// === Карта
+Choose what the map shows.=Выберите, что показывать на карте.
+Display=Показ
+Gear=Настройки
+Locate=Найти
+Locate Me=Где я
+Move map to your location=Перейти к своему положению на карте
+<style\=Footnote>Fast Forwarding - Press Esc to cancel</style>=<style=Footnote>Ускорение времени — Esc для отмены</style>
+
+// === Загрузка игры
+Already joining another railroad.=Уже идёт подключение к другой дороге.
+An error occurred while joining the server. See the log for details.=Ошибка при подключении к серверу. Подробности — в логе.
+Answer the open join request first.=Сначала ответьте на открытый запрос на подключение.
+Can't Join Server=Не удаётся подключиться к серверу
+Can't Load Save=Не удаётся загрузить сохранение
+Can't join another railroad while this one is loading.=Нельзя подключиться к другой дороге, пока эта загружается.
+Can't load=Не удаётся загрузить
+Cancelled=Отменено
+Cannot Load Content=Не удаётся загрузить содержимое
+Carving valleys...=Прокладываем долины...
+Couldn't Join=Не удалось подключиться
+Couldn't Load=Не удалось загрузить
+Join Without Saving=Подключиться без сохранения
+Launch=Запустить
+Leave this game to join?=Выйти из этой игры, чтобы подключиться?
+Making mountains...=Насыпаем горы...
+Not Available=Недоступно
+Placing ties...=Укладываем шпалы...
+Railroad Not Converted=Дорога не преобразована
+Railroads Not Converted=Дороги не преобразованы
+Railroader couldn't read its Saves folder, so no railroads were converted. It will try again next launch.=Не удалось прочитать папку сохранений, поэтому дороги не преобразованы. Игра повторит попытку при следующем запуске.
+Required=Обязательно
+Reticulating rails...=Выравниваем рельсы...
+Routing rivers...=Направляем реки...
+Save and Join=Сохранить и подключиться
+Saves=Сохранения
+Saves Not Converted=Сохранения не преобразованы
+Sinking spikes...=Забиваем костыли...
+You're already on this railroad.=Вы уже на этой дороге.
+
+// === Меню сохранений
+Load Main=Загрузить основное
+Load Newer=Загрузить новое
+Manage Saves...=Управление сохранениями...
+New Railroad=Новая дорога
+Newer Save Available=Есть сохранение новее
+No railroads yet.\nCreate one and it will appear here,\nalong with its autosaves and snapshots.=Дорог пока нет.\nСоздайте дорогу, и она появится здесь\nвместе с автосохранениями и снимками.
+Other Saves=Другие сохранения
+Start Game=Начать игру
+Community=Сообщество
+Graphics Settings…=Настройки графики…
+t:Graphics quality settings were reset to the <b>{0}</b> preset, based on this computer's hardware. Display settings were kept. You can change the preset in Graphics settings.=Настройки качества графики сброшены на пресет <b>{0}</b> с учётом вашего компьютера. Настройки экрана сохранены. Пресет можно изменить в настройках графики.
+Graphics quality updated=Качество графики обновлено
+Main Menu=Главное меню
+East Whittier Start=Старт в East Whittier
+Enable a map to start a game.=Включите карту, чтобы начать игру.
+Error creating save directory.=Ошибка при создании папки сохранения.
+No maps are enabled. Enable a map to start a game.=Нет включённых карт. Включите карту, чтобы начать игру.
+Starting Point=Начальная точка
+Autosave=Автосохранение
+Could not delete=Не удалось удалить
+Main Save=Основное сохранение
+This deletes the railroad and all of its saves, including snapshots. This cannot be undone.=Дорога и все её сохранения, включая снимки, будут удалены. Это действие нельзя отменить.
+t:This deletes the railroad and all {0:n} of its {1}, including snapshots. This cannot be undone.=Дорога и все её сохранения (всего: {0} {1}), включая снимки, будут удалены. Это действие нельзя отменить.
+t:Today at {0}=Сегодня в {0}
+t:Yesterday at {0}=Вчера в {0}
+t:{0:F1} hrs={0} ч
+t:{0:n} min={0} мин
+the main save=основное сохранение
+Could not rename=Не удалось переименовать
+Manage Saves=Управление сохранениями
+Rename=Переименовать
+Rename Snapshot=Переименовать снимок
+Save writes the main save and autosaves rotate on their own. Name a save with <style\=Code>/savegame "Name"</style> in-game.=«Сохранить» записывает основное сохранение, автосохранения сменяются сами. Именованное сохранение — командой <style=Code>/savegame "Name"</style> в игре.
+The snapshot could not be renamed.=Не удалось переименовать снимок.
+This railroad could not be read.=Не удалось прочитать эту дорогу.
+This railroad is no longer here.=Этой дороги больше нет.
+Not available=Недоступно
+Unknown destination=Неизвестное назначение
+
+// === Выход
+Overwrite Main Save?=Перезаписать основное сохранение?
+Quit?=Выйти?
+t:Saving overwrites the main save, last saved {0}.=Сохранение перезапишет основное сохранение (последнее — {0}).
+Saving writes the main save, which does not exist yet.=Будет создано основное сохранение, его ещё нет.
+another save=другое сохранение
+Quit Without Saving=Выйти без сохранения
+Save & Quit=Сохранить и выйти
+An error occurred while saving.=Ошибка при сохранении.
+In Game=В игре
+
+// === Настройки
+<style\=Footnote>DLL mods will not be loaded by Railroader.</style>=<style=Footnote>DLL-моды не будут загружаться.</style>
+<style\=Footnote>Warning: DLL mods run code with full access to your computer. Only install mods you trust.</style>=<style=Footnote>Внимание: DLL-моды выполняют код с полным доступом к компьютеру. Ставьте только те моды, которым доверяете.</style>
+Allow Unsafe DLL Mods=Разрешить небезопасные DLL-моды
+Ambient Occlusion=Затенение окружения
+Anti-Aliasing=Сглаживание
+Brings distance fog in to cover terrain that has not finished loading. Turn this off to keep the full view, at the cost of seeing terrain pop in.=Туман вдали скрывает ещё не загруженную местность. Если выключить, обзор будет полным, но будет видно, как появляется местность.
+Camera Inertia=Инерция камеры
+Controls what Railroader tells Discord you are doing. Off publishes nothing at all.=Что Railroader сообщает Discord о вашей игре. «Выкл.» — ничего.
+Custom=Своё
+Decal Distance=Дальность надписей
+Discord Rich Presence=Статус в Discord
+Enable access to game data using an in-game HTTP server.=Включить доступ к данным игры через встроенный HTTP-сервер.
+Grass Density=Плотность травы
+HTTP Server=HTTP-сервер
+High=Высокое
+How far away car lettering and markings stay visible. Lower settings fade small decals sooner.=На каком расстоянии видны надписи и маркировка вагонов. На низких настройках мелкие надписи исчезают раньше.
+How far sun shadows reach and how sharp they are. Off removes sun shadows.=Дальность и чёткость теней от солнца. «Выкл.» убирает их.
+How many plant species are grown. Lower settings keep the grasses and trees that define each landscape and drop the flowers, undergrowth and near-duplicates layered on top, which saves a good deal of memory. Changing this rebuilds the terrain.=Сколько видов растений показывается. На низких настройках остаются основные травы и деревья, а цветы, подлесок и похожие виды убираются — это заметно экономит память. Изменение перестраивает местность.
+How much small detail distant cars keep: small parts, their shadows, and animation. Lower settings draw busy yards faster.=Сколько мелких деталей остаётся у дальних вагонов: мелкие части, их тени и анимация. На низких настройках загруженные станции рисуются быстрее.
+Loading Fog=Туман при загрузке
+Low=Низкое
+Medium=Среднее
+Most mods run in a sandbox and can only access game data. DLL mods are different: they run compiled code with full access to your computer. Only install mods that you trust. Takes effect on restart.=Большинство модов работает в песочнице и видит только данные игры. DLL-моды — другое дело: они выполняют скомпилированный код с полным доступом к компьютеру. Ставьте только те моды, которым доверяете. Вступает в силу после перезапуска.
+Night Brightness=Яркость ночью
+Other effects (not set by Quality)=Другие эффекты (не зависят от качества)
+Preset=Пресет
+Quality Preset=Пресет качества
+Render Scale=Масштаб рендеринга
+Renders the world at a lower resolution and scales it up. Lower is faster and softer.=Рисует мир в меньшем разрешении и растягивает. Чем меньше, тем быстрее и мягче картинка.
+Rolling Stock Detail=Детализация подвижного состава
+Send Usage Data=Отправлять данные об использовании
+Send usage data (game version, platform, operating system, and which game features you use) to Amplitude to help improve Railroader. Never includes your name, Steam ID, chat or saves. Turning this off stops sending and deletes your random ID.=Отправлять в Amplitude данные об использовании (версия игры, платформа, система и какие возможности игры вы используете), чтобы помочь улучшить Railroader. Имя, Steam ID, чат и сохранения не передаются никогда. Если выключить, отправка прекратится, а ваш случайный ID будет удалён.
+Sets every option in this section. Changing one shows Custom; choosing a preset replaces your changes.=Задаёт все параметры раздела. Если изменить один — будет «Своё»; выбор пресета заменит ваши изменения.
+Shadow Quality=Качество теней
+Smooths jagged edges. Higher settings cost more, especially at high resolutions.=Сглаживает неровные края. Высокие настройки требовательнее, особенно при большом разрешении.
+Soft shading where surfaces meet. Off is faster.=Мягкое затенение на стыках поверхностей. «Выкл.» быстрее.
+Texture Quality=Качество текстур
+Texture resolution. Low uses less video memory.=Разрешение текстур. Низкое расходует меньше видеопамяти.
+Use Recommended=Использовать рекомендуемые
+Vegetation Richness=Разнообразие растительности
+Volumetric Lighting=Объёмное освещение
+t:{0} (Recommended)={0} (рекомендуется)
+
+// === Прочее
+Affects train and customer speed. CPU limited.=Влияет на скорость поездов и клиентов. Ограничено процессором.
+All engines must either be stopped, no movement orders, or in waypoint mode.=Все локомотивы должны стоять, не иметь приказов на движение или быть в режиме путевой точки.
+Fast Forward=Ускорение времени
+Fast Forwarding=Время ускорено
+No engines in waypoint mode.=Нет локомотивов в режиме путевой точки.
+waypoint engine=локомотив с путевой точкой
+t:{0}, {1} preventing fast forward.={0}, {1} — мешает ускорению времени.
+Append Sample=Добавить пример
+Extras=Дополнительно
+Load Predefined=Загрузить готовое
+Replace this timetable with one that ships with the game.=Заменить это расписание одним из входящих в игру.
+Timetable menu=Меню расписания
+Run=Запустить
+Ready=Готово
+Script Runner=Выполнение скриптов
+Unknown error=Неизвестная ошибка
+Unknown state=Неизвестное состояние
+t:<sprite name\="MouseLeft"> Click to {0}=<sprite name="MouseLeft"> Щёлкните: {0}
+Click to=Щёлкните, чтобы
+
+// === Сцены
+Don't send=Не отправлять
+Send usage data=Отправлять данные
+Send usage data to help improve Railroader?=Отправлять данные об использовании, чтобы помочь улучшить Railroader?
+McClain Engine Service=Обслуживание локомотивов в McClain
+McClain Interchange=Пункт обмена McClain
+
+// === Этапы
+Build an engine shed at McClain, inside the wye.=Построить депо в McClain, внутри треугольника.
+East to Dillsboro & Sylva=На восток: Dillsboro и Sylva
+Nantahala to Andrews=Nantahala — Andrews
+Reactivate track from Nantahala to Andrews, crossing the 4.6% Red Marble Grade, 12.7 miles west.\n\nAdds Graham County Interchange, Topton, Rhodo, and Andrews, including engine facilities at Andrews.=Ввести в работу путь от Nantahala до Andrews через подъём Red Marble 4,6%, 12,7 мили на запад.\n\nДобавляет пункт обмена Graham County, Topton, Rhodo и Andrews с локомотивным хозяйством в Andrews.
+Reactivate track from Wesser to Nantahala, 6.6 miles west.\n\nAdds customers at Hewitt and Nantahala.=Ввести в работу путь от Wesser до Nantahala, 6,6 мили на запад.\n\nДобавляет клиентов в Hewitt и Nantahala.
+Wesser to Nantahala=Wesser — Nantahala
+Alarka Jct to Almond=Alarka Jct — Almond
+Almond to Wesser=Almond — Wesser
+Bryson Bridge, Line to Alarka Jct=Мост в Bryson, линия до Alarka Jct
+Build 1.1 miles of track to the upper end of Connelly Creek, adding another log loader and a pulpwood landing.=Построить 1,1 мили пути до верхнего конца Connelly Creek; добавляет ещё один погрузчик брёвен и площадку балансов.
+Build 1.2 miles of track up to the upper logging camp at Walker, adding another log loader.=Построить 1,2 мили пути до верхнего лесозаготовительного лагеря у Walker; добавляет ещё один погрузчик брёвен.
+Build a branch to the Rock Products quarry west of Dillsboro, providing a source of ballast and concrete for your railroad.=Построить ветку к карьеру Rock Products к западу от Dillsboro — источник балласта и бетона для вашей дороги.
+Build a wye and interchange yard at McClain, providing a new source of cars for your railroad.=Построить треугольник и станцию пункта обмена в McClain — новый источник вагонов для вашей дороги.
+Connelly Creek Extension 1=Продление Connelly Creek 1
+Connelly Creek Extension 2=Продление Connelly Creek 2
+Dillsboro Rock Products=Карьер Dillsboro Rock Products
+Draw up construction plans for a three track yard just west of Dillsboro. (60 cars)=Подготовить проект трёхпутной станции к западу от Dillsboro. (60 вагонов)
+Draw up construction plans for two storage tracks behind Dillsboro Yard. (20 cars)=Подготовить проект двух отстойных путей за станцией Dillsboro Yard. (20 вагонов)
+Extend the Connelly Creek spur a mile up the creek, adding a log loader and a pulpwood loader.=Продлить ветку Connelly Creek на милю вверх по ручью; добавляет погрузчики брёвен и балансов.
+Extend the mainline 6.7 miles to cross Fontana Lake and build to Almond.=Продлить главный путь на 6,7 мили через озеро Fontana до Almond.
+Extend the mainline 7 miles to Alarka Jct.\n\nAdds Robinson Gap coal mine, Hemingway and Alarka Jct passenger stops.=Продлить главный путь на 7 миль до Alarka Jct.\n\nДобавляет угольную шахту Robinson Gap и пассажирские остановки Hemingway и Alarka Jct.
+McClain Wye & Interchange=Треугольник и пункт обмена McClain
+Survey to build track from Almond to Wesser, 3.9 miles west.=Изыскания для пути от Almond до Wesser, 3,9 мили на запад.
+The Alarka Copper Co. wants to ship their copper ore on your railroad. Doing so will enable their company town to flourish, bringing new freight and passenger opportunities.\n\nBuild 3.5 miles of track to Alarka.=Компания Alarka Copper Co. хочет возить медную руду по вашей дороге. Это поможет их посёлку процветать и принесёт новые грузовые и пассажирские перевозки.\n\nПостройте 3,5 мили пути до Alarka.
+Walker Extension 1=Продление Walker 1
+
+// === Приветствие и новости главного меню
+\n<style\=h3>Welcome, Railroader!</style>\n\nThere's a lot of work to do and railroad fun to be had, both for you, as well as for us, the developers of Railroader! In your travels on the rails, remember that Railroader is in <i>Early Access</i> and is a <i>work in progress</i>. \n\nMany of the towns you pass through are not yet populated by buildings, and models may not be complete. We will be working to fill in the picture during Early Access, as well as listening to your feedback on gameplay to determine how best to shape Company mode and other mechanics. We sincerely hope you enjoy your time in the game, even if you have to use your imagination from time to time.\n\n<style\=h3>Usage Data</style>\n\nWith your permission, the game sends usage data to Amplitude, a third-party analytics service: your game version, platform and operating system, and which game features you use. It never includes your name, Steam ID, chat, railroad name or save contents, and is tied only to a random ID created on this computer.\n\nYou can change this at any time in Preferences, under Features. Turning it off stops sending and deletes the random ID.\n\nWhatever your choice, thank you for playing <style\=serif><b>RAILROADER</b></style> Early Access!=<style=h3>Добро пожаловать, железнодорожник!</style>\n\nВпереди много работы и железнодорожного веселья — и для вас, и для нас, разработчиков Railroader! Путешествуя по рельсам, помните, что Railroader находится в <i>раннем доступе</i> и <i>ещё в разработке</i>.\n\nВо многих городах, через которые вы проезжаете, пока нет зданий, а некоторые модели не закончены. В раннем доступе мы будем дополнять картину и прислушиваться к вашим отзывам об игровом процессе, чтобы понять, каким сделать режим «Компания» и другие механики. Надеемся, вам понравится игра, даже если иногда придётся включить воображение.\n\n<style=h3>Данные об использовании</style>\n\nС вашего разрешения игра отправляет данные об использовании в Amplitude, сторонний сервис аналитики: версию игры, платформу и операционную систему, а также какие возможности игры вы используете. В них никогда не входят ваше имя, Steam ID, чат, название дороги и содержимое сохранений; данные привязаны только к случайному ID, созданному на этом компьютере.\n\nЭто можно изменить в любой момент в настройках, в разделе «Возможности». Если выключить, отправка прекратится, а случайный ID будет удалён.\n\nЧто бы вы ни выбрали — спасибо, что играете в ранний доступ <style=serif><b>RAILROADER</b></style>!
+<link\="anchor:welcome-to-railroader-06-experimental"><style\="H3">Welcome to Railroader 0.6 Experimental!</style></link>\r\n\r\n<style\="P">The 0.6 release series introduces Maintenance of Way mechanics and official modding support, including the Map Editor - and a lot more. Click "Release Notes" below to learn more.</style>\r\n\r\n<style\="P">You're playing Railroader on the Experimental branch. We've done a lot of testing and refining, but you should still expect bugs, rough edges and changes between updates.</style>\r\n\r\n<style\="P">To go back to the regular release, open Railroader's Properties in Steam and on the Game Versions & Betas tab, choose Default Public Version.</style>\r\n\r\n<style\="P">New to Railroader? Start a </style><style\="B">Company Mode</style><style\="P"> game. The tutorial will walk you through the basics.</style>\r\n\r\n<style\="P">Need support? Found a bug or have feedback? Join us on:</style>\r\n\r\n<line-height\=0%><width\=12><align\=right><sprite name\="Bullet"></width></align>\n</line-height><indent\=20><link\="https://community.railroadergame.com"><style\="Link">Railroader Community</style></link></indent><line-height\=20%>\n</line-height>\r\n<line-height\=0%><width\=12><align\=right><sprite name\="Bullet"></width></align>\n</line-height><indent\=20><link\="https://discord.gg/7JXdc56Fpc"><style\="Link">Discord</style></link><style\="P">, or</style></indent><line-height\=20%>\n</line-height>\r\n<line-height\=0%><width\=12><align\=right><sprite name\="Bullet"></width></align>\n</line-height><indent\=20><link\="https://steamcommunity.com/app/1683150/discussions/"><style\="Link">Steam</style></link></indent><line-height\=20%>\n</line-height>\r\n\r\n<style\="P">Thank you for playing Railroader!</style>=<link="anchor:welcome-to-railroader-06-experimental"><style="H3">Добро пожаловать в экспериментальную версию Railroader 0.6!</style></link>\n\n<style="P">В серии 0.6 появились обслуживание пути и официальная поддержка модов, включая редактор карт, — и многое другое. Подробности — по кнопке «Список изменений» ниже.</style>\n\n<style="P">Вы играете в Railroader на экспериментальной ветке. Мы много тестировали и дорабатывали её, но всё же ожидайте ошибок, шероховатостей и изменений между обновлениями.</style>\n\n<style="P">Чтобы вернуться к обычной версии, откройте свойства Railroader в Steam и на вкладке «Версии и бета-версии игры» выберите основную публичную версию.</style>\n\n<style="P">Впервые в Railroader? Начните игру в режиме </style><style="B">Компания</style><style="P">. Обучение познакомит вас с основами.</style>\n\n<style="P">Нужна помощь? Нашли ошибку или хотите оставить отзыв? Присоединяйтесь:</style>\n\n<line-height=0%><width=12><align=right><sprite name="Bullet"></width></align>\n</line-height><indent=20><link="https://community.railroadergame.com"><style="Link">Сообщество Railroader</style></link></indent><line-height=20%>\n</line-height>\n<line-height=0%><width=12><align=right><sprite name="Bullet"></width></align>\n</line-height><indent=20><link="https://discord.gg/7JXdc56Fpc"><style="Link">Discord</style></link><style="P"> или</style></indent><line-height=20%>\n</line-height>\n<line-height=0%><width=12><align=right><sprite name="Bullet"></width></align>\n</line-height><indent=20><link="https://steamcommunity.com/app/1683150/discussions/"><style="Link">Steam</style></link></indent><line-height=20%>\n</line-height>\n\n<style="P">Спасибо, что играете в Railroader!</style>
+
+// === Строки, которые проходят через разметку Markdown: в TextMeshPro они попадают уже без _..._ и «- »
+Track Activation Milestone: Your railroad will reactivate existing track for a fee and assume all ownership responsibilities.=Этап восстановления: за плату ваша дорога вводит существующий путь в работу и принимает на себя все обязанности владельца.
+Delivery Milestone: The necessary cars will be delivered to the interchange; your railroad must deliver them to the appropriate location to unload and complete the milestone.=Этап доставки: нужные вагоны прибудут на пункт обмена; ваша дорога должна доставить их на место выгрузки, чтобы завершить этап.
+Track Construction Milestone: Use captive service cars to purchase loads; run a work train to the site with the loads and a MoW work car to construct the line.=Этап строительства: купите материалы в вагонах внутренних перевозок и приведите на место рабочий поезд с материалами и рабочим вагоном, чтобы построить линию.
+Track must be reachable from an interchange=Путь должен быть доступен от пункта обмена
+- Completed=- Завершено
+- Not Complete=- Не выполнено
+All materials delivered.=Все материалы доставлены.
+t:Track construction remaining: {0:F1} mi=Осталось построить пути: {0} миль
+Daily Report=Ежедневный отчёт
+Fuel Inventory=Запасы топлива
+Shops=Мастерские
+Outstanding Waybills=Невыполненные накладные
+Daily reports are compiled at 6pm.=Ежедневные отчёты составляются в 18:00.
+
+// === Панель этапов
+Select a milestone=Выберите этап
+r:^Start \((.+?) (\d+)% off\)$=Начать ({1}, скидка {2}%)
+r:^Purchase \((.+?) (\d+)% off\)$=Купить ({1}, скидка {2}%)
+t:Start ({0})=Начать ({0})
+t:Purchase ({0})=Купить ({0})
+t:{0} to go=Осталось {0}
+t:{0} complete=Выполнено {0}
+t:{0:n} T {1}={0} т {1}
+t:{0:n} lb {1}={0} фунт. {1}
+t:{0:n} gal {1}={0} гал. {1}
+
+// === Пропущенные подписи
+Select a page=Выберите страницу
+Select a train=Выберите поезд
+Select a mod to edit.=Выберите мод для редактирования.
+Select Car=Выбрать вагон
+Delete Car=Удалить вагон
+Delete train crew?=Удалить бригаду?
+Clear All=Очистить всё
+Clear all messages?=Очистить все сообщения?
+No messages=Нет сообщений
+No mods yet.=Модов пока нет.
+Customize...=Оформление...
+Details...=Подробнее...
+Car Size=Размер вагона
+Length=Длина
+Width=Ширина
+Height=Высота
+Holds=Вмещает
+Water tank=Водяной бак
+Coal bunker=Угольный бункер
+MU=СМЕ
+now=сейчас
+Open Folder=Открыть папку
+Saved.=Сохранено.
+Undo=Отменить
+Redo=Повторить
+t:Via Interchange: {0}=Через пункт обмена: {0}
+t:Copied {0}=Скопировано: {0}
+t:Ban {0}=Заблокировать: {0}
+t:Delete {0}=Удалить: {0}
+t:Remove {0}=Удалить: {0}

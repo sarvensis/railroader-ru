@@ -42,6 +42,7 @@ namespace RuTools
                     case "stats" when args.Length == 2: return Stats(args[1]);
                     case "test-lua" when args.Length == 4: return TestLua(args[1], args[2], args[3]);
                     case "make-refs" when args.Length >= 4: return MakeRefs(args[1], args[2], args.Skip(3).ToArray());
+                    case "check-binding" when args.Length == 3: return CheckBinding(args[1], args[2]);
                     default: return Usage();
                 }
             }
@@ -164,6 +165,8 @@ namespace RuTools
                 "Track.Search", "Model.Physics", "Model.ComponentBuilders", "Model.Definition.Data", "Network.Buffers",
                 "BezierCurveMesh", "Enviro", "TrainPhysics", "Logging", "UI.CarEditor", "RollingStock.PipeGenerator",
                 "RollingStock.LoadModels", "Model.Database",
+                "Game.MapEditor", "HTTP", "UI.DebugOverlay", "UI.Diagnostics", "Game.Diagnostics", "Game.Scripting", "UI.Gizmos",
+                "Scenery", "UI.Windows", "Game.Builtins", "Track.Data", "Network.Steam", "Relay",
             };
             if (ns.Length == 0)
             {
@@ -273,10 +276,10 @@ namespace RuTools
             sb.AppendLine("// <<<  оригинал  ===  перевод  >>>   (отступы строк значения не имеют)");
             var seen = new HashSet<string>(StringComparer.Ordinal);
             int total = 0;
-            foreach (var file in Directory.GetFiles(dir, "*.lua").OrderBy(f => f, StringComparer.OrdinalIgnoreCase))
+            foreach (var file in ScriptFiles(dir).OrderBy(f => f, StringComparer.OrdinalIgnoreCase))
             {
                 string src = File.ReadAllText(file);
-                var lits = LuaStrings.Scan(src).Where(l => IsLuaText(src, l)).ToList();
+                var lits = ScanScript(file, src).Where(l => IsLuaText(src, l)).ToList();
                 if (lits.Count == 0) continue;
                 sb.AppendLine();
                 sb.AppendLine("// === " + Path.GetFileName(file));
@@ -308,10 +311,10 @@ namespace RuTools
             // require("module"), идентификаторы, локации вида "S2qd|a|93.6"
             int lineStart = src.LastIndexOf('\n', Math.Max(0, lit.Start - 1)) + 1;
             string before = src.Substring(lineStart, lit.Start - lineStart);
-            if (Regex.IsMatch(before, @"(require|Location\.new|print|error|assert|get_\w+|condition_\w+|is_\w+|find_\w+|log)\s*\(\s*$")) return false;
-            if (Regex.IsMatch(before, @"\b(id|extension_type|style|car_type|type|key|name)\s*=\s*$")) return false;
-            if (Regex.IsMatch(before, @"==\s*$|~=\s*$|\[\s*$")) return false;
-            if (Regex.IsMatch(before, @"builder:page\(\s*$")) return false;
+            if (Regex.IsMatch(before, @"(require|Location\.new|Location|print|error|assert|get_\w+|get[A-Z]\w*|condition_\w+|condition[A-Z]\w*|is_\w+|is[A-Z]\w*|find_\w+|find[A-Z]\w*|log)\s*\(\s*$")) return false;
+            if (Regex.IsMatch(before, @"""?\b(id|extension_type|extensionType|style|car_type|carType|type|key|name)""?\s*[=:]\s*$")) return false;
+            if (Regex.IsMatch(before, @"==\s*$|~=\s*$|!=\s*$|\[\s*$")) return false;
+            if (Regex.IsMatch(before, @"builder[:.]page\(\s*$")) return false;
             if (!key.Contains(' ') && !char.IsUpper(key[0])) return false;
             if (Regex.IsMatch(key, @"^[\w\-\.|:]+$") && !Regex.IsMatch(key, @"^[A-Z][a-z]+$")) return false;
             return true;
@@ -552,20 +555,29 @@ namespace RuTools
                 tr.Add(TranslationFile.Load(f));
 
             string managed = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(luaDir).TrimEnd('\\', '/')), "..", "Managed");
-            System.Reflection.Assembly moon = null;
-            try { moon = System.Reflection.Assembly.LoadFrom(Path.Combine(managed, "MoonSharp.Interpreter.dll")); }
-            catch (Exception ex) { Console.WriteLine("MoonSharp не загружен, синтаксис не проверяется: " + ex.Message); }
+            System.Reflection.Assembly moon = null, relay = null;
+            if (File.Exists(Path.Combine(managed, "MoonSharp.Interpreter.dll")))
+                moon = System.Reflection.Assembly.LoadFrom(Path.Combine(managed, "MoonSharp.Interpreter.dll"));
+            if (File.Exists(Path.Combine(managed, "Relay.dll")))
+                relay = System.Reflection.Assembly.LoadFrom(Path.Combine(managed, "Relay.dll"));
 
             Directory.CreateDirectory(outDir);
             int errors = 0;
-            foreach (var file in Directory.GetFiles(luaDir, "*.lua"))
+            foreach (var file in ScriptFiles(luaDir))
             {
                 string src = File.ReadAllText(file);
-                string result = LuaStrings.Replace(src, lit =>
-                    lit.Key.Length > 0 && Translator.HasLatinLetter(lit.Key) && tr.TryGetExact(lit.Key, out var v) ? v : null, out int n);
+                Func<LuaStrings.Literal, string> lookup = lit =>
+                    lit.Key.Length > 0 && Translator.HasLatinLetter(lit.Key) && tr.TryGetExact(lit.Key, out var v) ? v : null;
+                bool isRelay = file.EndsWith(".rl", StringComparison.OrdinalIgnoreCase);
+                string result = isRelay ? RelayStrings.Replace(src, lookup, out int n) : LuaStrings.Replace(src, lookup, out n);
                 File.WriteAllText(Path.Combine(outDir, Path.GetFileName(file)), result, new UTF8Encoding(false));
                 string status = "ok";
-                if (moon != null)
+                if (isRelay)
+                {
+                    string error = relay == null ? "Relay.dll не найден" : RelayLexerError(relay, result);
+                    if (error != null) { status = "ОШИБКА: " + error; errors++; }
+                }
+                else if (moon != null)
                 {
                     try
                     {
@@ -584,6 +596,100 @@ namespace RuTools
             }
             return errors == 0 ? 0 : 1;
         }
+
+        /// <summary>
+        /// Проверяет, что плагин совместим с указанной версией игры (без её запуска): все ссылки плагина
+        /// на типы и методы разрешаются, а методы, которые патчатся по имени, существуют и содержат ожидаемые вызовы.
+        /// </summary>
+        private static int CheckBinding(string pluginDll, string managedDir)
+        {
+            var resolver = new DefaultAssemblyResolver();
+            resolver.AddSearchDirectory(managedDir);
+            resolver.AddSearchDirectory(Path.Combine(Path.GetDirectoryName(Path.GetFullPath(pluginDll)), "..", "..", "..", "..", "vendor", "bepinex", "BepInEx", "core"));
+            int problems = 0, members = 0;
+            using (var asm = AssemblyDefinition.ReadAssembly(pluginDll, new ReaderParameters { AssemblyResolver = resolver }))
+            {
+                foreach (var m in asm.MainModule.GetMemberReferences())
+                {
+                    members++;
+                    string scope = m.DeclaringType?.Scope?.Name ?? "";
+                    if (scope.StartsWith("BepInEx") || scope.StartsWith("0Harmony") || scope == "mscorlib" || scope.StartsWith("System") || scope == "netstandard") continue;
+                    try
+                    {
+                        object resolved = m is MethodReference mr ? mr.Resolve() : m is FieldReference fr ? fr.Resolve() : (object)true;
+                        if (resolved == null) { Console.WriteLine($"НЕ НАЙДЕНО: {m.FullName} [{scope}]"); problems++; }
+                    }
+                    catch (Exception ex) { Console.WriteLine($"ОШИБКА: {m.FullName}: {ex.Message}"); problems++; }
+                }
+            }
+
+            var targets = new (string[] assemblies, string type, string method, string mustCall)[]
+            {
+                (new[] { "Railroader", "Assembly-CSharp" }, "Game.Scripting.Interactive.RelayBookRunner|Game.Scripting.Interactive.InteractiveBookRunner", "TryLoadFromFile", "File::ReadAllText"),
+                (new[] { "Relay" }, "Relay.Interpreter", "CompileSourceModuleFunction", null),
+                (new[] { "MoonSharp.Interpreter" }, "MoonSharp.Interpreter.Loaders.FileSystemScriptLoader", "LoadFile", null),
+                (new[] { "Railroader", "Assembly-CSharp" }, "UI.Guide.GuideWindow", "Populate", "File::ReadAllText"),
+                (new[] { "Markroader" }, "Markroader.TMPMarkupRenderer", "TextToSlug", null),
+                (new[] { "Core" }, "Core.PluralizeExtensions", "Pluralize", null),
+                (new[] { "Unity.TextMeshPro" }, "TMPro.MaterialReferenceManager", "AddFontAsset", null),
+                (new[] { "Unity.TextMeshPro" }, "TMPro.TextMeshProUGUI", "OnEnable", null),
+                (new[] { "Unity.TextMeshPro" }, "TMPro.TextMeshPro", "OnEnable", null),
+            };
+            foreach (var (assemblies, typeNames, method, mustCall) in targets)
+            {
+                bool found = false, skippedAll = true;
+                foreach (var asmName in assemblies)
+                {
+                    string path = Path.Combine(managedDir, asmName + ".dll");
+                    if (!File.Exists(path)) continue;
+                    skippedAll = false;
+                    using var a = AssemblyDefinition.ReadAssembly(path, new ReaderParameters { AssemblyResolver = resolver });
+                    foreach (var typeName in typeNames.Split('|'))
+                    {
+                        var type = a.MainModule.GetType(typeName);
+                        var md = type?.Methods.FirstOrDefault(x => x.Name == method);
+                        if (md == null) continue;
+                        found = true;
+                        bool calls = mustCall == null || md.Body == null || md.Body.Instructions.Any(i => i.Operand is MethodReference r && r.FullName.Contains(mustCall));
+                        Console.WriteLine($"{typeName}.{method}: есть{(mustCall != null ? (calls ? ", вызов " + mustCall + " есть" : ", ВЫЗОВА " + mustCall + " НЕТ") : "")}");
+                        if (!calls) problems++;
+                    }
+                }
+                if (!found) Console.WriteLine($"{typeNames}.{method}: {(skippedAll ? "сборки нет в этой версии (ожидаемо, если патч для другой версии)" : "НЕ НАЙДЕН")}");
+                if (!found && !skippedAll) problems++;
+            }
+            Console.WriteLine($"Ссылок плагина: {members}, проблем: {problems}");
+            return problems == 0 ? 0 : 1;
+        }
+
+        /// <summary>Прогоняет скрипт через лексер Relay из игры; возвращает текст ошибки или null.</summary>
+        private static string RelayLexerError(System.Reflection.Assembly relay, string source)
+        {
+            try
+            {
+                var lexerType = relay.GetType("Relay.Tokenizer.Lexer", true);
+                var lexer = Activator.CreateInstance(lexerType, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance, null,
+                    new object[] { source, "test" }, null);
+                var tokens = (System.Collections.IEnumerable)lexerType.GetMethod("TokenizeAll").Invoke(lexer, null);
+                foreach (var token in tokens)
+                {
+                    var t = token.GetType();
+                    object type = t.GetProperty("Type")?.GetValue(token) ?? t.GetField("Type")?.GetValue(token);
+                    if (type?.ToString() == "ERROR") return token.ToString();
+                }
+                return null;
+            }
+            catch (System.Reflection.TargetInvocationException ex)
+            {
+                return ex.InnerException?.Message;
+            }
+        }
+
+        private static IEnumerable<string> ScriptFiles(string dir) =>
+            Directory.GetFiles(dir, "*.lua").Concat(Directory.GetFiles(dir, "*.rl"));
+
+        private static List<LuaStrings.Literal> ScanScript(string file, string src) =>
+            file.EndsWith(".rl", StringComparison.OrdinalIgnoreCase) ? RelayStrings.Scan(src) : LuaStrings.Scan(src);
 
         /// <summary>
         /// Делает из сборок игры референсные: остаются типы и сигнатуры, тела методов заменяются на «throw null»,

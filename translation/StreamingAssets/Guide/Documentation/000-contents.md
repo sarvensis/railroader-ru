@@ -8,3 +8,4 @@
 - [Сигналы](ett:signals)
 - [Расписания](ett:timetables)
 - [Сетевая игра](ett:multiplayer)
+- [Обслуживание пути](ett:mow)

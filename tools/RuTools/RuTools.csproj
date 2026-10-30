@@ -17,6 +17,7 @@
     <Compile Include="..\..\src\RailroaderRu\TranslationFile.cs" Link="Shared\TranslationFile.cs" />
     <Compile Include="..\..\src\RailroaderRu\Translator.cs" Link="Shared\Translator.cs" />
     <Compile Include="..\..\src\RailroaderRu\LuaStrings.cs" Link="Shared\LuaStrings.cs" />
+    <Compile Include="..\..\src\RailroaderRu\RelayStrings.cs" Link="Shared\RelayStrings.cs" />
   </ItemGroup>
 
   <ItemGroup>

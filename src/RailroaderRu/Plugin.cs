@@ -86,9 +86,9 @@ namespace RailroaderRu
             int ok = 0, failed = 0;
             foreach (var type in AccessTools.GetTypesFromAssembly(typeof(Plugin).Assembly))
             {
-                if (!type.GetCustomAttributes(typeof(HarmonyPatch), false).Any()) continue;
                 try
                 {
+                    if (!type.GetCustomAttributes(typeof(HarmonyPatch), false).Any()) continue;
                     harmony.CreateClassProcessor(type).Patch();
                     ok++;
                 }

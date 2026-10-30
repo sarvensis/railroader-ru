@@ -1,0 +1,719 @@
+// Тексты обучения Railroader 2026.1 (новые и изменённые; старые остаются в tutorial.txt).
+// #1
+BookRunner: no page? \\(chapterId) / \\(pageId)=
+// #2
+<<<
+*Welcome!* The following chapters will walk you through running your railroad,
+from engine operation and moving around, to running freight and passenger service.
+
+This tutorial is designed to be played in sequence, with each chapter building on the previous.
+While you can close this window to pause the tutorial at any time and the last page will be saved,
+keep in mind that later chapters may not proceed as planned if you do much work on your railroad
+before resuming the tutorial.
+===
+*Добро пожаловать!* В следующих главах вы научитесь управлять своей железной дорогой:
+от работы с локомотивом и передвижения до грузовых и пассажирских перевозок.
+
+Обучение рассчитано на прохождение по порядку: каждая глава опирается на предыдущую.
+Вы можете в любой момент закрыть это окно, чтобы приостановить обучение, — последняя страница сохранится.
+Но учтите: если до возвращения к обучению вы многое измените на своей дороге,
+последующие главы могут пойти не по плану.
+>>>
+// #3
+\\(index). \\(title)=
+// #4
+\\(math.floor(feet + 0.5)) ft=\\(math.floor(feet + 0.5)) фут.
+// #5
+\\(math.floor(miles + 0.5)) mi=\\(math.floor(miles + 0.5)) миль
+// #6
+\\(math.floor(miles * 10 + 0.5) / 10) mi=\\(math.floor(miles * 10 + 0.5) / 10) мили
+// #7
+\\(math.ceil(feet)) ft=\\(math.ceil(feet)) фут.
+// #8
+nextPageButton should be implemented by BookRunner=
+// #9
+endChapterButton should be implemented by BookRunner=
+// #10
+Change to First Person with 1.=Переключитесь на вид от первого лица клавишей 1.
+// #11
+tutorial_01_core import failed=
+// #12
+Book import failed=
+// #13
+<<<
+## Lining switches for our movement
+
+Our good engine is at the engine shed. In the next chapter we'll rescue the wrecked one,
+so let's get ready to move the engine out onto the lead to top off the water and coal.
+===
+## Готовим стрелку для движения
+
+Наш исправный локомотив стоит у депо. В следующей главе мы вызволим разбитый,
+а пока подготовимся вывести локомотив на вытяжку, чтобы пополнить запасы воды и угля.
+>>>
+// #14
+<<<
+A _lead_ is track that is used for accessing or switching a set of tracks.
+In this case the _yard lead_ provides both access to the yard and a place to
+move cars between yard tracks when switching the yard.
+
+This switch connects the engine shed track to the lead.
+===
+_Вытяжка_ (вытяжной путь) — это путь, с которого заходят на группу путей или выполняют на ней маневры.
+Здесь _станционная вытяжка_ даёт и доступ к станции, и место, где можно
+переставлять вагоны между путями при сортировке.
+
+Эта стрелка соединяет путь депо с вытяжкой.
+>>>
+// #15
+<<<
+## The Throttle and The Reverser
+
+The _throttle_ controls how much steam is sent to the pistons, which makes the engine go faster.
+When it is closed, 0%, no steam is sent to the pistons. At 100%, maximum steam is sent.
+
+The _reverser_ controls how the pistons apply force to the drivers by changing how the _valve gear_
+operates. This makes it possible to control direction as well as more efficiently use the steam
+at higher speeds.
+===
+## Регулятор и реверс
+
+_Регулятор_ определяет, сколько пара поступает в цилиндры: чем больше пара, тем быстрее идёт локомотив.
+Когда он закрыт (0%), пар в цилиндры не поступает. При 100% подаётся максимум пара.
+
+_Реверс_ определяет, как поршни передают усилие на движущие колёса, меняя работу
+_парораспределительного механизма_. С его помощью можно менять направление движения и экономнее расходовать пар
+на высоких скоростях.
+>>>
+// #16
+About 5 mph will do. Many older engines don't have speedometers, so use your best judgement!=Хватит около 5 миль/ч. На многих старых локомотивах нет спидометра, так что ориентируйтесь на глаз!
+// #17
+<<<
+## Railroad Fuel Service
+
+Much of our freight work will be for our customers,
+but some of it will keep our railroad running: fuel for engines,
+repair parts, and maintenance of way materials.
+
+To keep your engines fueled you will need to supply coal to your
+coal conveyors and coaling towers.
+This is called _Railroad Fuel Service_ freight, and it uses cars
+owned by your railroad.
+
+Your railroad owns one hopper -- it's on the interchange tracks to the east,
+full of coal and ready to be spotted on the conveyor supply track.
+
+Find the hopper. The coal in this car has already been purchased;
+next we'll set it to unload and buy more in the future.
+===
+## Снабжение дороги топливом
+
+Большая часть грузовой работы — для клиентов,
+но часть её поддерживает работу самой дороги: топливо для локомотивов,
+запчасти и материалы для содержания пути.
+
+Чтобы локомотивы не остались без топлива, завозите уголь
+на угольные конвейеры и углепогрузочные башни.
+Такие перевозки называются _снабжением дороги топливом_, и для них используются вагоны
+вашей дороги.
+
+У вашей дороги есть один хоппер — он стоит на путях пункта обмена к востоку,
+полный угля и готовый к подаче на путь снабжения конвейера.
+
+Найдите хоппер. Уголь в этом вагоне уже оплачен;
+дальше мы настроим его выгрузку и будущие закупки.
+>>>
+// #18
+<<<
+## Automatic Waybills
+
+Railroads use waybills to keep track of where a car needs to be delivered to.
+
+_Automatic Waybills_ in Railroader enable you to set a car to be moved between two destinations:
+one to load it when empty, and another to unload it when full.
+Automatic waybills are only used on cars owned by your railroad.
+
+Waybills can be viewed using the _inspector_. Open the inspector by *Right Clicking* on the hopper and clicking
+"Inspect". You can also open the inspector directly by *control-clicking* on the car.
+===
+## Автоматические накладные
+
+С помощью накладных дороги отслеживают, куда нужно доставить вагон.
+
+_Автоматические накладные_ в Railroader позволяют гонять вагон между двумя пунктами:
+в одном его загружают, когда он пустой, в другом разгружают, когда он полный.
+Автоматические накладные можно назначать только вагонам вашей дороги.
+
+Накладные можно посмотреть в _инспекторе_. Откройте его: щёлкните по хопперу *правой кнопкой мыши* и выберите
+«Осмотреть». Можно открыть инспектор и сразу — *Control-щелчком* по вагону.
+>>>
+// #19
+<<<
+Switch to the Operations tab and
+find the When Empty and When Loaded menus. Make the following settings:
+===
+Перейдите на вкладку «Перевозки» и
+найдите списки «Когда пуст» и «Когда загружен». Задайте следующие настройки:
+>>>
+// #20
+Set the _When Empty_ destination=Задайте назначение _«Когда пуст»_
+// #21
+Set the _When Loaded_ destination=Задайте назначение _«Когда загружен»_
+// #22
+<<<
+Next, reverse your engine past the shed, to the other end of the yard tracks.
+
+If you're having trouble getting above 15 mph, try moving the reverser toward the center.
+This will use the steam more efficiently.
+
+However, given that this is a yard area, keep your speed around 15 mph,
+especially over the switches.
+===
+Затем отведите локомотив задним ходом мимо депо, на другой конец станционных путей.
+
+Если не получается разогнаться больше 15 миль/ч, сдвиньте реверс ближе к центру —
+так пар расходуется эффективнее.
+
+Но это станция, так что держите скорость около 15 миль/ч,
+особенно на стрелках.
+>>>
+// #23
+<<<
+Now, couple to the hopper car with the front of your engine.
+
+When coupling to another cut of cars, 1-3 mph is the ideal, but you can couple as fast as 5 mph
+without doing damage. (If you couple too hard, you can cause the train(s) to derail!)
+===
+Теперь сцепитесь с хоппером передней частью локомотива.
+
+Идеальная скорость при сцепке с группой вагонов — 1–3 миль/ч, но без повреждений можно сцепляться
+и на 5 миль/ч. (Если сцепиться слишком жёстко, поезд может сойти с рельсов!)
+>>>
+// #24
+<<<
+## Ordering Coal
+
+In a few days, once you've burned through the coal in this hopper, it will be time to order more.
+Because you set the _When Empty_ destination to the interchange, the car will be automatically waybilled there once it is empty.
+
+At that time you'll move the hopper to the interchange, and the next time it's served,
+payment will be withdrawn and the hopper will be taken away.
+It will be returned at the next service 24 hours later, full of coal again, with its waybill set to the loader.
+
+Because you only have one coal car, you'll be without a coal supply for a day, so plan carefully,
+or buy another hopper so that your fuel supply is uninterrupted.
+
+Fuel costs can be viewed in the Company window Locations panel for the interchange.
+
+One last note about automatic waybills: You can manually toggle between the two destinations using the Cycle
+buttons below the menus, as well as copy the destinations to coupled cars and cycle them too.
+===
+## Заказываем уголь
+
+Через несколько дней, когда уголь в этом хоппере закончится, придёт время заказать ещё.
+Вы указали в поле _«Когда пуст»_ пункт обмена, поэтому, когда вагон опустеет, ему автоматически выпишут туда накладную.
+
+Тогда вы отвезёте хоппер на пункт обмена, а при следующей подаче
+с вас спишут оплату, и хоппер заберут.
+Его вернут при следующей подаче, через 24 часа, снова полным угля и с накладной на конвейер.
+
+Угольный вагон у вас всего один, поэтому на сутки вы останетесь без угля. Планируйте заранее
+или купите ещё один хоппер, чтобы снабжение топливом не прерывалось.
+
+Стоимость топлива можно посмотреть на вкладке «Места» окна компании, у пункта обмена.
+
+И последнее об автоматических накладных: переключаться между двумя назначениями можно вручную кнопками смены накладной
+под списками, а также копировать назначения на сцепленные вагоны и переключать их.
+>>>
+// #25
+<<<
+## Derailments, Damage, and Repair
+
+One of the casualties of the flood was our #1 engine.
+It's on the main line, alongside the East Whittier yard.
+
+Find the wrecked engine before continuing.
+Engines are shown on the map (`M` toggles), and listed in the engine roster (`R` toggles).
+===
+## Сходы с рельсов, повреждения и ремонт
+
+Одной из жертв наводнения стал наш локомотив №1.
+Он стоит на главном пути рядом со станцией East Whittier.
+
+Прежде чем продолжить, найдите разбитый локомотив.
+Локомотивы показаны на карте (`M`) и в списке локомотивов (`R`).
+>>>
+// #26
+<<<
+## Moving to the Wreck
+
+We'll need to use our engine to rescue the wreck. You'll reach it through the crossover at the west end of the yard. Use the overhead view or map to plan your route.
+
+Notice the yellow paint on the tie ends around the wreck. It marks damaged track with a lower speed limit (25 mph). We'll come back and fix it later.
+===
+## Едем к месту крушения
+
+Чтобы вызволить разбитый локомотив, понадобится наш исправный. Добраться до него можно через съезд в западном конце станции. Спланируйте маршрут в виде сверху или по карте.
+
+Обратите внимание на жёлтую краску на концах шпал вокруг места крушения. Так отмечен повреждённый путь с пониженным ограничением скорости (25 миль/ч). Позже мы вернёмся и починим его.
+>>>
+// #27
+<<<
+## Rerailing
+
+This engine was a victim of the flood waters and debris. All of its water and coal are gone, too.
+It can be repaired, but it will take some time.
+===
+## Ставим на рельсы
+
+Этот локомотив пострадал от воды и обломков при наводнении. Воды и угля в нём тоже не осталось.
+Его можно отремонтировать, но на это уйдёт время.
+>>>
+// #28
+<<<
+If this engine still had coal and water it might be able to limp home. Since it doesn't, we'll need to rescue it.
+
+Couple to the wreck with your engine by reversing into it, making sure to keep your speed below 5 mph in order to avoid causing even more damage!
+===
+Будь в этом локомотиве уголь и вода, он, может, и дополз бы до дома сам. Но их нет, так что придётся его вытаскивать.
+
+Подъедьте к разбитому локомотиву задним ходом и сцепитесь с ним. Держите скорость ниже 5 миль/ч, чтобы не повредить его ещё сильнее!
+>>>
+// #29
+<<<
+## Engine Service
+
+Open the Company window with `I` or using the icon in the upper right corner of the screen.
+The Company window gives you visibility into all sorts of aspects of your railroad.
+
+Switch to the "Locations" tab and find "East Whittier Engine Service" in the list. This location page shows you:
+
+- Where it is and what tracks it has:
+- Clicking on any of the map pointer icons moves the camera there
+- Hovering over the text will highlight those tracks
+- Fuel on hand
+- Repair track speed and pay rates
+- A list of equipment present and its status
+
+Note the estimate of the time to complete repairs on the engine is shown toward the bottom.
+
+Each piece of equipment needing repair is repaired simultaneously by a crew.
+Repair crews are paid for their time at midnight. If wages cannot be paid, no work will be done the next day.
+===
+## Обслуживание локомотивов
+
+Откройте окно компании клавишей `I` или значком в правом верхнем углу экрана.
+В окне компании видно всё о самых разных сторонах работы вашей дороги.
+
+Перейдите на вкладку «Места» и найдите в списке «East Whittier Engine Service». На странице этого места показаны:
+
+- Где оно находится и какие у него пути:
+- Щелчок по любому значку-указателю переносит туда камеру
+- При наведении на текст пути подсвечиваются
+- Запасы топлива
+- Скорость ремонта и ставки оплаты
+- Список подвижного состава на месте и его состояние
+
+Обратите внимание: внизу показано, сколько примерно времени займёт ремонт локомотива.
+
+Каждую единицу подвижного состава ремонтирует своя бригада, одновременно с остальными.
+Ремонтным бригадам платят за работу в полночь. Если зарплату выплатить не удастся, на следующий день работы не будет.
+>>>
+// #30
+<<<
+Let's set the Automatic Waybills on the box car to load at the Interchange and unload at the Repair Track.
+
+Note that this works exactly the same as Railroad Fuel Service.
+===
+Настроим автоматические накладные крытого вагона: погрузка — на пункте обмена, выгрузка — на ремонтном пути.
+
+Это работает точно так же, как снабжение дороги топливом.
+>>>
+// #31
+<<<
+## Wear & Tear & Overhauls
+
+Your equipment's condition will decrease with regular use.
+To keep it in tip top shape, store your engines in an engine shed or repair track when not in use,
+and regularly cycle your passenger equipment onto repair tracks.
+
+Operating equipment in poor condition has a number of drawbacks:
+engines don't pull as well, coaches don't earn as well, and regular wear compounds.
+
+In addition to regular repairs, equipment also requires an _Overhaul_ every 2,500 miles or so.
+To overhaul your equipment, open the inspector's Equipment tab and set the Repair Destination to an "(Overhaul)" location.
+
+If you don't overhaul your equipment periodically the shop crews will be unable to repair it past a certain point (10% per 2,500 miles).
+Overhaul mileage is shown on the Equipment tab.
+===
+## Износ и капитальный ремонт
+
+При обычной работе состояние подвижного состава ухудшается.
+Чтобы держать его в отличной форме, ставьте неиспользуемые локомотивы в депо или на ремонтный путь,
+а пассажирские вагоны регулярно отправляйте на ремонтные пути.
+
+У подвижного состава в плохом состоянии много недостатков:
+локомотивы хуже тянут, пассажирские вагоны меньше зарабатывают, а износ нарастает.
+
+Кроме обычного ремонта, примерно каждые 2500 миль нужен _капитальный ремонт_.
+Чтобы отправить подвижной состав в капремонт, откройте в инспекторе вкладку «Подвижной состав» и выберите местом ремонта пункт с пометкой «(Капитальный ремонт)».
+
+Если не проводить капремонт регулярно, мастерские не смогут восстановить состояние выше определённого уровня (минус 10% за каждые 2500 миль).
+Пробег до капремонта указан на вкладке «Подвижной состав».
+>>>
+// #32
+Keep your speed around 15-25 mph.=Держите скорость около 15–25 миль/ч.
+// #33
+<<<
+Open the inspector for the passenger car, either with *Control-Click* or using the *Right Click* menu.
+
+On the "Passenger" tab, check the box next to Ela.
+This tells the passengers where this coach is headed, and passengers for Ela will now begin boarding.
+===
+Откройте инспектор пассажирского вагона — *Control-щелчком* или через меню по *правой кнопке мыши*.
+
+На вкладке «Пассажирский» отметьте Ela.
+Так пассажиры узнают, куда идёт вагон, и пассажиры до Ela начнут посадку.
+>>>
+// #34
+<<<
+## Speed Limits
+
+Railroader doesn't enforce strict speed limits, but going above the speed limit on curves can damage your equipment,
+as well as potentially cause the train to derail at excessive speeds,
+so it's a good idea to start out slow as you're learning the railroad.
+The tighter the curve or switch, the lower the safe speed!
+
+- Most of the mainline is good for 35 mph, except where noted by yellow speed signs. These signs do not give you much warning, however, so check the map or look ahead as you're learning the railroad.
+- Mainline siding switches are good for 25 mph or better.
+- Yard, industrial, and branch switches should be treated as 15 mph.
+
+The mainline between Whittier and Ela is good for 35, though there is one sharp curve that needs to be taken at 30.
+===
+## Ограничения скорости
+
+Railroader не следит строго за ограничениями скорости, но превышение в кривых может повредить подвижной состав,
+а на слишком высокой скорости поезд может и сойти с рельсов,
+поэтому, пока вы изучаете дорогу, лучше ездить медленно.
+Чем круче кривая или стрелка, тем ниже безопасная скорость!
+
+- Почти на всём главном пути можно ехать 35 миль/ч, кроме мест, отмеченных жёлтыми знаками ограничения скорости. Но эти знаки предупреждают поздно, так что, пока изучаете дорогу, сверяйтесь с картой или смотрите вперёд.
+- Стрелки разъездов на главном пути можно проходить на 25 миль/ч и быстрее.
+- Станционные, подъездные и стрелки на ветках считайте рассчитанными на 15 миль/ч.
+
+Главный путь между Whittier и Ela рассчитан на 35, но там есть одна крутая кривая, которую нужно проходить на 30.
+>>>
+// #35
+<<<
+## Ela Passenger Stop
+
+Ela has a small station that's on single track, and a siding and other tracks beyond it.
+A white and black "S" sign tells you you're close to the station.
+
+As you arrive at Ela, stop with your coach aligned with the station.
+Your passengers will automatically begin to disembark once the train is fully stopped.
+===
+## Остановка Ela
+
+В Ela небольшая станция на однопутном участке, а за ней разъезд и другие пути.
+Бело-чёрный знак «S» говорит, что станция близко.
+
+Прибыв в Ela, остановитесь так, чтобы вагон был напротив станции.
+Пассажиры начнут выходить сами, как только поезд полностью остановится.
+>>>
+// #36
+<<<
+Open the inspector passenger panel on the coach and check "Whittier",
+but leave the "Ela" checkbox checked — it will be unchecked automatically once they have all disembarked.
+
+Once the passengers have all disembarked, you will be paid for their fares -- watch for a message in the upper left!
+===
+Откройте в инспекторе вагона вкладку пассажиров и отметьте «Whittier»,
+но отметку «Ela» не снимайте — она снимется автоматически, когда все выйдут.
+
+Когда все пассажиры выйдут, вам заплатят за проезд — следите за сообщением слева вверху!
+>>>
+// #37
+There are \\(numCarsToSpot) cars that need to be spotted.=Нужно поставить на место вагонов: \\(numCarsToSpot).
+// #38
+<<<
+## Captive Service
+
+Some industries use captive service cars to move loads. If you want to serve the saw mill,
+you will use your log skeleton cars in _captive service_ to load logs at one of the Connelly Creek tracks,
+and unload them at Whittier Saw Mill.
+
+Captive service cars are owned by your railroad and work the same as the hopper and box car:
+set the When Empty and When Loaded destinations to determine where they go to be loaded and unloaded.
+Note that you must have a contract with a customer before you can select its tracks as a destination.
+You can purchase additional cars to increase your capacity.
+
+Unlike freight that moves through the interchange, you set the pace at which captive service cars move.
+See the Location tab information for the industry for guidance on how many car loads it expects.
+
+Captive service deliveries are paid at midnight.
+===
+## Внутренние перевозки
+
+Некоторые предприятия возят грузы в вагонах внутренних перевозок. Если хотите обслуживать лесопилку,
+используйте свои лесовозные платформы для _внутренних перевозок_: грузите брёвна на одном из путей Connelly Creek
+и выгружайте их на Whittier Saw Mill.
+
+Вагоны внутренних перевозок принадлежат вашей дороге и работают так же, как хоппер и крытый вагон:
+назначения «Когда пуст» и «Когда загружен» задают, куда они едут загружаться и разгружаться.
+Учтите: выбрать пути клиента местом назначения можно только после заключения контракта с ним.
+Чтобы возить больше, можно докупить вагоны.
+
+В отличие от грузов, идущих через пункт обмена, темп внутренних перевозок задаёте вы сами.
+Сколько вагонов ждёт предприятие, подскажет его страница на вкладке «Места».
+
+Доставки внутренних перевозок оплачиваются в полночь.
+>>>
+// #39
+Maintaining the Road=Содержание пути
+// #40
+<<<
+## Track Wear
+
+Every train that runs over the track wears it a little. Our line is _Class 3_ track, good for 40 mph.
+As it wears, its class drops. Class 2 is limited to 25 mph, and Class 1 to 10 mph.
+
+Worn track is marked with paint on the tie ends. Yellow means the speed limit has been lowered, usually to 25 mph,
+and red means it's down to 10 mph. Going over the limit damages equipment, and going well over can derail a train.
+Auto Engineers obey the limits on their own.
+
+The wrecked engine #1 left the main line beside the East Whittier yard in rough shape.
+The ties are marked by the yellow paint we noticed earlier. Let's repair the track.
+===
+## Износ пути
+
+Каждый поезд немного изнашивает путь. Наша линия — путь _класса 3_, рассчитанный на 40 миль/ч.
+По мере износа его класс падает. На классе 2 ограничение — 25 миль/ч, на классе 1 — 10 миль/ч.
+
+Изношенный путь отмечен краской на концах шпал. Жёлтая означает, что ограничение скорости снижено, обычно до 25 миль/ч,
+красная — что оно упало до 10 миль/ч. Превышение повреждает подвижной состав, а сильное превышение может привести к сходу с рельсов.
+Автомашинисты соблюдают ограничения сами.
+
+Разбитый локомотив №1 оставил главный путь рядом со станцией East Whittier в плохом состоянии.
+Шпалы отмечены жёлтой краской, которую мы заметили раньше. Починим путь.
+>>>
+// #41
+Inspect the damaged track=Осмотрите повреждённый путь
+// #42
+Hold `Shift-/` and hover the mouse over the rails to see their class and condition.=Удерживайте `Shift-/` и наведите курсор на рельсы, чтобы увидеть их класс и состояние.
+// #43
+<<<
+## Your Work Train
+
+Track is built and repaired by _Maintenance of Way_ (MoW) crews, who ride in a work car.
+We have one work car. It's coupled to three gondolas, on the MoW yard track right beside the damaged main line.
+
+The work car looks similar to a passenger car, but you can tell it's a work car by its "Work Car" tooltip.
+
+Open the Inspector on the work car and switch to its MOW tab.
+===
+## Ваш рабочий поезд
+
+Путь строят и ремонтируют бригады _обслуживания пути_, которые ездят в рабочем вагоне.
+У нас есть один рабочий вагон. Он сцеплен с тремя полувагонами и стоит на станционном пути обслуживания прямо рядом с повреждённым главным путём.
+
+Рабочий вагон похож на пассажирский, но его можно узнать по подсказке «Рабочий вагон».
+
+Откройте инспектор рабочего вагона и перейдите на вкладку «Путь».
+>>>
+// #44
+Something is wrong: couldn't find the work car.=Что-то пошло не так: не удалось найти рабочий вагон.
+// #45
+Find the work car=Найдите рабочий вагон
+// #46
+Open the inspector for the work car=Откройте инспектор рабочего вагона
+// #47
+Switch to the MOW tab=Перейдите на вкладку «Путь»
+// #48
+<<<
+The crew works only when its car is _Enabled_, stopped, and coupled to cars carrying the materials it needs.
+The crew works on track near the car, both along its own track and on tracks running right alongside. From here in the yard they can reach the damaged main line.
+
+Work crews are paid $250 per 12-hour shift, but only for shifts spent working.
+===
+Бригада работает, только когда её вагон _включён_, стоит и сцеплен с вагонами, в которых есть нужные материалы.
+Бригада работает на пути рядом с вагоном — и на его собственном пути, и на идущих рядом. Отсюда, со станции, она достаёт до повреждённого главного пути.
+
+Рабочим бригадам платят $250 за 12-часовую смену, но только за смены, когда они действительно работали.
+>>>
+// #49
+<<<
+## Ballast, Ties & Rails
+
+Repairing track takes _ballast_, _ties_, and _rails_, and the crew needs all three.
+The MoW yard has a stock of each, and the gondolas are already on the yard track.
+
+Each gondola carries one material. Open its inspector, switch to the Operations tab,
+and set its _Load_ destination to the East Whittier Maintenance of Way Yard, then pick the material.
+Because it's already at its destination track, the gondolas will begin loading.
+
+Keep the gondolas coupled to the work car, because the crew only draws materials from cars coupled to it.
+===
+## Балласт, шпалы и рельсы
+
+Для ремонта пути нужны _балласт_, _шпалы_ и _рельсы_ — бригаде необходимо всё три.
+На станции обслуживания пути есть запас каждого материала, а полувагоны уже стоят на её пути.
+
+Каждый полувагон возит один материал. Откройте его инспектор, перейдите на вкладку «Перевозки»,
+задайте назначением _погрузки_ станцию East Whittier Maintenance of Way Yard и выберите материал.
+Поскольку полувагон уже на нужном пути, погрузка начнётся сразу.
+
+Держите полувагоны сцепленными с рабочим вагоном: бригада берёт материалы только из сцепленных с ним вагонов.
+>>>
+// #50
+Set a gondola to load ballast=Настройте полувагон на погрузку балласта
+// #51
+Set a gondola to load ties=Настройте полувагон на погрузку шпал
+// #52
+Set a gondola to load rails=Настройте полувагон на погрузку рельсов
+// #53
+<<<
+The yard loads one material at a time, so the gondolas fill one after another.
+To skip ahead, wait in the time window (click the clock in the upper right, or press `F3`).
+===
+Станция грузит по одному материалу, поэтому полувагоны наполняются по очереди.
+Чтобы не ждать, пропустите время в окне времени (щёлкните по часам в правом верхнем углу или нажмите `F3`).
+>>>
+// #54
+Wait for the ballast to load=Дождитесь погрузки балласта
+// #55
+Wait for the ties to load=Дождитесь погрузки шпал
+// #56
+Wait for the rails to load=Дождитесь погрузки рельсов
+// #57
+<<<
+When the MoW yard storage runs low, you can use your gondolas to buy more via the interchange.
+This works the same way as fuel and repair parts: use your railroad's cars to acquire and move materials.
+Yard storage can be viewed in the Company window "Loads" and "Locations" tabs.
+===
+Когда запасы на станции обслуживания пути подойдут к концу, можно докупить материалы в своих полувагонах через пункт обмена.
+Это работает так же, как с топливом и запчастями: материалы закупают и возят в вагонах вашей дороги.
+Запасы станции видны на вкладках «Грузы» и «Места» окна компании.
+>>>
+// #58
+<<<
+## Put the Crew to Work
+
+The materials are coupled to the work car, so the crew is ready.
+Enable the work car on its MOW tab.
+===
+## За работу
+
+Материалы сцеплены с рабочим вагоном, бригада готова.
+Включите рабочий вагон на вкладке «Путь».
+>>>
+// #59
+Worn track segment \\(id) not found=
+// #60
+Enable the work car=Включите рабочий вагон
+// #61
+<<<
+The crew starts on the nearest damaged track and works outward. You'll see dust clouds as they work.
+As each stretch is repaired, the yellow paint will be removed.
+
+This repair will take a few minutes. To skip ahead, wait in the time window (click the clock in the upper right, or press `F3`).
+
+Note that you don't tell the crew which track segments to repair. They work on the nearest damaged track, and will move on to the next nearest when done.
+===
+Бригада начинает с ближайшего повреждённого пути и движется дальше. Во время работы видны клубы пыли.
+По мере ремонта каждого участка жёлтая краска исчезает.
+
+Ремонт займёт несколько минут. Чтобы не ждать, пропустите время в окне времени (щёлкните по часам в правом верхнем углу или нажмите `F3`).
+
+Указывать бригаде, какие участки чинить, не нужно: она работает на ближайшем повреждённом пути, а закончив, переходит к следующему.
+>>>
+// #62
+Repair the damaged track=Отремонтируйте повреждённый путь
+// #63
+<<<
+The yellow paint is removed once the track is back to Class 3, but the work car will continue until the track is 100% Class 3.
+You can stop it here, or let it continue. A tooltip on the work car shows its status.
+===
+Жёлтая краска исчезает, когда путь снова становится класса 3, но рабочий вагон продолжит работу, пока путь не достигнет 100% класса 3.
+Можно остановить его здесь или дать закончить. Подсказка рабочего вагона показывает его состояние.
+>>>
+// #64
+<<<
+## Back to Track Speed
+
+The main line is Class 3 again and the speed limit is back to normal!
+
+A work car left enabled keeps maintaining the track within its reach, and you pay its crew for every shift it works.
+Disable it when you don't need it.
+
+Note that track construction milestones work the same way: one or more work cars coupled to the necessary materials will build the track.
+
+Our trains will keep wearing the track, so you'll want to periodically check your track for damage.
+You can spot yellow/red painted track in the Map window -- enable the "Track Condition" setting.
+
+Also: an Auto Engineer coupled to an enabled work car will stop to make repairs automatically.
+
+The Guide (`F1`) has more on track maintenance.
+===
+## Снова на полной скорости
+
+Главный путь снова класса 3, а ограничение скорости вернулось к обычному!
+
+Включённый рабочий вагон продолжает обслуживать путь в пределах досягаемости, и за каждую рабочую смену вы платите бригаде.
+Выключайте его, когда он не нужен.
+
+Этапы строительства пути работают так же: один или несколько рабочих вагонов, сцепленных с нужными материалами, построят путь.
+
+Наши поезда будут и дальше изнашивать путь, поэтому время от времени проверяйте его на повреждения.
+Жёлтые и красные участки видно в окне карты — включите настройку «Состояние пути».
+
+И ещё: автомашинист, сцепленный с включённым рабочим вагоном, сам остановится для ремонта.
+
+Подробнее об обслуживании пути — в справочнике (`F1`).
+>>>
+// #65
+<<<
+## Where to from here
+
+Whittier and Ela are happy to have the railroad back. Where the railroad goes next is up to you.
+
+In the Company window, open the "Milestones" tab. Two milestones are open to you now:
+
+- **Repair Ela Track & Bridge.** The flood took out the bridge west of Ela. Rebuilding it reopens the line to Bryson. It doesn't cost much to start, but it will take some work: buy track and bridge materials at the interchange, haul them to the site, and put your work train on it.
+- **East to Dillsboro & Sylva.** Buy the Atlantic Railway's line east to Wilmot, Dillsboro and Sylva. It costs more up front, but there's nothing to build, and it changes the shape of the railroad: the interchange moves east of Sylva.
+
+Starting a construction milestone doesn't deliver anything. It marks the site with stakes and a construction board. Click the board to see which materials the crew needs next. Order them with automatic waybills, the same way as fuel and repair parts, then bring them and your work car to the site and the crew will build.
+
+Most milestones expand the reach of your railroad, but some bring exciting technologies to the line. How you expand is up to you!
+===
+## Что дальше
+
+Whittier и Ela рады возвращению железной дороги. Куда она пойдёт дальше — решать вам.
+
+В окне компании откройте вкладку «Этапы». Сейчас вам доступны два этапа:
+
+- **Восстановить путь и мост у Ela.** Наводнение разрушило мост к западу от Ela. Его восстановление снова откроет линию до Bryson. Начать стоит недорого, но придётся поработать: купить материалы для пути и моста на пункте обмена, довезти их до места и пригнать рабочий поезд.
+- **На восток: Dillsboro и Sylva.** Выкупить линию Atlantic Railway на восток до Wilmot, Dillsboro и Sylva. Сразу это дороже, зато строить ничего не нужно, и дорога меняет форму: пункт обмена переезжает на восток от Sylva.
+
+Начало строительного этапа ничего не доставляет. На месте появятся вехи и строительный щит. Щёлкните по щиту, чтобы узнать, какие материалы бригаде нужны дальше. Закажите их через автоматические накладные, как топливо и запчасти, затем привезите их и рабочий вагон на место — и бригада начнёт строить.
+
+Большинство этапов расширяют вашу дорогу, но некоторые приносят на линию интересные технологии. Как расширяться — решать вам!
+>>>
+// #66
+<<<
+## Other ways to Grow
+
+Perhaps you'd like to look into adding more power to your railroad. `Shift-T` opens the equipment purchase window. New equipment is delivered to the interchange.
+
+To sell equipment owned by your railroad, use the inspector's "Equipment" tab to set a Sell Destination on it. This will create a "waybill" to the interchange. You will receive the sell price when the interchange is served. Note that equipment condition figures heavily into the sell price!
+
+Finally, you have the option to take out a loan on the Company window "Finance" tab. Your maximum loan amount is based on the value of your railroad's equipment. Interest payments of 10% are due every 5 days. You can pay down the loan at any time.
+===
+## Другие способы роста
+
+Возможно, вам захочется пополнить парк локомотивов. `Shift-T` открывает окно покупки подвижного состава. Новый подвижной состав доставляют на пункт обмена.
+
+Чтобы продать подвижной состав вашей дороги, укажите место продажи на вкладке «Подвижной состав» в инспекторе. Будет создана «накладная» на пункт обмена. Деньги за продажу вы получите при подаче на пункт обмена. Учтите: цена продажи сильно зависит от состояния!
+
+Наконец, можно взять кредит на вкладке «Финансы» в окне компании. Максимальная сумма кредита зависит от стоимости подвижного состава вашей дороги. Проценты — 10% каждые 5 дней. Погасить кредит можно в любой момент.
+>>>

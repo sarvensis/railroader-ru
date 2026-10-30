@@ -6,18 +6,39 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
-using Game.Scripting.Interactive;
+
 using HarmonyLib;
-using MoonSharp.Interpreter;
-using MoonSharp.Interpreter.Loaders;
-using UI.Guide;
+
 using UnityEngine;
 
 namespace RailroaderRu
 {
+    /// <summary>Классы игры ищем по имени: в 2025.1 они в Assembly-CSharp, в 2026.1 — в Railroader и Relay.</summary>
+    internal static class GameTypes
+    {
+        private static readonly string[] Assemblies = { "Railroader", "Assembly-CSharp", "Relay", "MoonSharp.Interpreter" };
+
+        public static Type Find(params string[] names)
+        {
+            foreach (var assemblyName in Assemblies)
+            {
+                Assembly assembly;
+                try { assembly = Assembly.Load(assemblyName); }
+                catch (Exception) { continue; }
+                foreach (var name in names)
+                {
+                    var type = assembly.GetType(name, false);
+                    if (type != null) return type;
+                }
+            }
+            return null;
+        }
+    }
+
     /// <summary>
-    /// Туториал: при чтении .lua-файлов из StreamingAssets заменяем строковые литералы по словарю
-    /// translations/tutorial/*.txt. Если игра обновит текст, непереведённым останется только изменённый абзац.
+    /// Туториал: при чтении скриптов (.rl в 2026.1, .lua в 2025.1) из StreamingAssets заменяем строковые
+    /// литералы по словарю translations/tutorial/*.txt. Если игра обновит текст, непереведённым останется
+    /// только изменённый абзац.
     /// </summary>
     internal static class LuaHooks
     {
@@ -26,36 +47,44 @@ namespace RailroaderRu
             string source = File.ReadAllText(path);
             if (!Plugin.TranslateTutorial.Value || !ContentPaths.IsInStreamingAssets(path))
                 return source;
+            return Translate(path, source);
+        }
+
+        private static string Translate(string path, string source)
+        {
             try
             {
                 Plugin.ReloadIfRequested();
-                string result = LuaStrings.Replace(source, Lookup, out int replaced);
+                bool relay = path.EndsWith(".rl", StringComparison.OrdinalIgnoreCase);
+                string result = relay
+                    ? RelayStrings.Replace(source, Lookup, out int replaced)
+                    : LuaStrings.Replace(source, Lookup, out replaced);
                 if (replaced > 0)
-                    Plugin.Log.LogInfo($"Lua: {Path.GetFileName(path)} — переведено строк: {replaced}");
+                    Plugin.Log.LogInfo($"Обучение: {Path.GetFileName(path)} — переведено строк: {replaced}");
                 return ApplyFixes(path, result);
             }
             catch (Exception ex)
             {
-                Plugin.Log.LogError($"Lua: ошибка перевода {path}: {ex}");
+                Plugin.Log.LogError($"Обучение: ошибка перевода {path}: {ex}");
                 return source;
             }
         }
 
         /// <summary>
         /// Исправления ошибок самого обучения (не связанных с переводом).
-        /// page_context.lua: цель «в процентах» засчитывается при value > 0.9999, а окно рисует галочку и 100%
-        /// уже при > 0.999. Если концевой кран остановился, например, на 0.9995, игрок видит выполненную цель,
+        /// Цель «в процентах» засчитывается при value > 0.9999, а окно рисует галочку и 100% уже при > 0.999.
+        /// Если концевой кран остановился, например, на 0.9995, игрок видит выполненную цель,
         /// а кнопка «Далее» так и не появляется. Выравниваем порог с окном.
         /// </summary>
         private static string ApplyFixes(string path, string source)
         {
-            if (!string.Equals(Path.GetFileName(path), "page_context.lua", StringComparison.OrdinalIgnoreCase))
-                return source;
-            const string bug = "value > 0.9999 then";
-            if (source.IndexOf(bug, StringComparison.Ordinal) < 0)
+            string file = Path.GetFileName(path);
+            bool isPageContext = string.Equals(file, "page_context.lua", StringComparison.OrdinalIgnoreCase)
+                                 || string.Equals(file, "pagecontext.rl", StringComparison.OrdinalIgnoreCase);
+            if (!isPageContext || source.IndexOf("value > 0.9999", StringComparison.Ordinal) < 0)
                 return source; // игра обновилась и, видимо, сама это исправила
-            Plugin.Log.LogInfo("Lua: page_context.lua — исправлен порог выполнения целей (0.9999 → 0.999)");
-            return source.Replace(bug, "value > 0.999 then");
+            Plugin.Log.LogInfo($"Обучение: {file} — исправлен порог выполнения целей (0.9999 → 0.999)");
+            return source.Replace("value > 0.9999", "value > 0.999");
         }
 
         private static string Lookup(LuaStrings.Literal literal)
@@ -67,19 +96,48 @@ namespace RailroaderRu
         }
 
         /// <summary>Главный файл книги читается через File.ReadAllText в TryLoadFromFile.</summary>
-        [HarmonyPatch(typeof(InteractiveBookRunner), "TryLoadFromFile")]
+        [HarmonyPatch]
         private static class TryLoadFromFilePatch
         {
+            private static MethodBase TargetMethod() => AccessTools.Method(
+                GameTypes.Find("Game.Scripting.Interactive.RelayBookRunner", "Game.Scripting.Interactive.InteractiveBookRunner"),
+                "TryLoadFromFile");
+
             private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
-                return ContentPaths.ReplaceReadAllText(instructions, AccessTools.Method(typeof(LuaHooks), nameof(ReadAndTranslate)), "InteractiveBookRunner.TryLoadFromFile");
+                return ContentPaths.ReplaceReadAllText(instructions, AccessTools.Method(typeof(LuaHooks), nameof(ReadAndTranslate)), "TryLoadFromFile");
             }
         }
 
-        /// <summary>Модули (require) грузятся через FileSystemScriptLoader.</summary>
-        [HarmonyPatch(typeof(FileSystemScriptLoader), nameof(FileSystemScriptLoader.LoadFile))]
-        private static class LoadFilePatch
+        /// <summary>
+        /// Модули Relay (from x import y), 2026.1. Подменяем уже прочитанный текст перед компиляцией.
+        /// Переписывать FileSystemModuleLoader.LoadModuleSource нельзя: после такого патча он возвращал null,
+        /// и обучение падало с «Module 'bookbuilder' not found». displayName здесь — полный путь к файлу.
+        /// </summary>
+        [HarmonyPatch]
+        private static class RelayModulePatch
         {
+            private static bool Prepare() => GameTypes.Find("Relay.Interpreter") != null;
+
+            private static MethodBase TargetMethod() => AccessTools.Method(GameTypes.Find("Relay.Interpreter"), "CompileSourceModuleFunction");
+
+            private static void Prefix(ref string sourceCode, string displayName)
+            {
+                if (Plugin.TranslateTutorial.Value && displayName != null
+                    && displayName.EndsWith(".rl", StringComparison.OrdinalIgnoreCase)
+                    && ContentPaths.IsInStreamingAssets(displayName))
+                    sourceCode = Translate(displayName, sourceCode);
+            }
+        }
+
+        /// <summary>Модули Lua (require), 2025.1.</summary>
+        [HarmonyPatch]
+        private static class LuaModulePatch
+        {
+            private static bool Prepare() => GameTypes.Find("MoonSharp.Interpreter.Loaders.FileSystemScriptLoader") != null;
+
+            private static MethodBase TargetMethod() => AccessTools.Method(GameTypes.Find("MoonSharp.Interpreter.Loaders.FileSystemScriptLoader"), "LoadFile");
+
             private static bool Prefix(string file, ref object __result)
             {
                 if (!Plugin.TranslateTutorial.Value || !ContentPaths.IsInStreamingAssets(file) || !File.Exists(file))
@@ -134,9 +192,11 @@ namespace RailroaderRu
                 HeaderToOriginal[ru[i]] = en[i];
         }
 
-        [HarmonyPatch(typeof(GuideWindow), "Populate")]
+        [HarmonyPatch]
         private static class PopulatePatch
         {
+            private static MethodBase TargetMethod() => AccessTools.Method(GameTypes.Find("UI.Guide.GuideWindow"), "Populate");
+
             private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 return ContentPaths.ReplaceReadAllText(instructions, AccessTools.Method(typeof(GuideHooks), nameof(ReadOverride)), "GuideWindow.Populate");

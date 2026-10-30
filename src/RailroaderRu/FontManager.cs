@@ -279,7 +279,6 @@ namespace RailroaderRu
             asset.hideFlags = HideFlags.DontUnloadUnusedAsset;
             if (asset.material != null)
                 asset.material.hideFlags = HideFlags.DontUnloadUnusedAsset;
-            SourcePaths[asset.GetInstanceID()] = path;
 
             // Сразу рисуем в атлас весь русский алфавит, пока загружен именно этот TTF.
             if (!asset.TryAddCharacters(PrebakedCharacters, out string missing) && !string.IsNullOrEmpty(missing))
@@ -292,49 +291,5 @@ namespace RailroaderRu
 
         private const string PrebakedCharacters =
             "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя«»—–…№×";
-
-        /// <summary>Шрифт → TTF, из которого он создан (для патча LoadFontFace).</summary>
-        private static readonly Dictionary<int, string> SourcePaths = new Dictionary<int, string>();
-
-        public static bool TryGetSourcePath(TMP_FontAsset font, out string path)
-        {
-            path = null;
-            return font != null && SourcePaths.TryGetValue(font.GetInstanceID(), out path);
-        }
-
-        /// <summary>
-        /// TMP для динамического шрифта сначала вызывает FontEngine.LoadFontFace(m_SourceFontFile = null, ...).
-        /// Если движок считает это успехом, загруженным остаётся предыдущий шрифт, и глифы рисуются из него
-        /// (у разных начертаний Montserrat номера глифов совпадают, а у PT Serif — нет, отсюда «мусор»).
-        /// Для наших шрифтов всегда загружаем TTF по пути.
-        /// </summary>
-        [HarmonyLib.HarmonyPatch(typeof(TMP_FontAsset), "LoadFontFace")]
-        private static class LoadFontFacePatch
-        {
-            private static readonly HarmonyLib.AccessTools.FieldRef<TMP_FontAsset, string> SourcePathField =
-                HarmonyLib.AccessTools.FieldRefAccess<TMP_FontAsset, string>("m_SourceFontFilePath");
-
-            private static bool Prefix(TMP_FontAsset __instance, ref FontEngineError __result)
-            {
-                if (!TryGetSourcePath(__instance, out var path))
-                {
-                    // Шрифты игры (LibreBaskerville и др.) — динамические, но TTF из билда вырезан.
-                    // «Загрузка» пустого шрифта проходит успешно, и TMP рисует кириллицу из чужого шрифта
-                    // в их атлас — на экране куски других букв. Запрещаем: пусть идёт в наш fallback.
-                    if (Plugin.ReplaceFonts.Value
-                        && __instance.atlasPopulationMode == AtlasPopulationMode.Dynamic
-                        && __instance.sourceFontFile == null
-                        && string.IsNullOrEmpty(SourcePathField(__instance)))
-                    {
-                        __result = FontEngineError.Invalid_File;
-                        return false;
-                    }
-                    return true;
-                }
-                var face = __instance.faceInfo;
-                __result = FontEngine.LoadFontFace(path, (int)face.pointSize, 0); // наши шрифты всегда создаются с faceIndex = 0
-                return false;
-            }
-        }
     }
 }
